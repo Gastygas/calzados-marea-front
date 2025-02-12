@@ -1,0 +1,11 @@
+.headerContainer{
+    background-color: black;
+    text-align: center;
+    padding: 1;
+    position: sticky;
+    top:0
+}
+.headerContainer p {
+    color: white;
+    font-weight: 500;
+}

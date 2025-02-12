@@ -1,0 +1,21 @@
+.containerMenuNavbar{
+    display: flex;
+    justify-content: space-between;
+    width: 65vw;
+    align-items: center;
+}
+
+.list{
+    display: flex;
+}
+
+.item{
+    font-weight: 600;
+    font-size: 18px;
+    margin-right: 5vw;
+}
+
+.divLupa{
+    margin-right: 5vw;
+    
+}
