@@ -7,7 +7,7 @@ const Navbar = () => {
 
     return(
         <div className={styles.containerNav}>
-            <div className="">
+            <div>
                 <Image src={Logo} alt="Logo Calzados Marea" width={40}/>
             </div>
             <MenuNavbar/>

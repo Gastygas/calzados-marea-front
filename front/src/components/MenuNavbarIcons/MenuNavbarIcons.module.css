@@ -1,0 +1,28 @@
+@media (max-width: 750px) {
+    .divIcons {
+        display: flex;
+        align-items: center;
+      }
+
+    .bars {
+        margin-right: 5vw;
+        cursor: pointer;
+      }
+    
+      .lupa {
+        cursor: pointer;
+      }
+}
+
+@media (min-width: 750px) {
+    .divIcons {
+        margin-right: 5vw;
+      }
+      .bars {
+        display: none;
+      }
+    
+      .lupa {
+        cursor: pointer;
+      }
+}

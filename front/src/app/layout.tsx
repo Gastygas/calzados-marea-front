@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   title: "Calzados Marea",
   description: "Venta de zapatillas",
   icons:{
-    icon: '../../assets/cm logo.png'
+    icon: 'https://img.freepik.com/vector-premium/diseno-logo-cm_705304-804.jpg'
   }
 };
 

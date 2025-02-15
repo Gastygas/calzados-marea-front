@@ -1,0 +1,35 @@
+@media (max-width: 750px) {
+  .list {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 70%;
+  }
+
+  .items {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .item {
+    font-weight: 600;
+    font-size: 18px;
+    margin-right: 5vw;
+  }
+}
+
+@media (min-width: 750px) {
+  .list {
+    display: flex;
+  }
+  .nextIcon {
+    display: none;
+  }
+
+  .item {
+    font-weight: 600;
+    font-size: 18px;
+    margin-right: 5vw;
+  }
+}

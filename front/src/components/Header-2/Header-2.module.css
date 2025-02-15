@@ -1,0 +1,35 @@
+.containerHeader2{
+    padding: 1vw;
+    width: 100%;
+    background-color: #E3E3E3;
+}
+
+.divP{
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap:10px;
+}
+
+.textContainer {
+    width: 90%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.divP p{
+    font-size: 16px;
+    font-weight:600;
+}
+
+.arrow {
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.arrow:hover {
+    transform: scale(1.2);
+}

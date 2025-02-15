@@ -1,17 +1,15 @@
 "use client";
 import styles from "./MenuNavbar.module.css";
-import { FiSearch } from "react-icons/fi";
-import { FaBars } from "react-icons/fa";
-import Link from "next/link";
 import Logo from "../../../assets/cm logo.png";
 import Image from "next/image";
-import { MdNavigateNext } from "react-icons/md";
 import { useState } from "react";
+import MenuNavbarIcons from "../MenuNavbarIcons/MenuNavbarIcons";
+import MenuNavbarList from "../MenuNavbarList/MenuNavbarList";
 
 const MenuNavbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const toggleMenu = () => {
+  const toggleMenu = ():void => {
     setIsOpen(!isOpen);
   };
 
@@ -24,29 +22,9 @@ const MenuNavbar = () => {
             Cerrar
           </button>
         </div>
-        <ul className={styles.list}>
-          <Link href="/calzado-hombre" className={styles.items}>
-            <li className={styles.item}>Hombre</li>
-            <MdNavigateNext size={30} className={styles.nextIcon} />
-          </Link>
-          <Link href="/calzado-mujer" className={styles.items}>
-            <li className={styles.item}>Mujer</li>
-            <MdNavigateNext size={30} className={styles.nextIcon} />
-          </Link>
-          <Link href="/calzado-niño" className={styles.items}>
-            <li className={styles.item}>Niño/a</li>
-            <MdNavigateNext size={30} className={styles.nextIcon} />
-          </Link>
-          <Link href="/calzado-nuevo" className={styles.items}>
-            <li className={styles.item}>Nuevo</li>
-            <MdNavigateNext size={30} className={styles.nextIcon} />
-          </Link>
-        </ul>
+        <MenuNavbarList/>
       </div>
-      <div className={styles.divIcons}>
-        <FaBars size={30} className={styles.bars} onClick={toggleMenu} />
-        <FiSearch size={30} className={styles.lupa} />
-      </div>
+      <MenuNavbarIcons toggleMenu={toggleMenu} />
     </div>
   );
 };
