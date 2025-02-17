@@ -1,0 +1,59 @@
+.carouselContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    overflow: hidden;
+}
+
+.carouselWrapper {
+    width: 90%;
+    overflow: hidden;
+}
+
+.carouselInner {
+    display: flex;
+    gap: 35px; /* Espacio entre imágenes */
+    transition: transform 0.5s ease-in-out;
+    white-space: nowrap;
+}
+
+.slide {
+    flex: 0 0 calc(23% - 2vw); /* Ajusta el tamaño de cada imagen para que 4 se vean completamente y 1 a la mitad */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.imagenDestacada {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.arrowLeft,
+.arrowRight {
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.219);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 24px;
+    z-index: 0;
+}
+
+.arrowLeft:hover,.arrowRight:hover{
+    z-index: 2;
+    background-color: rgba(0, 0, 0, 0.5);
+    transition: 0.3s;
+}
+
+.arrowLeft {
+    left: 10px;
+}
+
+.arrowRight {
+    right: 10px;
+}
