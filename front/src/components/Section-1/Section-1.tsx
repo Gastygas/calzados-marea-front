@@ -8,49 +8,75 @@ import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import DestacadoImagenes from "../DestacadoImagenes/DestacadoImagenes";
 
-export interface IDestacadoPics{
-    imagen:StaticImageData,
-    id:number
+export interface IDestacadoPics {
+  imagen: StaticImageData;
+  id: number;
+
+  nombre: string;
 }
 
-const destacadoPics:IDestacadoPics[] = [
+const destacadoPics: IDestacadoPics[] = [
   {
     imagen: jordan,
     id: 1,
+    nombre: "hola",
   },
   {
     imagen: jordan,
     id: 2,
+    nombre: "manda",
   },
   {
     imagen: jordan,
-    id: 3,
+    id: 31,
+    nombre: "manda",
   },
   {
     imagen: jordan,
-    id: 5,
+    id: 113,
+    nombre: "hola",
   },
   {
     imagen: jordan,
-    id: 4,
+    id: 22,
+    nombre: "manda",
   },
   {
     imagen: jordan,
-    id: 6,
+    id: 3123,
+    nombre: "manda",
   },
   {
     imagen: jordan,
-    id: 7,
+    id: 312313233,
+    nombre: "manda",
+  },
+  {
+    imagen: jordan,
+    id: 13,
+    nombre: "hola",
+  },
+  {
+    imagen: jordan,
+    id: 21231,
+    nombre: "manda",
+  },
+  {
+    imagen: jordan,
+    id: 3123424,
+    nombre: "manda",
   },
 ];
 
 const Section1 = () => {
   return (
     <div className={styles.containerSection1}>
-      <div >
-        <h3 style={{fontSize:"20px",marginBottom:"3vw",marginTop:"2vw",marginLeft:"2vw"}}>Destacado</h3>
+      <div>
+        <h3>
+          Lo mas Destacado
+        </h3>
       </div>
-        <DestacadoImagenes destacadoPics={destacadoPics} />
+      <DestacadoImagenes destacadoPics={destacadoPics} />
     </div>
   );
 };
