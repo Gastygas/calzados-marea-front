@@ -9,32 +9,33 @@
 .carouselWrapper {
     width: 100%;
     overflow: hidden;
+    margin: 0px 35px 0px 35px;
 }
 
 .carouselInner {
     display: flex;
-    gap: 40px; /* Espacio entre imágenes */
+    gap: 4vw; /* Espacio entre imágenes */
     transition: transform 0.5s ease-in-out;
     white-space: nowrap;
 }
 
 .slide {
-    flex: 0 0 calc(25% - 20px); /* Ajusta el tamaño de cada imagen para que 4 se vean completamente y 1 a la mitad */
+    flex: 0 0 calc(35% - 120px); /* Ajusta el tamaño de cada imagen para que 4 se vean completamente y 1 a la mitad */
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 .imagenDestacada {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
+    width: auto;
+    height: 20vw;
+    width: 25vw;
+    border-radius: 5px;
 }
 
 .arrowLeft,
 .arrowRight {
     position: absolute;
-    top: 80%;
     transform: translateY(-50%);
     background: rgba(0, 0, 0, 0.219);
     color: white;
@@ -57,4 +58,26 @@
 
 .arrowRight {
     right: 10px;
+}
+
+.infoZapas{
+    width: 100%;
+    text-align: start;
+    padding: 1vw;
+}
+
+.nombre{
+    font-size: 19px;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+.genero{
+    color:#525252;
+    font-size: 16.5px;
+    text-transform: capitalize;
+}
+.precio{
+    color:#056505;
+    font-weight: bold;
+    font-size: 17px;
 }

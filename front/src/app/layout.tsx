@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Logo from "../../assets/cm logo.png"
+import Logo from "../../assets/cm logo.png";
 
 import { Kantumruy_Pro } from "next/font/google";
+import Navbar from "@/components/Navbar/Navbar";
+import Header from "@/components/Header/Header";
 
 const kantumruy = Kantumruy_Pro({
   subsets: ["latin"],
@@ -13,9 +15,9 @@ const kantumruy = Kantumruy_Pro({
 export const metadata: Metadata = {
   title: "Calzados Marea",
   description: "Venta de zapatillas",
-  icons:{
-    icon: 'https://img.freepik.com/vector-premium/diseno-logo-cm_705304-804.jpg'
-  }
+  icons: {
+    icon: "https://img.freepik.com/vector-premium/diseno-logo-cm_705304-804.jpg",
+  },
 };
 
 export default function RootLayout({
@@ -26,7 +28,11 @@ export default function RootLayout({
   return (
     <html lang="es" className={kantumruy.className}>
       <body className={kantumruy.className}>
-        <main>{children}</main>
+        <main>
+          <Header/>
+          <Navbar />
+          {children}
+        </main>
       </body>
     </html>
   );

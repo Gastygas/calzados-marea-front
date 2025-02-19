@@ -13,7 +13,7 @@ const DestacadoImagenes = ({ destacadoPics }: Props) => {
   const [index, setIndex] = useState(0);
 
   const nextSlide = () => {
-    if (index < destacadoPics.length - 5) {
+    if (index < destacadoPics.length) {
       setIndex(index + 1);
     }
   };
@@ -33,25 +33,27 @@ const DestacadoImagenes = ({ destacadoPics }: Props) => {
         <div
           className={styles.carouselInner}
           style={{
-            transform: `translateX(-${index * 22}%)`,
+            transform: `translateX(-${index * 20}%)`,
             transition: "transform 0.5s ease-in-out",
           }}
         >
           {destacadoPics.map((item: any) => (
-              <div className={styles.slide} key={item.id}>
-                <Link href={`/calzado-${item.nombre}`}>
+            <div className={styles.slide} key={item.id}>
+              <Link href={`/calzado-${item.nombre}`}>
                 <Image
                   className={styles.imagenDestacada}
-                  width={500}
-                  height={500}
+                  width={1000}
+                  height={1000}
                   src={item.imagen}
                   alt="zapatilla"
-                  />
-                <p className={styles.nombre}>{item.nombre}</p>
-                <p className={styles.genero}>{item.genero}</p>
-                <p className={styles.precio}>{item.precio}</p>
-                </Link>
-              </div>
+                />
+                <div className={styles.infoZapas}>
+                  <p className={styles.nombre}>{item.nombre}</p>
+                  <p className={styles.genero}>{item.genero ? item.genero : "zapatillas jordan para hombre"}</p>
+                  <p className={styles.precio}>$ {item.precio ? item.precio : "120.000"}</p>
+                </div>
+              </Link>
+            </div>
           ))}
         </div>
       </div>

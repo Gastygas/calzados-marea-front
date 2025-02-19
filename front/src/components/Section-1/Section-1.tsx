@@ -1,5 +1,7 @@
 import styles from "./Section-1.module.css";
 import jordan from "../../../assets/jordan.jpg";
+import nike from "../../../assets/air force white.jpg";
+import dou from "../../../assets/taylor-smith-aDZ5YIuedQg-unsplash.jpg";
 import Image, { StaticImageData } from "next/image";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -19,52 +21,52 @@ const destacadoPics: IDestacadoPics[] = [
   {
     imagen: jordan,
     id: 1,
-    nombre: "hola",
+    nombre: "air jordan 1 low SE",
   },
   {
-    imagen: jordan,
+    imagen: nike,
     id: 2,
-    nombre: "manda",
+    nombre: "nike air force 1 white",
   },
   {
-    imagen: jordan,
+    imagen: dou,
     id: 31,
-    nombre: "manda",
+    nombre: "air force 1 white pink",
   },
   {
     imagen: jordan,
     id: 113,
-    nombre: "hola",
+    nombre: "air force 1 white pink",
   },
   {
-    imagen: jordan,
+    imagen: nike,
     id: 22,
-    nombre: "manda",
+    nombre: "air force 1 white pink",
   },
   {
-    imagen: jordan,
+    imagen: dou,
     id: 3123,
-    nombre: "manda",
+    nombre: "air force 1 white pink",
   },
   {
     imagen: jordan,
     id: 312313233,
-    nombre: "manda",
+    nombre: "air force 1 white pink",
   },
   {
     imagen: jordan,
     id: 13,
-    nombre: "hola",
+    nombre: "air force 1 white pink",
   },
   {
     imagen: jordan,
     id: 21231,
-    nombre: "manda",
+    nombre: "air force 1 white pink",
   },
   {
-    imagen: jordan,
+    imagen: dou,
     id: 3123424,
-    nombre: "manda",
+    nombre: "air force 1 white pink",
   },
 ];
 
@@ -73,7 +75,7 @@ const Section1 = () => {
     <div className={styles.containerSection1}>
       <div>
         <h3>
-          Lo mas Destacado
+          Destacados
         </h3>
       </div>
       <DestacadoImagenes destacadoPics={destacadoPics} />
