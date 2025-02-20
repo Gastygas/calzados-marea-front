@@ -1,133 +1,130 @@
 @media (max-width: 750px) {
-    .divIcons {
-        display: flex;
-        align-items: center;
-      }
+  .divIcons {
+    display: flex;
+    align-items: center;
+  }
 
-    .bars {
-        margin-right: 5vw;
-        cursor: pointer;
-      }
-    
-      .lupa {
-        cursor: pointer;
-      }
+  .bars {
+    margin-right: 5vw;
+    cursor: pointer;
+  }
 
+  .lupa {
+    cursor: pointer;
+  }
 }
 
 @media (min-width: 750px) {
-    .divIcons {
-        margin-right: 5vw;
-      }
-      .bars {
-        display: none;
-      }
-    
-      .lupa{
-        cursor: pointer;
-      }
-      .lupaDiv{
-        right: -100%;
-        position: absolute;
-        top: 0;
-        width: 100%;
-        height: 65%;
-        background-color: white;
-        z-index: 10;
-        display: flex;
-        flex-direction: column;
-        padding: 1vw;
-        box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
-        transition: right 0.3s ease-in-out;
-      }
+  .divIcons {
+    margin-right: 5vw;
+  }
+  .bars {
+    display: none;
+  }
 
-      .cerrarButton{
-        text-transform: uppercase;
-        font-weight: 600;
-        border: none;
-        cursor: pointer;
-        font-size: 17px;
-      }
-      .cerrarButton:hover{
-        transition: .1s;
-        color: rgb(97, 97, 97);
-      }
-      .divBarraDeBusqueda{
-        display: flex;
-        justify-content: space-around;
-      }
+  .lupa {
+    cursor: pointer;
+  }
+  .lupaDiv {
+    right: -100%;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 65%;
+    background-color: white;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    padding: 1vw;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+    transition: right 0.3s ease-in-out;
+  }
 
-      .barraDeBusqueda{
-        width: 60%;
-        height: 3.5vw;
-        background-color: #EEEEEE;
-        padding: 1.5vw 2vw 1.5vw 1.5vw;
-        border-radius: 30px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-      }
+  .cerrarButton {
+    text-transform: uppercase;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    font-size: 17px;
+  }
+  .cerrarButton:hover {
+    transition: 0.1s;
+    color: rgb(97, 97, 97);
+  }
+  .divBarraDeBusqueda {
+    display: flex;
+    justify-content: space-around;
+  }
 
-      .barraDeBusqueda button{
-        text-transform: uppercase;
-        font-weight: 600;
-        font-size: 15px;
-        background-color: #ffdd47;
-        border: 2px solid rgb(172, 172, 172);
-        padding: .8vw;
-        border-radius: 10px 30px 30px 10px;
-      }
+  .barraDeBusqueda {
+    width: 60%;
+    height: 3.5vw;
+    background-color: #eeeeee;
+    padding: 1.5vw 2vw 1.5vw 1.5vw;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 
-      .barraDeBusqueda button:hover{
-        transition: .1s;
-        color: rgb(97, 97, 97);
-      }
-      .divLogo{
-        margin-right: 5vw;
-      }
+  .barraDeBusqueda button {
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 15px;
+    background-color: #ffdd47;
+    border: 2px solid rgb(172, 172, 172);
+    padding: 0.8vw;
+    border-radius: 10px 30px 30px 10px;
+  }
 
-      .barraDiv{
-        display: flex;
-        align-items: center;
-      }
+  .barraDeBusqueda button:hover {
+    transition: 0.1s;
+    color: rgb(97, 97, 97);
+  }
+  .divLogo {
+    margin-right: 5vw;
+  }
 
-      .barraDiv input{
-        margin-left: 2vw;
-        background-color: #EEEEEE;
-        width: 50vw;
-        font-size: 17px;
-        letter-spacing: .5px;
-        padding: .8vw;
-        border-radius: 0px 30px 30px 0px;
-        border-left: 2px solid #ffdd47;
-      }
+  .barraDiv {
+    display: flex;
+    align-items: center;
+  }
 
-      .lupaDiv.open{
-        right: 0;
-      }
+  .barraDiv input {
+    margin-left: 2vw;
+    background-color: #eeeeee;
+    width: 50vw;
+    font-size: 17px;
+    letter-spacing: 0.5px;
+    padding: 0.8vw;
+    border-radius: 0px 30px 30px 0px;
+    border-left: 2px solid #ffdd47;
+  }
 
-      .masBuscado{
-        display: flex;
-        flex-direction: column;
-        padding: 2.5vw;
-        justify-content: start;
-      }
+  .lupaDiv.open {
+    right: 0;
+  }
 
-      .masBuscado h4{
-        font-weight: 600;
-        font-size: 18px;
-        margin-bottom: 1.5vw;
-      }
+  .masBuscado {
+    display: flex;
+    flex-direction: column;
+    padding: 2.5vw;
+  }
 
-      .masBuscado a{
-        font-size: 17px;
-        margin-bottom: 1vw;
-        width: fit-content;
-      }
+  .masBuscado h4 {
+    font-weight: 600;
+    font-size: 18px;
+    margin-bottom: 1.5vw;
+  }
 
-      .masBuscado a:hover{
-        transition: .1s;
-        color: rgb(97, 97, 97);
-      }
+  .masBuscado a {
+    font-size: 17px;
+    margin-bottom: 1vw;
+    width: fit-content;
+  }
 
+  .masBuscado a:hover {
+    transition: 0.1s;
+    color: rgb(97, 97, 97);
+  }
 }
