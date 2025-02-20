@@ -8,7 +8,11 @@ import MenuNavbarList from "../MenuNavbarList/MenuNavbarList";
 
 const MenuNavbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isOpenLupa, setIsOpenLupa] = useState(false)
 
+  const toggleLupa = ():void => {
+    setIsOpenLupa(!isOpenLupa);
+  };
   const toggleMenu = ():void => {
     setIsOpen(!isOpen);
   };
@@ -24,7 +28,7 @@ const MenuNavbar = () => {
         </div>
         <MenuNavbarList/>
       </div>
-      <MenuNavbarIcons toggleMenu={toggleMenu} />
+      <MenuNavbarIcons toggleMenu={toggleMenu} toggleLupa={toggleLupa} isOpenLupa={isOpenLupa} />
     </div>
   );
 };
