@@ -1,14 +1,13 @@
-import Image from "next/image";
-import Logo from "../../../assets/cm logo.png"
 import styles from "./Navbar.module.css"
 import MenuNavbar from "../MenuNavbar/MenuNavbar";
+import { LogoCM } from "@/utils/LogoCM";
 
 const Navbar = () => {
 
     return(
         <div className={styles.containerNav}>
             <div>
-                <Image src={Logo} alt="Logo Calzados Marea" width={40}/>
+                <LogoCM/>
             </div>
             <MenuNavbar/>
         </div>

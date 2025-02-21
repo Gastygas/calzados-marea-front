@@ -12,6 +12,23 @@
   .lupa {
     cursor: pointer;
   }
+  .lupaDiv {
+    right: -100%;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: fit-content;
+    background-color: white;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    padding: 1vw;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+    transition: right 0.3s ease-in-out;
+  }
+  .lupaDiv.open {
+    right: 0;
+  }
 }
 
 @media (min-width: 750px) {
@@ -27,10 +44,10 @@
   }
   .lupaDiv {
     right: -100%;
-    position: absolute;
+    position: fixed;
     top: 0;
     width: 100%;
-    height: 65%;
+    height: fit-content;
     background-color: white;
     z-index: 10;
     display: flex;
@@ -39,92 +56,8 @@
     box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
     transition: right 0.3s ease-in-out;
   }
-
-  .cerrarButton {
-    text-transform: uppercase;
-    font-weight: 600;
-    border: none;
-    cursor: pointer;
-    font-size: 17px;
-  }
-  .cerrarButton:hover {
-    transition: 0.1s;
-    color: rgb(97, 97, 97);
-  }
-  .divBarraDeBusqueda {
-    display: flex;
-    justify-content: space-around;
-  }
-
-  .barraDeBusqueda {
-    width: 60%;
-    height: 3.5vw;
-    background-color: #eeeeee;
-    padding: 1.5vw 2vw 1.5vw 1.5vw;
-    border-radius: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .barraDeBusqueda button {
-    text-transform: uppercase;
-    font-weight: 600;
-    font-size: 15px;
-    background-color: #ffdd47;
-    border: 2px solid rgb(172, 172, 172);
-    padding: 0.8vw;
-    border-radius: 10px 30px 30px 10px;
-  }
-
-  .barraDeBusqueda button:hover {
-    transition: 0.1s;
-    color: rgb(97, 97, 97);
-  }
-  .divLogo {
-    margin-right: 5vw;
-  }
-
-  .barraDiv {
-    display: flex;
-    align-items: center;
-  }
-
-  .barraDiv input {
-    margin-left: 2vw;
-    background-color: #eeeeee;
-    width: 50vw;
-    font-size: 17px;
-    letter-spacing: 0.5px;
-    padding: 0.8vw;
-    border-radius: 0px 30px 30px 0px;
-    border-left: 2px solid #ffdd47;
-  }
-
   .lupaDiv.open {
     right: 0;
   }
 
-  .masBuscado {
-    display: flex;
-    flex-direction: column;
-    padding: 2.5vw;
-  }
-
-  .masBuscado h4 {
-    font-weight: 600;
-    font-size: 18px;
-    margin-bottom: 1.5vw;
-  }
-
-  .masBuscado a {
-    font-size: 17px;
-    margin-bottom: 1vw;
-    width: fit-content;
-  }
-
-  .masBuscado a:hover {
-    transition: 0.1s;
-    color: rgb(97, 97, 97);
-  }
 }

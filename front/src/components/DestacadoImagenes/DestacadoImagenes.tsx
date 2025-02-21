@@ -13,7 +13,7 @@ const DestacadoImagenes = ({ destacadoPics }: Props) => {
   const [index, setIndex] = useState(0);
 
   const nextSlide = () => {
-    if (index < destacadoPics.length) {
+    if (index <= destacadoPics.length) {
       setIndex(index + 1);
     }
   };
@@ -33,7 +33,7 @@ const DestacadoImagenes = ({ destacadoPics }: Props) => {
         <div
           className={styles.carouselInner}
           style={{
-            transform: `translateX(-${index * 20}%)`,
+            transform: `translateX(-${index * 22}%)`,
             transition: "transform 0.5s ease-in-out",
           }}
         >

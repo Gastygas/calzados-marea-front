@@ -1,0 +1,133 @@
+@media (max-width:750px){
+  .cerrarButton {
+    text-transform: uppercase;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  .cerrarButton:hover {
+    transition: 0.1s;
+    color: rgb(97, 97, 97);
+  }
+
+  .divBarraDeBusqueda {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 5vw;
+  }
+  .barraDeBusqueda{
+    display: none;
+  }
+
+  .barraDeBusquedaResponsive {
+    margin-top: 5vw;
+    width: fit-content;
+    height: 5vw;
+    padding: 1.5vw 0vw 1.5vw 1.5vw;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .barraDeBusquedaResponsive button {
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 14px;
+    background-color: #ffdd47;
+    border: 2px solid rgb(172, 172, 172);
+    padding: .5vw;
+    border-radius: 10px 30px 30px 10px;
+  }
+
+  .barraDeBusquedaResponsive button:hover {
+    transition: 0.1s;
+    color: rgb(97, 97, 97);
+  }
+  .divLogo {
+    margin-right: 5vw;
+  }
+
+  .barraDiv {
+    display: flex;
+    align-items: center;
+  }
+
+  .barraDiv input {
+    margin-left: 2vw;
+    background-color: #eeeeee;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    padding: 0.8vw;
+    border-radius: 0px 5px 5px 0px;
+    border-left: 2px solid #ffdd47;
+  }
+}
+
+@media (min-width: 750px) {
+  .cerrarButton {
+    text-transform: uppercase;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+  }
+  .cerrarButton:hover {
+    transition: 0.1s;
+    color: rgb(97, 97, 97);
+  }
+
+  .divBarraDeBusqueda {
+    margin-top: 1vw;
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .barraDeBusquedaResponsive{
+    display: none;
+  }
+  .barraDeBusqueda {
+    width: fit-content;
+    height: fit-content;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .barraDeBusqueda button {
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 16px;
+    background-color: #ffdd47;
+    border: 2px solid rgb(172, 172, 172);
+    padding: 0.8vw;
+    border-radius: 10px 30px 30px 10px;
+  }
+
+  .barraDeBusqueda button:hover {
+    transition: 0.1s;
+    color: rgb(97, 97, 97);
+  }
+  .divLogo {
+    margin-right: 5vw;
+  }
+
+  .barraDiv {
+    display: flex;
+    align-items: center;
+  }
+
+  .barraDiv input {
+    margin-left: 2vw;
+    background-color: #eeeeee;
+    width: 50vw;
+    font-size: 17px;
+    letter-spacing: 0.5px;
+    padding: 0.8vw;
+    border-radius: 0px 30px 30px 0px;
+    border-left: 2px solid #ffdd47;
+  }
+}
