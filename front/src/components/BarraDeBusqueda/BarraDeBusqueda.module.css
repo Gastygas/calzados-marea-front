@@ -4,7 +4,7 @@
     font-weight: 600;
     border: none;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 16px;
   }
   .cerrarButton:hover {
     transition: 0.1s;
@@ -35,7 +35,7 @@
   .barraDeBusquedaResponsive button {
     text-transform: uppercase;
     font-weight: 600;
-    font-size: 14px;
+    font-size: 15px;
     background-color: #ffdd47;
     border: 2px solid rgb(172, 172, 172);
     padding: .5vw;

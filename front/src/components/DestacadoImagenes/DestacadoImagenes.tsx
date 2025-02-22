@@ -25,6 +25,7 @@ const DestacadoImagenes = ({ destacadoPics }: Props) => {
   };
 
   return (
+    <>
     <div className={styles.carouselContainer}>
       <button className={styles.arrowLeft} onClick={prevSlide}>
         &#9664;
@@ -61,6 +62,79 @@ const DestacadoImagenes = ({ destacadoPics }: Props) => {
         &#9654;
       </button>
     </div>
+    <div className={styles.carouselContainerResponsive}>
+      <button className={styles.arrowLeft} onClick={prevSlide}>
+        &#9664;
+      </button>
+      <div className={styles.carouselWrapper}>
+        <div
+          className={styles.carouselInner}
+          style={{
+            transform: `translateX(-${index * 33}%)`,
+            transition: "transform 0.5s ease-in-out",
+          }}
+        >
+          {destacadoPics.map((item: any) => (
+            <div className={styles.slide} key={item.id}>
+              <Link href={`/calzado-${item.nombre}`}>
+                <Image
+                  className={styles.imagenDestacada}
+                  width={1000}
+                  height={1000}
+                  src={item.imagen}
+                  alt="zapatilla"
+                />
+                <div className={styles.infoZapas}>
+                  <p className={styles.nombre}>{item.nombre}</p>
+                  <p className={styles.genero}>{item.genero ? item.genero : "zapatillas jordan para hombre"}</p>
+                  <p className={styles.precio}>$ {item.precio ? item.precio : "120.000"}</p>
+                </div>
+              </Link>
+            </div>
+          ))}
+        </div>
+      </div>
+      <button className={styles.arrowRight} onClick={nextSlide}>
+        &#9654;
+      </button>
+    </div>
+    <div className={styles.carouselContainerResponsive2}>
+      <button className={styles.arrowLeft} onClick={prevSlide}>
+        &#9664; 
+      </button>
+      <div className={styles.carouselWrapper}>
+        <div
+          className={styles.carouselInner}
+          style={{
+            transform: `translateX(-${index * 60}%)`,
+            transition: "transform 0.5s ease-in-out",
+          }}
+        >
+          {destacadoPics.map((item: any) => (
+            <div className={styles.slide} key={item.id}>
+              <Link href={`/calzado-${item.nombre}`}>
+                <Image
+                  className={styles.imagenDestacada}
+                  width={1000}
+                  height={1000}
+                  src={item.imagen}
+                  alt="zapatilla"
+                />
+                <div className={styles.infoZapas}>
+                  <p className={styles.nombre}>{item.nombre}</p>
+                  <p className={styles.genero}>{item.genero ? item.genero : "zapatillas jordan para hombre"}</p>
+                  <p className={styles.precio}>$ {item.precio ? item.precio : "120.000"}</p>
+                </div>
+              </Link>
+            </div>
+          ))}
+        </div>
+      </div>
+      <button className={styles.arrowRight} onClick={nextSlide}>
+        &#9654;
+      </button>
+    </div>
+    </>
   );
 };
 
