@@ -87,11 +87,18 @@
   .carouselContainerResponsive{
     display: none;
   }
+  .carouselContainerResponsive2{
+    display: none;
+}
 }
 
 @media (max-width:1079px){
 
     .carouselContainer{
+        display: none;
+    }
+
+    .carouselContainerResponsive2{
         display: none;
     }
 
