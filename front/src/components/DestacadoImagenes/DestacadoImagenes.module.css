@@ -84,10 +84,10 @@
     font-size: 17px;
   }
 
-  .carouselContainerResponsive{
+  .carouselContainerResponsive2{
     display: none;
   }
-  .carouselContainerResponsive2{
+  .carouselContainerResponsive{
     display: none;
 }
 }
@@ -188,7 +188,8 @@
       }
 }
 
-@media (max-width:450px){
+
+@media (max-width:850px){
     .carouselContainer{
         display: none;
     }
@@ -240,7 +241,7 @@
         border: none;
         padding: 10px 15px;
         cursor: pointer;
-        font-size: 15px;
+        font-size: 14px;
         z-index: 1;
         border-radius: 50px;
       }
