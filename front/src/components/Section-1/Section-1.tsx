@@ -6,7 +6,7 @@ import { StaticImageData } from "next/image";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import DestacadoImagenes from "../DestacadoImagenes/DestacadoImagenes";
+import LoMasDestacado from "../LoMasDestacado/LoMasDestacado";
 
 //width: 1080px i need a change
 
@@ -99,10 +99,10 @@ const Section1 = () => {
     <div className={styles.containerSection1}>
       <div>
         <h3>
-          Lo mas vendidos
+          Lo mas Destacado
         </h3>
       </div>
-      <DestacadoImagenes destacadoPics={destacadoPics} />
+      <LoMasDestacado destacadoPics={destacadoPics} />
     </div>
   );
 };
