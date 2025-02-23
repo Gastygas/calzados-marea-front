@@ -5,6 +5,7 @@ import Logo from "../../assets/cm logo.png";
 import { Kantumruy_Pro } from "next/font/google";
 import Navbar from "@/components/Navbar/Navbar";
 import Header from "@/components/Header/Header";
+import Footer from "@/components/Footer/Footer";
 
 const kantumruy = Kantumruy_Pro({
   subsets: ["latin"],
@@ -29,9 +30,10 @@ export default function RootLayout({
     <html lang="es" className={kantumruy.className}>
       <body className={kantumruy.className}>
         <main>
-          <Header/>
+          <Header />
           <Navbar />
           {children}
+          <Footer />
         </main>
       </body>
     </html>
