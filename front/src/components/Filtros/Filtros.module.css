@@ -1,0 +1,28 @@
+.filtrosContainer{
+    display: flex;
+    flex-direction: column;
+    width: 20vw;
+    height: 40vw;
+    padding: 20px;
+    justify-content: space-between;
+}
+.filtrosTitle{
+    border-bottom: 1px solid #DCDCDC;
+    padding: 20px;
+}
+.filtrosTitle h4{
+    font-size: 19px;
+}
+.itemDiv{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #DCDCDC;
+    padding: 0px 10px 35px 20px;
+    width: 100%;
+}
+
+.itemDiv{
+    font-size: 17px;
+    font-weight: 500;
+}

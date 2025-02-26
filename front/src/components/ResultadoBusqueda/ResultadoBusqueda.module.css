@@ -1,0 +1,28 @@
+.resultadoBusquedaContainer{
+    display: flex;
+    flex-direction: row;
+}
+
+.productosEncontradosHeader{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    width: 100%;
+}
+
+.productosEncontrados{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 40px 10px 20px;
+    font-weight: 500;
+}
+
+.ordenarPor{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.ordenarPor h4{
+    margin-right: 10px;
+}

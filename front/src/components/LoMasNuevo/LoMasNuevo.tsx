@@ -5,44 +5,15 @@ import Link from "next/link";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-import { CustomNextArrow, CustomPrevArrow } from "@/utils/icons";
 import Image from "next/image";
+import { settings, settings2, settings3 } from "@/utils/settingsCarrousel";
 
 interface Props {
   nuevoPics: IDestacadoPics[];
 }
 
 const LoMasNuevo = ({ nuevoPics }: Props) => {
-  const settings = {
-    dots: false,
-    infinite: true,
-    speed: 700,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    initialSlide: 0,
-    prevArrow: <CustomPrevArrow />,
-    nextArrow: <CustomNextArrow />,
-  };
-  const settings2 = {
-    dots: false,
-    infinite: true,
-    speed: 700,
-    slidesToShow: 2,
-    slidesToScroll: 1,
-    initialSlide: 0,
-    prevArrow: <CustomPrevArrow />,
-    nextArrow: <CustomNextArrow />,
-  };
-  const settings3 = {
-    dots: false,
-    infinite: true,
-    speed: 700,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    initialSlide: 0,
-    prevArrow: <CustomPrevArrow />,
-    nextArrow: <CustomNextArrow />,
-  };
+
   return (
     <>
       <div className={styles.containerDestacado1}>

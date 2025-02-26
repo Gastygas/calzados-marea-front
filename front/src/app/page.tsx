@@ -5,7 +5,6 @@ import Section2 from "@/components/Section-2/Section-2";
 export default function Home() {
   return (
     <div>
-      <Header2/>
       <Section1/>
       <Section2/>
     </div>

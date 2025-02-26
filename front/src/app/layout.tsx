@@ -6,6 +6,7 @@ import { Kantumruy_Pro } from "next/font/google";
 import Navbar from "@/components/Navbar/Navbar";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
+import Header2 from "@/components/Header-2/Header-2";
 
 const kantumruy = Kantumruy_Pro({
   subsets: ["latin"],
@@ -32,6 +33,7 @@ export default function RootLayout({
         <main>
           <Header />
           <Navbar />
+          <Header2/>
           {children}
           <Footer />
         </main>
