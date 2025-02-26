@@ -1,0 +1,44 @@
+.arrowLeft,
+.arrowRight {
+  position: absolute;
+  border-radius: 50px;
+  color: black;
+  z-index: 1;
+  border: none;
+  padding: 10px 10px;
+  width: 40px;
+  height: 40px;
+  background-color: rgba(0, 0, 0, 0.219);
+  cursor: pointer;
+}
+
+.arrowLeft {
+  left: -3vw;
+}
+
+.arrowRight {
+  right: -1vw;
+}
+
+.arrowLeft:hover,
+.arrowRight:hover {
+  background-color: rgba(82, 82, 82, 0.8);
+  transition: 0.5s;
+}
+
+@media (max-width:750px){
+  .arrowLeft,
+.arrowRight {
+  padding: 7px 7px;
+  width: 40px;
+  height: 40px;
+}
+}
+@media (max-width:390px){
+  .arrowLeft,
+  .arrowRight {
+    padding: 8px 8px;
+    width: 12vw;
+    height: 12vw;
+  }
+}

@@ -14,7 +14,7 @@ export interface IDestacadoPics {
     nombre: string;
   }
   
-  const NuevoPics: IDestacadoPics[] = [
+  const nuevoPics: IDestacadoPics[] = [
     {
       imagen: jordan,
       id: 1,
@@ -100,7 +100,7 @@ const Section2 = () => {
           Lo Mas Nuevo
         </h3>
       </div>
-      <LoMasNuevo NuevoPics={NuevoPics} />
+      <LoMasNuevo nuevoPics={nuevoPics} />
     </div>
     )
 };

@@ -1,30 +1,15 @@
-@media (min-width: 1080px) {
-  .carouselContainer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    overflow: hidden;
+@media (min-width: 740px) {
+  .containerDestacado2 {
+    display: none;
+  }
+  .containerDestacado3 {
+    display: none;
   }
 
-  .carouselWrapper {
+  .carouselContainer {
     width: 100%;
     overflow: hidden;
     margin: 0px 35px 0px 35px;
-  }
-
-  .carouselInner {
-    display: flex;
-    gap: 4vw; /* Espacio entre imágenes */
-    transition: transform 0.5s ease-in-out;
-    white-space: nowrap;
-  }
-
-  .slide {
-    flex: 0 0 calc(35% - 120px); /* Ajusta el tamaño de cada imagen para que 4 se vean completamente y 1 a la mitad */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
   }
 
   .imagenDestacada {
@@ -32,34 +17,6 @@
     height: 20vw;
     width: 25vw;
     border-radius: 5px;
-  }
-
-  .arrowLeft,
-  .arrowRight {
-    position: absolute;
-    transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.219);
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    cursor: pointer;
-    font-size: 27px;
-    z-index: 1;
-    border-radius: 50px;
-  }
-
-  .arrowLeft:hover,
-  .arrowRight:hover {
-    background-color: rgba(0, 0, 0, 0.8);
-    transition: 0.3s;
-  }
-
-  .arrowLeft {
-    left: 10px;
-  }
-
-  .arrowRight {
-    right: 10px;
   }
 
   .infoZapas {
@@ -83,300 +40,13 @@
     font-weight: bold;
     font-size: 17px;
   }
-
-  .carouselContainerResponsive2 {
-    display: none;
-  }
-  .carouselContainerResponsive {
-    display: none;
-  }
-  .carouselContainerResponsive3 {
-    display: none;
-  }
-  .carouselContainerResponsive4 {
-    display: none;
-  }
 }
-
-@media (max-width: 1079px) {
-  .carouselContainer {
-    display: none;
-  }
-
-  .carouselContainerResponsive2 {
-    display: none;
-  }
-
-  .carouselContainerResponsive3 {
-    display: none;
-  }
-  .carouselContainerResponsive4 {
-    display: none;
-  }
-
-  .carouselContainerResponsive {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    overflow: hidden;
-  }
-  .carouselWrapper {
-    width: 100%;
-    overflow: hidden;
-    margin: 0px 35px 0px 35px;
-  }
-
-  .carouselInner {
-    display: flex;
-    gap: 5vw; /* Espacio entre imágenes */
-    transition: transform 0.5s ease-in-out;
-    white-space: nowrap;
-  }
-
-  .slide {
-    flex: 0 0 calc(25% - 100px); /* Ajusta el tamaño de cada imagen para que 4 se vean completamente y 1 a la mitad */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .imagenDestacada {
-    width: auto;
-    height: 250px;
-    width: 300px;
-    border-radius: 5px;
-  }
-
-  .arrowLeft,
-  .arrowRight {
-    position: absolute;
-    transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.219);
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    cursor: pointer;
-    font-size: 27px;
-    z-index: 1;
-    border-radius: 50px;
-  }
-
-  .arrowLeft:hover,
-  .arrowRight:hover {
-    background-color: rgba(0, 0, 0, 0.733);
-    transition: 0.3s;
-  }
-
-  .arrowLeft {
-    left: 10px;
-  }
-
-  .arrowRight {
-    right: 10px;
-  }
-
-  .infoZapas {
-    width: 100%;
-    text-align: start;
-    padding: 1vw;
-  }
-
-  .nombre {
-    font-size: 16px;
-    font-weight: 600;
-    text-transform: capitalize;
-  }
-  .genero {
-    color: #525252;
-    font-size: 14px;
-    text-transform: capitalize;
-    text-wrap: wrap;
-  }
-  .precio {
-    color: #056505;
-    font-weight: bold;
-    font-size: 15px;
-  }
-}
-@media (max-width: 1000px) {
-  .carouselContainer {
-    display: none;
-  }
-
-  .carouselContainerResponsive2 {
-    display: none;
-  }
-
-  .carouselContainerResponsive {
-    display: none;
-  }
-
-  .carouselContainerResponsive4 {
-    display: none;
-  }
-
-  .carouselContainerResponsive3 {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    overflow: hidden;
-  }
-  .carouselWrapper {
-    width: 100%;
-    overflow: hidden;
-    margin: 0px 35px 0px 35px;
-  }
-
-  .carouselInner {
-    display: flex;
-    gap: 5vw; /* Espacio entre imágenes */
-    transition: transform 0.5s ease-in-out;
-    white-space: nowrap;
-  }
-
-  .slide {
-    flex: 0 0 calc(25% - 100px); /* Ajusta el tamaño de cada imagen para que 4 se vean completamente y 1 a la mitad */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .imagenDestacada {
-    width: auto;
-    height: 250px;
-    width: 300px;
-    border-radius: 5px;
-  }
-
-  .arrowLeft,
-  .arrowRight {
-    position: absolute;
-    transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.219);
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    cursor: pointer;
-    font-size: 27px;
-    z-index: 1;
-    border-radius: 50px;
-  }
-
-  .arrowLeft:hover,
-  .arrowRight:hover {
-    background-color: rgba(0, 0, 0, 0.733);
-    transition: 0.3s;
-  }
-
-  .arrowLeft {
-    left: 10px;
-  }
-
-  .arrowRight {
-    right: 10px;
-  }
-
-  .infoZapas {
-    width: 100%;
-    text-align: start;
-    padding: 1vw;
-  }
-
-  .nombre {
-    font-size: 16px;
-    font-weight: 600;
-    text-transform: capitalize;
-  }
-  .genero {
-    color: #525252;
-    font-size: 14px;
-    text-transform: capitalize;
-    text-wrap: wrap;
-  }
-  .precio {
-    color: #056505;
-    font-weight: bold;
-    font-size: 15px;
-  }
-}
-
-@media (max-width: 850px) {
-  .carouselContainer {
-    display: none;
-  }
-
-  .carouselContainerResponsive {
-    display: none;
-  }
-  .carouselContainerResponsive3 {
-    display: none;
-  }
-  .carouselContainerResponsive4 {
-    display: none;
-  }
-
-  .carouselContainerResponsive2 {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    overflow: hidden;
-  }
-  .carouselWrapper {
-    width: 100%;
-    overflow: hidden;
-    margin: 0px 35px 0px 35px;
-  }
-
-  .carouselInner {
-    display: flex;
-    gap: 8vw; /* Espacio entre imágenes */
-    transition: transform 0.5s ease-in-out;
-    white-space: nowrap;
-  }
-
-  .slide {
-    flex: 0 0 calc(15% - 70px); /* Ajusta el tamaño de cada imagen para que 4 se vean completamente y 1 a la mitad */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
+@media (max-width: 739px) {
   .imagenDestacada {
     width: auto;
     height: 150px;
     width: 150px;
     border-radius: 5px;
-  }
-
-  .arrowLeft,
-  .arrowRight {
-    position: absolute;
-    transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.219);
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    cursor: pointer;
-    font-size: 14px;
-    z-index: 1;
-    border-radius: 50px;
-  }
-
-  .arrowLeft:hover,
-  .arrowRight:hover {
-    background-color: rgba(0, 0, 0, 0.733);
-    transition: 0.3s;
-  }
-
-  .arrowLeft {
-    left: 10px;
-  }
-
-  .arrowRight {
-    right: 10px;
   }
 
   .infoZapas {
@@ -402,105 +72,42 @@
     font-weight: bold;
     font-size: 13px;
   }
+
+  .containerDestacado2{
+    display: none;
+  }
+  .containerDestacado3{
+    display: none;
+  }
 }
-@media (max-width: 587px) {
-  .carouselContainer {
+
+@media (max-width:540px){
+  .containerDestacado1{
     display: none;
   }
-
-  .carouselContainerResponsive {
+  .containerDestacado2{
+    display: block;
+  }
+  .containerDestacado3{
     display: none;
   }
-  .carouselContainerResponsive3 {
+  .slide{
+    margin-left: 20px;
+  }
+}
+
+@media (max-width:390px){
+  .containerDestacado1{
     display: none;
   }
-  .carouselContainerResponsive2 {
+  .containerDestacado2{
     display: none;
   }
-
-  .carouselContainerResponsive4 {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    overflow: hidden;
-  }
-  .carouselWrapper {
-    width: 100%;
-    overflow: hidden;
-    margin: 0px 35px 0px 35px;
+  .containerDestacado3{
+    display: block;
   }
 
-  .carouselInner {
-    display: flex;
-    gap: 8vw; /* Espacio entre imágenes */
-    transition: transform 0.5s ease-in-out;
-    white-space: nowrap;
-  }
-
-  .slide {
-    flex: 0 0 calc(15% - 70px); /* Ajusta el tamaño de cada imagen para que 4 se vean completamente y 1 a la mitad */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .imagenDestacada {
-    width: auto;
-    height: 150px;
-    width: 150px;
-    border-radius: 5px;
-  }
-
-  .arrowLeft,
-  .arrowRight {
-    position: absolute;
-    transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.219);
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    cursor: pointer;
-    font-size: 14px;
-    z-index: 1;
-    border-radius: 50px;
-  }
-
-  .arrowLeft:hover,
-  .arrowRight:hover {
-    background-color: rgba(0, 0, 0, 0.733);
-    transition: 0.3s;
-  }
-
-  .arrowLeft {
-    left: 10px;
-  }
-
-  .arrowRight {
-    right: 10px;
-  }
-
-  .infoZapas {
-    width: 100%;
-    text-align: start;
-    padding: 1vw;
-  }
-
-  .nombre {
-    font-size: 14px;
-    font-weight: 600;
-    text-transform: capitalize;
-  }
-  .genero {
-    color: #525252;
-    font-size: 10px;
-    text-transform: capitalize;
-    text-wrap: wrap;
-    width: 80%;
-  }
-  .precio {
-    color: #056505;
-    font-weight: bold;
-    font-size: 13px;
+  .slide{
+    margin-left: 35px;
   }
 }
