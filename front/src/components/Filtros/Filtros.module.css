@@ -1,28 +1,49 @@
-.filtrosContainer{
+.filtrosContainer {
     display: flex;
     flex-direction: column;
     width: 20vw;
-    height: 40vw;
     padding: 20px;
-    justify-content: space-between;
 }
-.filtrosTitle{
+
+.filtrosTitle {
     border-bottom: 1px solid #DCDCDC;
     padding: 20px;
 }
-.filtrosTitle h4{
+
+.filtrosTitle h4 {
     font-size: 19px;
 }
-.itemDiv{
+
+.itemDiv {
     display: flex;
     align-items: center;
     justify-content: space-between;
     border-bottom: 1px solid #DCDCDC;
-    padding: 0px 10px 35px 20px;
-    width: 100%;
+    padding: 20px 10px 20px 10px;
+    cursor: pointer;
 }
 
-.itemDiv{
+.itemDiv h5 {
     font-size: 17px;
     font-weight: 500;
+}
+
+.filtroOpciones{
+    display: flex;
+    flex-direction: column;
+    padding: 10px 30px;
+    border-bottom: 1px solid #DCDCDC;
+}
+
+.filtroOpcionesTalle {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-bottom: 1px solid #DCDCDC;
+    padding: 10px 30px;
+    gap: 5px;
+}
+
+.filtroOpciones label {
+    font-size: 14px;
+    cursor: pointer;
 }
