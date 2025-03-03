@@ -15,7 +15,7 @@ const ProductosEncontrados = ({productos}: Props) => {
                 <Link href={`/calzado-${item.nombre}`}>
                   <Image
                     className={styles.imagenDestacada}
-                    width={1000}
+                    width={100}
                     src={item.imagen}
                     alt="zapatilla"
                   />

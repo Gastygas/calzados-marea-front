@@ -1,19 +1,26 @@
-.resultadoBusquedaContainer{
-    display: flex;
-    flex-direction: row;
-}
 
-.productosEncontradosHeader{
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
-    width: 100%;
+@media (min-width:1180px){
+    .resultadoBusquedaContainer{
+        display: flex;
+        flex-direction: row;
+    }
+    
+    .productosEncontradosHeader{
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+        width: 100%;
+    }
+    
+    .productosEncontrados{
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 40px 10px 20px;
+        font-weight: 500;
+    }
 }
-
-.productosEncontrados{
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 40px 10px 20px;
-    font-weight: 500;
+@media (max-width:1179px){
+    .resultadoBusquedaContainer{
+        display: none;
+    }
 }
-

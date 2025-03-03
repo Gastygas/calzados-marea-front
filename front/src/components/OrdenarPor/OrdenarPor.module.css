@@ -1,3 +1,17 @@
+@media(max-width:460px){
+  .ordenarPorHeader h4 {
+   font-size: 13px;
+   font-weight: 500;
+  }
+  .ordenarPor svg{
+    display: none;
+  }
+  .ordenarPorHeader{
+    width: 30vw;
+    cursor: pointer;
+  }
+
+}
 .ordenarPor {
     position: relative;
     cursor: pointer;

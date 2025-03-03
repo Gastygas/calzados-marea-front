@@ -1,5 +1,82 @@
+@media (max-width: 1180px) {
+  .productosContainer {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Tres columnas */
+    gap: 5px; /* Espaciado entre elementos */
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    padding: 2rem 0;
+    margin: 0px auto 0px auto;
+  }
+  .infoZapas {
+    width: 100%;
+    text-align: start;
+    padding: 1vw;
+  }
 
-.productosContainer{
+  .nombre {
+    font-size: 19px;
+    font-weight: 600;
+    text-transform: capitalize;
+  }
+  .genero {
+    color: #525252;
+    font-size: 16.5px;
+    text-transform: capitalize;
+  }
+  .precio {
+    color: #056505;
+    font-weight: bold;
+    font-size: 17px;
+  }
+  .imagenDestacada {
+    width: auto;
+    height: 40vw;
+    width: 40vw;
+    border-radius: 5px;
+  }
+}
+@media (max-width: 400px) {
+  .productosContainer {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Tres columnas */
+    gap: 5px; /* Espaciado entre elementos */
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    padding: 2rem 0;
+    margin: 0px auto 0px auto;
+  }
+  .infoZapas {
+    width: 100%;
+    text-align: start;
+    padding: 1vw;
+  }
+  .nombre {
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: capitalize;
+  }
+  .genero {
+    color: #525252;
+    font-size: 11.5px;
+    text-transform: capitalize;
+  }
+  .precio {
+    color: #056505;
+    font-weight: bold;
+    font-size: 12px;
+  }
+  .imagenDestacada {
+    width: auto;
+    height: 150px;
+    width: 150px;
+    border-radius: 5px;
+  }
+}
+@media (min-width: 1180px) {
+  .productosContainer {
     display: grid;
     grid-template-columns: repeat(3, 1fr); /* Tres columnas */
     gap: 5px; /* Espaciado entre elementos */
@@ -8,8 +85,8 @@
     width: 90%;
     padding: 2rem 0;
     margin: 0px auto 0px auto;
-}
-.infoZapas {
+  }
+  .infoZapas {
     width: 100%;
     text-align: start;
     padding: 1vw;
@@ -36,3 +113,4 @@
     width: 20vw;
     border-radius: 5px;
   }
+}

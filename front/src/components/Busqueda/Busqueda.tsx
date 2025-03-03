@@ -3,6 +3,7 @@ import styles from "./Busqueda.module.css";
 import jordan from "../../../assets/jordan.jpg";
 import nike from "../../../assets/air force white.jpg";
 import dou from "../../../assets/taylor-smith-aDZ5YIuedQg-unsplash.jpg";
+import ResultadoBusquedaResponsive from "../ResultadoBusquedaResponsive/ResultadoBusquedaResponsive";
 const Busqueda = () => {
   const productos = [
     {
@@ -49,10 +50,11 @@ const Busqueda = () => {
 
   return (
     <div>
-      <div>
+      <div className={styles.resultadosDiv}>
         <h3>Resultados de "Jordan Low"</h3>
       </div>
       <ResultadoBusqueda productos={productos} />
+      <ResultadoBusquedaResponsive productos={productos}/>
     </div>
   );
 };
