@@ -15,10 +15,10 @@ const OrdenarPor = ({toggleDropdown,isOrdenarPorOpen}:Props) => {
       </div>
       {isOrdenarPorOpen && (
         <div className={styles.dropdown}>
-          <div className={styles.dropdownItem} onClick={() => console.log("Mayor Precio")}>
+          <div className={styles.dropdownItem} onClick={() => toggleDropdown()}>
             Mayor Precio
           </div>
-          <div className={styles.dropdownItem} onClick={() => console.log("Menor Precio")}>
+          <div className={styles.dropdownItem} onClick={() => toggleDropdown()}>
             Menor Precio
           </div>
         </div>
