@@ -1,5 +1,6 @@
 .containerNav{
-    padding: 1vw;
+    padding: .5vw;
+    height: fit-content;
     display: flex;
     justify-content: space-between;
     width: 100%;

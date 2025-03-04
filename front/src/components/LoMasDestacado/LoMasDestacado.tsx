@@ -20,7 +20,7 @@ const LoMasDestacado = ({ destacadoPics }: Props) => {
           <Slider {...settings}>
             {destacadoPics.map((item: any) => (
               <div className={styles.slide} key={item.id}>
-                <Link href={`/calzado-${item.nombre}`}>
+                <Link href={`/calzado/${item.nombre}`}>
                   <Image
                     className={styles.imagenDestacada}
                     width={1000}

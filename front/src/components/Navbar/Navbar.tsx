@@ -7,7 +7,7 @@ const Navbar = () => {
     return(
         <div className={styles.containerNav}>
             <div>
-                <LogoCM/>
+                <LogoCM width={40}/>
             </div>
             <MenuNavbar/>
         </div>

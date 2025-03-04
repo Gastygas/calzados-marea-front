@@ -30,7 +30,7 @@ const Header2 = () => {
   return (
     <div className={styles.containerHeader2}>
       <div className={styles.divP}>
-        <MdKeyboardArrowLeft size={30} onClick={handlePrev} className={styles.arrow} />
+        <MdKeyboardArrowLeft size={25} onClick={handlePrev} className={styles.arrow} />
 
         <div className={styles.textContainer}>
           <AnimatePresence mode="wait">
@@ -45,7 +45,7 @@ const Header2 = () => {
             </motion.p>
           </AnimatePresence>
         </div>
-        <MdKeyboardArrowRight size={30} onClick={handleNext} className={styles.arrow} />
+        <MdKeyboardArrowRight size={25} onClick={handleNext} className={styles.arrow} />
       </div>
     </div>
   );

@@ -1,7 +1,6 @@
 import ResultadoBusqueda from "../ResultadoBusqueda/ResultadoBusqueda";
 import styles from "./Busqueda.module.css";
 import jordan from "../../../assets/jordan.jpg";
-import nike from "../../../assets/air force white.jpg";
 import dou from "../../../assets/taylor-smith-aDZ5YIuedQg-unsplash.jpg";
 import ResultadoBusquedaResponsive from "../ResultadoBusquedaResponsive/ResultadoBusquedaResponsive";
 const Busqueda = () => {

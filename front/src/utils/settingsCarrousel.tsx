@@ -30,3 +30,4 @@ export const settings = {
     prevArrow: <CustomPrevArrow />,
     nextArrow: <CustomNextArrow />,
   };
+

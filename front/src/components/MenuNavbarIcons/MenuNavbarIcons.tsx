@@ -16,7 +16,7 @@ const MenuNavbarIcons = ({
   return (
     <div className={styles.divIcons}>
       <FaBars size={30} className={styles.bars} onClick={toggleMenu} />
-      <FiSearch size={30} className={styles.lupa} onClick={toggleLupa} />
+      <FiSearch size={25} className={styles.lupa} onClick={toggleLupa} />
       <div className={`${styles.lupaDiv} ${isOpenLupa ? styles.open : ""}`}>
         <BarraDeBusqueda toggleLupa={toggleLupa}/>
       </div>
