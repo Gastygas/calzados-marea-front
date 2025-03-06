@@ -1,13 +1,18 @@
 .container{
-  padding: 2vw 1vw 1vw 2vw ;
+  padding: 2vw 2vw 2vw 2vw ;
+  width: 90%;
+}
+.titleAndTalleDiv{
+  padding-top: 2vw;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 .infoZapas {
   width: 100%;
   text-align: start;
 }
-.infoZapas p {
-    margin-top: 2px;
-}
+
 .nombre {
   font-size: 24px;
   font-weight: 600;
@@ -25,41 +30,12 @@
   font-size: 18px;
 }
 
-.divImagenesZapatillas{
-  margin-top: 2.5vw;
-  width: 90%;
+.containerImgYTalle{
   display: flex;
-  justify-content: space-between;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-bottom: 7vw;
 }
 
-.secundariasImagenes{
-  height: 40vw;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-.divImgSec{
-  border: 1px solid black;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: .3s;
 
-}
-.divImgSec:hover{
-  transition: .3s;
-  transform: scale(1.2);
-  border:1px solid #525252;
-}
-.imgSec{
-  width: 7vw;
-  height: 7vw;
-
-}
-
-.imgPri{
-  width: 70vw;
-  height: 40vw;
-  border-radius: 5px;
-
-}
 

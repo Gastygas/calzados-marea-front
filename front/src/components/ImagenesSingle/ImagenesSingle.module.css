@@ -1,0 +1,36 @@
+.divImagenesZapatillas{
+    margin-top: 2.5vw;
+    width: 50%;
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .secundariasImagenes{
+    height: 30vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .divImgSec{
+    border: 1px solid #525252;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: .3s;
+  
+  }
+  .divImgSec:hover{
+    transition: .3s;
+    transform: scale(1.1);
+    border:1px solid #525252;
+  }
+  .imgSec{
+    width: 4vw;
+    height: 4vw;
+  }
+  
+  .imgPri{
+    width: 35vw;
+    height: 30vw;
+    border-radius: 5px;
+    object-fit: cover;
+  }

@@ -7,12 +7,53 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import { settings, settings2, settings3 } from "@/utils/settingsCarrousel";
+import jordan from "../../../assets/jordan.jpg";
+import dou from "../../../assets/taylor-smith-aDZ5YIuedQg-unsplash.jpg";
 
-interface Props {
-  destacadoPics: IDestacadoPics[];
-}
+const destacadoPics: IDestacadoPics[] = [
+  {
+    imagen: jordan,
+    id: 13,
+    nombre: "air force 1 white pink",
+  },
+  {
+    imagen: jordan,
+    id: 21231,
+    nombre: "air force 1 white pink",
+  },
+  {
+    imagen: dou,
+    id: 3123424,
+    nombre: "air force 1 white pink",
+  },
+  {
+    imagen: jordan,
+    id: 13213123,
+    nombre: "air force 1 white pink",
+  },
+  {
+    imagen: jordan,
+    id: 2123112312132,
+    nombre: "air force 1 white pink",
+  },
+  {
+    imagen: dou,
+    id: 3123424123123,
+    nombre: "air force 1 white pink",
+  },
+  {
+    imagen: jordan,
+    id: 212311231213212321,
+    nombre: "air force 1 white pink",
+  },
+  {
+    imagen: dou,
+    id: 312342412312333,
+    nombre: "air force 1 white pink",
+  },
+];
 
-const LoMasDestacado = ({ destacadoPics }: Props) => {
+const LoMasDestacado = () => {
   return (
     <>
       <div className={styles.containerDestacado1}>

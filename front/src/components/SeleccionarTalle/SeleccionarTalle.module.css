@@ -1,0 +1,77 @@
+.selecTalleDiv {
+  margin-top: 1vw;
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+}
+.divTitle {
+  font-size: 18px;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+.containerTalle {
+  display: grid;
+  grid-template-columns: repeat(5, 5vw);
+  width: fit-content;
+  height: 10vw;
+}
+
+.disableTalle{
+    border: 1px solid #a9a9a9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1vw;
+    width: 80%;
+    margin: 1vw;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 600;
+    color: gray;
+    cursor: not-allowed;
+    transition: 0.3s;
+    opacity: .8;
+}
+
+.divTalle {
+  border: 1px solid #a9a9a9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1vw;
+  width: 80%;
+  margin: 1vw;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: 600;
+  color: black;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.divTalle:hover {
+  background-color: rgb(30, 30, 30);
+  color: white;
+  transform: scale(1.1);
+  transition: 0.3s;
+}
+
+.talleSelected {
+  border: 1px solid #a9a9a9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1vw;
+  width: 80%;
+  margin: 1vw;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: 600;
+  background-color: rgb(30, 30, 30);
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.talleSelected:hover {
+  transform: scale(1.1);
+  transition: 0.3s;
+}

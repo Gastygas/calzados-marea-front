@@ -4,5 +4,10 @@
     display: flex;
     justify-content: space-between;
     width: 100%;
+    position: sticky;
+    background-color: white;
+    top: 1.75vw;
+    z-index: 5;
+
 }
 
