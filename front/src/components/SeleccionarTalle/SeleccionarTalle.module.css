@@ -75,3 +75,26 @@
   transform: scale(1.1);
   transition: 0.3s;
 }
+
+@media(max-width:999px){
+  .selecTalleDiv{
+    margin-bottom: 15vw;
+  }
+  .containerTalle {
+    display: grid;
+    grid-template-columns: repeat(5, 15vw);
+    width: fit-content;
+    height: 10vw;
+  }
+}
+@media(max-width:399px){
+  .selecTalleDiv{
+    margin-bottom: 35vw;
+  }
+  .containerTalle {
+    display: grid;
+    grid-template-columns: repeat(4, 20vw);
+    width: fit-content;
+    height: 10vw;
+  }
+}

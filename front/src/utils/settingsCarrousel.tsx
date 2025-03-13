@@ -31,3 +31,4 @@ export const settings = {
     nextArrow: <CustomNextArrow />,
   };
 
+

@@ -3,12 +3,10 @@ import jordan from "../../../assets/jordan.jpg";
 import nike from "../../../assets/air force white.jpg";
 import dou from "../../../assets/taylor-smith-aDZ5YIuedQg-unsplash.jpg";
 import Section1, { IDestacadoPics } from "../Section-1/Section-1";
-import Image from "next/image";
-import { CustomNextArrow, CustomPrevArrow } from "@/utils/icons";
 import { useState } from "react";
-import SeleccionarTalle from "../SeleccionarTalle/SeleccionarTalle";
-import ImagenesSingle from "../ImagenesSingle/ImagenesSingle";
 import BotonSingleZapatilla from "../BotonSingleZapatilla/BotonSingleZapatilla";
+import WhatsappForm from "../WhatsappForm/WhatsappForm";
+import SinglePrimeraSeccion from "../SinglePrimeraSeccion/SinglePrimeraSeccion";
 
 const SingleZapatilla = ({ nombreZapatilla }: { nombreZapatilla: string }) => {
   const nuevoPics: IDestacadoPics[] | any = [
@@ -42,7 +40,12 @@ const SingleZapatilla = ({ nombreZapatilla }: { nombreZapatilla: string }) => {
     zapatillaEncontrada.imagen[0]
   );
   const [selectedTalle, setSelectedTalle] = useState<string | null>(null);
+  const [isOpenEnviarWhatsapp, setIsOpenEnviarWhatsapp] =
+    useState<boolean>(false);
 
+  const toggleEnviarWhatsappForm = () => {
+    setIsOpenEnviarWhatsapp(!isOpenEnviarWhatsapp);
+  };
   const toggleSelectedTalle = (talle: string) => {
     setSelectedTalle(talle);
   };
@@ -54,46 +57,21 @@ const SingleZapatilla = ({ nombreZapatilla }: { nombreZapatilla: string }) => {
     <div className={styles.container}>
       {zapatillaEncontrada ? (
         <>
-          <div className={styles.containerImgYTalle}>
-            <ImagenesSingle
-              imagenSeleccionada={imagenSeleccionada}
-              toggleSelectedImage={toggleSelectedImage}
-              zapatillaEncontrada={zapatillaEncontrada}
+          <div className={`${isOpenEnviarWhatsapp ? styles.divOpacity : ""}`}>
+            <SinglePrimeraSeccion toggleSelectedImage={toggleSelectedImage} zapatillaEncontrada={zapatillaEncontrada} toggleSelectedTalle={toggleSelectedTalle} selectedTalle={selectedTalle} imagenSeleccionada={imagenSeleccionada}/>
+            <BotonSingleZapatilla
+              isOpenEnviarWhatsapp={isOpenEnviarWhatsapp}
+              toggleEnviarWhatsappForm={toggleEnviarWhatsappForm}
+              selectedTalle={selectedTalle}
             />
-            <div className={styles.titleAndTalleDiv}>
-              <div>
-                <div className={styles.infoZapas}>
-                  <p className={styles.nombre}>{zapatillaEncontrada.nombre}</p>
-                  <p className={styles.genero}>
-                    {zapatillaEncontrada.genero
-                      ? zapatillaEncontrada.genero
-                      : "zapatillas jordan para hombre"}
-                  </p>
-                  <p className={styles.precio}>
-                    ${" "}
-                    {zapatillaEncontrada.precio
-                      ? zapatillaEncontrada.precio
-                      : "120.000"}
-                  </p>
-                  <p className={styles.genero}>
-                    Hasta 6x{" "}
-                    <span style={{ fontWeight: "bold", color: "black" }}>
-                      {" "}
-                      20.000
-                    </span>{" "}
-                    sin interes
-                  </p>
-                </div>
-              </div>
-              <SeleccionarTalle
-                toggleSelectedTalle={toggleSelectedTalle}
-                selectedTalle={selectedTalle}
-                tallesValidos={zapatillaEncontrada.talle}
-              />
-            </div>
+            <Section1 />
           </div>
-          <BotonSingleZapatilla selectedTalle={selectedTalle}/>
-          <Section1/>
+          <WhatsappForm
+            isOpenEnviarWhatsapp={isOpenEnviarWhatsapp}
+            toggleEnviarWhatsappForm={toggleEnviarWhatsappForm}
+            talle={selectedTalle}
+            zapatillaName={zapatillaEncontrada.nombre}
+          />
         </>
       ) : (
         <div>

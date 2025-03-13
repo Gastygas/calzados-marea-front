@@ -1,0 +1,58 @@
+
+.titleAndTalleDiv {
+  padding-top: 2vw;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.infoZapas {
+  width: 100%;
+  text-align: start;
+}
+
+.nombre {
+  font-size: 24px;
+  font-weight: 600;
+  text-transform: capitalize;
+  letter-spacing: 0.5px;
+}
+.genero {
+  color: #525252;
+  font-size: 19.5px;
+  text-transform: capitalize;
+}
+.precio {
+  color: #056505;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.containerImgYTalle {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-bottom: 7vw;
+}
+
+.containerImgYTalleResponsive{
+    display: none;
+}
+
+@media (max-width:999px){
+    .containerImgYTalle{
+        display: none;
+    }
+    .containerImgYTalleResponsive{
+        display: block;
+    }
+    .divImagenSingle{
+        margin-top: 1vw;
+        height: 50vw;
+        width: 50vw;
+    }
+    .imagenSingle{
+        object-fit: cover;
+        width: 75vw;
+        height: 50vw;
+    }
+}

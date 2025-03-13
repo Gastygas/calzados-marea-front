@@ -1,0 +1,84 @@
+.containerForm {
+  padding: 30px;
+  width: 50%;
+  height: fit-content;
+  border: 1px solid rgb(125, 125, 125);
+  position: absolute;
+  z-index: 10;
+  top: 15vw;
+  background-color: rgb(255, 255, 255);
+  left: 25%;
+  border-radius: 30px;
+  display: none;
+}
+
+.form {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: fit-content;
+  border-bottom: 1px solid rgb(125, 125, 125);
+}
+.formDiv {
+  display: flex;
+  flex-direction: column;
+}
+
+.formDiv label {
+  font-size: 18px;
+  font-weight: 500;
+  margin: 0.5vw 0px 0.5vw 0px;
+}
+.formDiv input {
+  border: 1px solid rgb(125, 125, 125);
+  border-radius: 10px;
+  padding-left: 0.5vw;
+}
+.inputChoosen {
+  background-color: rgb(189, 189, 189);
+  text-transform: capitalize;
+  font-weight: 500;
+  cursor: not-allowed;
+}
+.form button {
+  width: 80%;
+  background-color: black;
+  border-radius: 50px;
+  font-size: 20px;
+  text-align: center;
+  color: white;
+  margin: 1.5vw auto 0px auto;
+}
+.inputError{
+    color: rgb(161, 29, 29);
+    font-weight: 500;
+}
+.form button {
+  width: 100%;
+}
+.form button:hover {
+  transition: 0.3s;
+  background-color: rgb(66, 66, 66);
+}
+.form button:active {
+  transform: scale(0.9);
+}
+
+.containerForm.open {
+  display: block;
+}
+.buttonError{
+    cursor: not-allowed;
+}
+
+
+@media (max-width:550px){
+    .form button {
+        font-size: 14px;
+        text-align: center;
+      }
+      .containerForm{
+        padding: 10px;
+      }
+}
