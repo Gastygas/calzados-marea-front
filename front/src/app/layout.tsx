@@ -31,7 +31,6 @@ export default function RootLayout({
     <html lang="es" className={kantumruy.className}>
       <body className={kantumruy.className}>
         <main>
-          <Header />
           <Navbar />
           <Header2/>
           {children}

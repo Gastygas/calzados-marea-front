@@ -1,12 +1,14 @@
+.divNav{
+    position: sticky;
+    top: 0px;
+    z-index: 5;
+    border-bottom: .5px solid rgba(213, 208, 208, 0.797);
+}
 .containerNav{
     padding: .5vw;
     height: fit-content;
     display: flex;
     justify-content: space-between;
     width: 100%;
-    position: sticky;
     background-color: white;
-    top: 1.75vw;
-    z-index: 5;
 }
-
