@@ -4,6 +4,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import LoMasDestacado from "../LoMasDestacado/LoMasDestacado";
+import { Suspense } from "react";
 
 //width: 1080px i need a change
 
@@ -13,17 +14,15 @@ export interface IDestacadoPics {
   nombre: string;
 }
 
-
-
 const Section1 = () => {
   return (
     <div className={styles.containerSection1}>
       <div>
-        <h3>
-          Lo mas Destacado
-        </h3>
+        <h3>Lo mas Destacado</h3>
       </div>
-      <LoMasDestacado />
+      <Suspense>
+        <LoMasDestacado />
+      </Suspense>
     </div>
   );
 };

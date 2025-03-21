@@ -9,6 +9,9 @@ import Slider from "react-slick";
 import { settings, settings2, settings3 } from "@/utils/settingsCarrousel";
 import jordan from "../../../assets/jordan.jpg";
 import dou from "../../../assets/taylor-smith-aDZ5YIuedQg-unsplash.jpg";
+import { useEffect, useState } from "react";
+import { FindDestacadosAction } from "@/actions/zapatillas.actions";
+import { IZapatilla } from "@/helpers/interfaces";
 
 const destacadoPics: IDestacadoPics[] = [
   {
@@ -54,34 +57,66 @@ const destacadoPics: IDestacadoPics[] = [
 ];
 
 const LoMasDestacado = () => {
+  const [zapatillaDestacadas, setZapatillasDestacadas] = useState<
+    IZapatilla[] | []
+  >([
+    {
+      nombre:"none",
+      id:"none",
+      precio:"none",
+      marca:"nike",
+      talle:["none"],
+      color:"none",
+      destacado:false,
+      nuevo:false,
+      fotos:["/none.jpg"],
+      genero:"none",
+  }
+  ]);
+
+  useEffect(() => {
+    const getZapatillas = async () => {
+      const zapatillas: IZapatilla[] | null = await FindDestacadosAction();
+
+      if (zapatillas !== null) {
+        setZapatillasDestacadas(zapatillas);
+      }
+    };
+
+    getZapatillas();
+  }, []);
+
   return (
     <>
       <div className={styles.containerDestacado1}>
         <div className="m-auto w-11/12">
           <Slider {...settings}>
-            {destacadoPics.map((item: any) => (
-              <div className={styles.slide} key={item.id}>
-                <Link href={`/calzado/${item.nombre}`}>
-                  <Image
-                    className={styles.imagenDestacada}
-                    width={1000}
-                    src={item.imagen}
-                    alt="zapatilla"
-                  />
-                  <div className={styles.infoZapas}>
-                    <p className={styles.nombre}>{item.nombre}</p>
-                    <p className={styles.genero}>
-                      {item.genero
-                        ? item.genero
-                        : "zapatillas jordan para hombre"}
-                    </p>
-                    <p className={styles.precio}>
-                      $ {item.precio ? item.precio : "120.000"}
-                    </p>
-                  </div>
-                </Link>
-              </div>
-            ))}
+            {!zapatillaDestacadas ? (
+              <div>loading</div>
+            ) : (
+              zapatillaDestacadas.map((item: IZapatilla) => (
+                <div className={styles.slide} key={item.id}>
+                  <Link href={`/calzado/${item.nombre}`}>
+                    <Image
+                      className={styles.imagenDestacada}
+                      width={400}
+                      height={400}
+                      src={item.fotos[0] ?? "/placeholder.jpg"}
+                      alt="zapatilla"
+                    />
+                    <div className={styles.infoZapas}>
+                      <p className={styles.nombre}>{item.nombre} hola</p>
+                      <p className={styles.genero}>
+                        {item.genero === "unisex"
+                          ? `zapatillas ${item.marca} unisex`
+                          : `zapatillas ${item.marca} para ${item.genero}`}
+                      </p>
+                      <p className={styles.precio}>$ {item.precio}</p>
+                    </div>
+                  </Link>
+                </div>
+              ))
+            )}
           </Slider>
         </div>
       </div>

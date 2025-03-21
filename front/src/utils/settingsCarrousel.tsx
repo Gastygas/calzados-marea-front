@@ -6,7 +6,6 @@ export const settings = {
     speed: 700,
     slidesToShow: 3,
     slidesToScroll: 1,
-    initialSlide: 0,
     prevArrow: <CustomPrevArrow />,
     nextArrow: <CustomNextArrow />,
   };
