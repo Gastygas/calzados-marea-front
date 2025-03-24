@@ -1,7 +1,6 @@
+"use client"
 import ResultadoBusqueda from "../ResultadoBusqueda/ResultadoBusqueda";
 import styles from "./Busqueda.module.css";
-import jordan from "../../../assets/jordan.jpg";
-import dou from "../../../assets/taylor-smith-aDZ5YIuedQg-unsplash.jpg";
 import ResultadoBusquedaResponsive from "../ResultadoBusquedaResponsive/ResultadoBusquedaResponsive";
 import { useEffect, useState } from "react";
 import { IZapatilla } from "@/helpers/interfaces";
