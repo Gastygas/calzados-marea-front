@@ -1,13 +1,14 @@
 "use client"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Filtros from "../Filtros/Filtros";
 import OrdenarPor from "../OrdenarPor/OrdenarPor";
 import ProductosEncontrados from "../ProductosEncontrados/ProductosEncontrados";
-import { IDestacadoPics } from "../Section-1/Section-1";
 import styles from "./ResultadoBusqueda.module.css";
+import { IZapatilla } from "@/helpers/interfaces";
+import { FindDestacadosAction } from "@/actions/zapatillas.actions";
 
 interface Props {
-  productos: IDestacadoPics[];
+  productos: IZapatilla[];
 }
 
 const ResultadoBusqueda = ({productos}: Props) => {
@@ -29,6 +30,35 @@ const ResultadoBusqueda = ({productos}: Props) => {
       [filter]: !prev[filter],
     }));
   };
+
+  const [zapatillasEncontradas, setZapatillasEncontradas] = useState<
+      IZapatilla[] | []
+    >([
+      {
+        nombre: "none",
+        id: "none",
+        precio: "none",
+        marca: "nike",
+        talle: ["none"],
+        color: "none",
+        destacado: false,
+        nuevo: false,
+        fotos: ["https://none.jpg"],
+        genero: "none",
+      },
+    ]);
+  
+    useEffect(() => {
+      const getZapatillas = async () => {
+        const zapatillas: IZapatilla[] | null = await FindDestacadosAction();
+  
+        if (zapatillas !== null) {
+          setZapatillasEncontradas(zapatillas);
+        }
+      };
+  
+      getZapatillas();
+    }, []);
   return (
     <div className={styles.resultadoBusquedaContainer}>
       <Filtros toggleFilter={toggleFilter} openFilters={openFilters} />
@@ -39,7 +69,7 @@ const ResultadoBusqueda = ({productos}: Props) => {
           </div>
           <OrdenarPor isOrdenarPorOpen={isOrdenarPorOpen} toggleDropdown={toggleDropdown}/>
         </div>
-        <ProductosEncontrados productos={productos}/>
+        <ProductosEncontrados zapatillasEncontradas={zapatillasEncontradas}/>
       </div>
     </div>
   );

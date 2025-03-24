@@ -1,46 +1,13 @@
-"use client"
 import Link from "next/link";
 import styles from "./ProductosEncotrados.module.css"
 import Image from "next/image";
 import { IZapatilla } from "@/helpers/interfaces";
-import { useEffect, useState } from "react";
-import { FindDestacadosAction } from "@/actions/zapatillas.actions";
 
-
-const ProductosEncontrados = () => {
-
-const [zapatillaEncontradas, setZapatillasEncontradas] = useState<
-      IZapatilla[] | []
-    >([
-      {
-        nombre: "none",
-        id: "none",
-        precio: "none",
-        marca: "nike",
-        talle: ["none"],
-        color: "none",
-        destacado: false,
-        nuevo: false,
-        fotos: ["https://none.jpg"],
-        genero: "none",
-      },
-    ]);
-  
-    useEffect(() => {
-      const getZapatillas = async () => {
-        const zapatillas: IZapatilla[] | null = await FindDestacadosAction();
-  
-        if (zapatillas !== null) {
-          setZapatillasEncontradas(zapatillas);
-        }
-      };
-  
-      getZapatillas();
-    }, []);
+const ProductosEncontrados = ({zapatillasEncontradas} : {zapatillasEncontradas : IZapatilla[]}) => {
 
     return (
         <div className={styles.productosContainer}>
-            {zapatillaEncontradas.map((item: any) => (
+            {zapatillasEncontradas.map((item: any) => (
               <div className={styles.slide} key={item.id}>
                 <Link href={`/calzado-${item.nombre}`}>
                   <Image
