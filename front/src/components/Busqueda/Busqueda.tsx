@@ -5,8 +5,7 @@ import ResultadoBusquedaResponsive from "../ResultadoBusquedaResponsive/Resultad
 import { useEffect, useState } from "react";
 import { IZapatilla } from "@/helpers/interfaces";
 import { FindDestacadosAction } from "@/actions/zapatillas.actions";
-const Busqueda = () => {
-
+const Busqueda = ({busqueda}:{busqueda:string}) => {
   
   const [zapatillasEncontradas, setZapatillasEncontradas] = useState<
       IZapatilla[] | []
@@ -40,10 +39,10 @@ const Busqueda = () => {
   return (
     <div>
       <div className={styles.resultadosDiv}>
-        <h3>Resultados de "Jordan Low"</h3>
+        <h3>Resultados para "{busqueda}"</h3>
       </div>
-      <ResultadoBusqueda zapatillasEncontradas={zapatillasEncontradas} />
-      <ResultadoBusquedaResponsive zapatillasEncontradas={zapatillasEncontradas}/>
+      <ResultadoBusqueda zapatillasEncontradas={zapatillasEncontradas} busqueda={busqueda} />
+      <ResultadoBusquedaResponsive zapatillasEncontradas={zapatillasEncontradas} busqueda={busqueda}/>
     </div>
   );
 };

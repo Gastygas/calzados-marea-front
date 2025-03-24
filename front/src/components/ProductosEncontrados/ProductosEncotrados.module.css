@@ -31,7 +31,6 @@
     font-size: 17px;
   }
   .imagenDestacada {
-    width: auto;
     height: 40vw;
     width: 40vw;
     border-radius: 5px;
@@ -69,7 +68,6 @@
     font-size: 12px;
   }
   .imagenDestacada {
-    width: auto;
     height: 150px;
     width: 150px;
     border-radius: 5px;
@@ -108,7 +106,6 @@
     font-size: 17px;
   }
   .imagenDestacada {
-    width: auto;
     height: 20vw;
     width: 20vw;
     border-radius: 5px;

@@ -8,9 +8,10 @@ import { IZapatilla } from "@/helpers/interfaces";
 
 interface Props {
   zapatillasEncontradas: IZapatilla[];
+  busqueda:string;
 }
 
-const ResultadoBusqueda = ({zapatillasEncontradas}: Props) => {
+const ResultadoBusqueda = ({zapatillasEncontradas,busqueda}: Props) => {
   const [openFilters, setOpenFilters] = useState({
     genero: false,
     talle: false,

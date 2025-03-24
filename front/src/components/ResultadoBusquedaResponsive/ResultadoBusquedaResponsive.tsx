@@ -11,8 +11,9 @@ import { IZapatilla } from "@/helpers/interfaces";
 
 interface Props {
   zapatillasEncontradas: IZapatilla[];
+  busqueda:string;
 }
-const ResultadoBusquedaResponsive = ({ zapatillasEncontradas }: Props) => {
+const ResultadoBusquedaResponsive = ({ zapatillasEncontradas, busqueda }: Props) => {
   const [isOpenFilters, setIsOpenFilters] = useState(false)
   const [openFilters, setOpenFilters] = useState({
     genero: false,
@@ -40,7 +41,7 @@ const ResultadoBusquedaResponsive = ({ zapatillasEncontradas }: Props) => {
     <div className={styles.resultadoBusquedaContainer}>
       <div className={styles.navBarBusqueda}>
         <div className={styles.itemNavBar}>
-          <h4>Jordan Low</h4>
+          <h4>{busqueda}</h4>
         </div>
         <div className={styles.itemNavBar}>
           <div className={styles.filtrosDiv} onClick={toggleMenuFilter}>
@@ -57,12 +58,12 @@ const ResultadoBusquedaResponsive = ({ zapatillasEncontradas }: Props) => {
         </div>
       </div>
       <div className={styles.resultadosTittle}>
-        <h4>Resultados para "Jordan Low"</h4>
+        <h4>Resultados para "{busqueda}"</h4>
       </div>
       <div className={styles.productosEncontradosHeader}>
         <div className={styles.productosEncontrados}>
           <div>
-            <h4>{zapatillasEncontradas.length} zapatillasEncontradas</h4>
+            <h4>{zapatillasEncontradas.length} Productos</h4>
           </div>
         </div>
         <ProductosEncontrados zapatillasEncontradas={zapatillasEncontradas} />
