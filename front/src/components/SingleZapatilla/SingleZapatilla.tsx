@@ -2,14 +2,14 @@ import styles from "./SingleZapatilla.module.css";
 import jordan from "../../../assets/jordan.jpg";
 import nike from "../../../assets/air force white.jpg";
 import dou from "../../../assets/taylor-smith-aDZ5YIuedQg-unsplash.jpg";
-import Section1, { IDestacadoPics } from "../Section-1/Section-1";
+import Section1 from "../Section-1/Section-1";
 import { useState } from "react";
 import BotonSingleZapatilla from "../BotonSingleZapatilla/BotonSingleZapatilla";
 import WhatsappForm from "../WhatsappForm/WhatsappForm";
 import SinglePrimeraSeccion from "../SinglePrimeraSeccion/SinglePrimeraSeccion";
 
 const SingleZapatilla = ({ nombreZapatilla }: { nombreZapatilla: string }) => {
-  const nuevoPics: IDestacadoPics[] | any = [
+  const nuevoPics: any = [
     {
       imagen: [nike, jordan, dou],
       id: 1,
