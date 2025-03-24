@@ -31,12 +31,13 @@ const LoMasDestacado = () => {
   useEffect(() => {
     const getZapatillas = async () => {
       const zapatillas: IZapatilla[] | null = await FindDestacadosAction();
+      console.log(zapatillas, "holaa");
 
       if (zapatillas !== null) {
         setZapatillasDestacadas(zapatillas);
       }
     };
-
+    
     getZapatillas();
   }, []);
 
