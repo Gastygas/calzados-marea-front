@@ -11,13 +11,13 @@ const Footer = () => {
         <h4>Calzados Marea</h4>
       </div>
       <div className={styles.socialMedia}>
-        <Link target="blank" href="instagram.com">
+        <Link target="blank" href="">
           <FaInstagram className={styles.logos} />
         </Link>
-        <Link target="blank" href="facebook.com">
+        <Link target="blank" href="">
           <FaFacebookF className={styles.logos} />
         </Link>
-        <Link target="blank" href="whatsapp">
+        <Link target="blank" href="">
           <FaWhatsapp className={styles.logos} />
         </Link>
       </div>
