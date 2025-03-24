@@ -4,16 +4,15 @@ import { useState } from "react";
 import Filtros from "../Filtros/Filtros";
 import OrdenarPor from "../OrdenarPor/OrdenarPor";
 import ProductosEncontrados from "../ProductosEncontrados/ProductosEncontrados";
-import { IDestacadoPics } from "../Section-1/Section-1";
-import { FaBars } from "react-icons/fa6";
 import filtrospng from "../../../assets/filtrospng.png"
 import Image from "next/image";
+import { IZapatilla } from "@/helpers/interfaces";
 
 
 interface Props {
-  productos: IDestacadoPics[];
+  zapatillasEncontradas: IZapatilla[];
 }
-const ResultadoBusquedaResponsive = ({ productos }: Props) => {
+const ResultadoBusquedaResponsive = ({ zapatillasEncontradas }: Props) => {
   const [isOpenFilters, setIsOpenFilters] = useState(false)
   const [openFilters, setOpenFilters] = useState({
     genero: false,
@@ -63,10 +62,10 @@ const ResultadoBusquedaResponsive = ({ productos }: Props) => {
       <div className={styles.productosEncontradosHeader}>
         <div className={styles.productosEncontrados}>
           <div>
-            <h4>{productos.length} Productos</h4>
+            <h4>{zapatillasEncontradas.length} zapatillasEncontradas</h4>
           </div>
         </div>
-        <ProductosEncontrados productos={productos} />
+        <ProductosEncontrados zapatillasEncontradas={zapatillasEncontradas} />
       </div>
     </div>
   );
