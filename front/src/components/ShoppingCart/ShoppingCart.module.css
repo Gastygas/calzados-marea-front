@@ -1,0 +1,21 @@
+.shoppingContainer{
+    width:100%;
+    padding: 1vw;
+}
+
+.shoppingNav{
+    display: flex;
+    justify-content: space-between;
+}
+
+.cerrarButton {
+    text-transform: uppercase;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+  }
+  .cerrarButton:hover {
+    transition: 0.1s;
+    color: rgb(97, 97, 97);
+  }
