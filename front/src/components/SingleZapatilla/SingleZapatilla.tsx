@@ -1,44 +1,45 @@
+"use client";
 import styles from "./SingleZapatilla.module.css";
-import jordan from "../../../assets/jordan.jpg";
-import nike from "../../../assets/air force white.jpg";
-import dou from "../../../assets/taylor-smith-aDZ5YIuedQg-unsplash.jpg";
-import Section1 from "../Section-1/Section-1";
-import { useState } from "react";
-import BotonSingleZapatilla from "../BotonSingleZapatilla/BotonSingleZapatilla";
+import { useEffect, useState } from "react";
 import WhatsappForm from "../WhatsappForm/WhatsappForm";
 import SinglePrimeraSeccion from "../SinglePrimeraSeccion/SinglePrimeraSeccion";
+import { IZapatilla } from "@/helpers/interfaces";
+import {
+  FindOneByNameAction,
+} from "@/actions/zapatillas.actions";
 
 const SingleZapatilla = ({ nombreZapatilla }: { nombreZapatilla: string }) => {
-  const nuevoPics: any = [
-    {
-      imagen: [nike, jordan, dou],
-      id: 1,
-      nombre: "air jordan 1 low SE",
-    },
-    {
-      imagen: [nike, jordan, dou, jordan, dou, jordan],
-      id: 2,
-      nombre: "nike air force 1 white",
-    },
-    {
-      imagen: [nike, jordan, dou],
-      id: 31,
-      nombre: "air force 1 pink",
-    },
-    {
-      imagen: [nike, jordan, dou, jordan, dou, jordan],
-      id: 4,
-      nombre: "air force 1 white pink",
-      talle: ["36", "37", "38", "40", "41", "42", "47"],
-    },
-  ];
-  const zapatillaEncontrada = nuevoPics.find(
-    (zap: any) => zap.nombre === nombreZapatilla
+  const [zapatillaEncontrada, setZapatillaEncontrada] = useState<IZapatilla>({
+    nombre: "none",
+    id: "none",
+    precio: "none",
+    marca: "nike",
+    talle: ["none"],
+    color: "none",
+    destacado: false,
+    nuevo: false,
+    fotos: ["https://none.jpg"],
+    genero: "none",
+  });
+  const [imagenSeleccionada, setImagenSeleccionada] = useState(
+    zapatillaEncontrada.fotos[0]
   );
 
-  const [imagenSeleccionada, setImagenSeleccionada] = useState(
-    zapatillaEncontrada.imagen[0]
-  );
+  useEffect(() => {
+    const getZapatillas = async () => {
+      const zapatilla: IZapatilla | null = await FindOneByNameAction(
+        nombreZapatilla
+      );
+
+      if (zapatilla !== null) {
+        setZapatillaEncontrada(zapatilla);
+        setImagenSeleccionada(zapatilla.fotos[0]);
+      }
+    };
+
+    getZapatillas();
+  }, []);
+
   const [selectedTalle, setSelectedTalle] = useState<string | null>(null);
   const [isOpenEnviarWhatsapp, setIsOpenEnviarWhatsapp] =
     useState<boolean>(false);
@@ -55,16 +56,18 @@ const SingleZapatilla = ({ nombreZapatilla }: { nombreZapatilla: string }) => {
 
   return (
     <div className={styles.container}>
-      {zapatillaEncontrada ? (
+      {!(zapatillaEncontrada.id === "none") ? (
         <>
           <div className={`${isOpenEnviarWhatsapp ? styles.divOpacity : ""}`}>
-            <SinglePrimeraSeccion toggleSelectedImage={toggleSelectedImage} zapatillaEncontrada={zapatillaEncontrada} toggleSelectedTalle={toggleSelectedTalle} selectedTalle={selectedTalle} imagenSeleccionada={imagenSeleccionada}/>
-            <BotonSingleZapatilla
+            <SinglePrimeraSeccion
+              toggleSelectedImage={toggleSelectedImage}
+              zapatillaEncontrada={zapatillaEncontrada}
+              toggleSelectedTalle={toggleSelectedTalle}
+              selectedTalle={selectedTalle}
+              imagenSeleccionada={imagenSeleccionada}
               isOpenEnviarWhatsapp={isOpenEnviarWhatsapp}
               toggleEnviarWhatsappForm={toggleEnviarWhatsappForm}
-              selectedTalle={selectedTalle}
             />
-            <Section1 />
           </div>
           <WhatsappForm
             isOpenEnviarWhatsapp={isOpenEnviarWhatsapp}

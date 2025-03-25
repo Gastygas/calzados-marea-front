@@ -5,6 +5,13 @@
 .container{
   padding: 2vw 2vw 2vw 2vw ;
   width: 90%;
+  height: 50vw;
+}
+
+@media(max-width:1000px){
+  .container{
+    height: auto;
+  }
 }
 
 

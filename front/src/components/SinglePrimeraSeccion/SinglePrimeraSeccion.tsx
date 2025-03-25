@@ -6,13 +6,17 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import { settings3 } from "@/utils/settingsCarrousel";
 import Image from "next/image";
+import { IZapatilla } from "@/helpers/interfaces";
+import BotonSingleZapatilla from "../BotonSingleZapatilla/BotonSingleZapatilla";
 
 interface Props {
-  zapatillaEncontrada: any;
+  zapatillaEncontrada: IZapatilla;
   toggleSelectedTalle: (talle: string) => void;
   selectedTalle: string | null;
   imagenSeleccionada: any;
   toggleSelectedImage: (img: any) => void;
+  isOpenEnviarWhatsapp:boolean;
+  toggleEnviarWhatsappForm: () => void;
 }
 
 const SinglePrimeraSeccion = ({
@@ -21,6 +25,8 @@ const SinglePrimeraSeccion = ({
   selectedTalle,
   imagenSeleccionada,
   toggleSelectedImage,
+  isOpenEnviarWhatsapp,
+  toggleEnviarWhatsappForm,
 }: Props) => {
   return (
     <>
@@ -35,16 +41,11 @@ const SinglePrimeraSeccion = ({
             <div className={styles.infoZapas}>
               <p className={styles.nombre}>{zapatillaEncontrada.nombre}</p>
               <p className={styles.genero}>
-                {zapatillaEncontrada.genero
-                  ? zapatillaEncontrada.genero
-                  : "zapatillas jordan para hombre"}
+                {zapatillaEncontrada.genero === "unisex"
+                  ? `zapatillas ${zapatillaEncontrada.marca} unisex`
+                  : `zapatillas ${zapatillaEncontrada.marca} para ${zapatillaEncontrada.genero}`}
               </p>
-              <p className={styles.precio}>
-                ${" "}
-                {zapatillaEncontrada.precio
-                  ? zapatillaEncontrada.precio
-                  : "120.000"}
-              </p>
+              <p className={styles.precio}>$ {zapatillaEncontrada.precio}</p>
               <p className={styles.genero}>
                 Hasta 6x{" "}
                 <span style={{ fontWeight: "bold", color: "black" }}>
@@ -60,6 +61,11 @@ const SinglePrimeraSeccion = ({
             selectedTalle={selectedTalle}
             tallesValidos={zapatillaEncontrada.talle}
           />
+          <BotonSingleZapatilla
+            isOpenEnviarWhatsapp={isOpenEnviarWhatsapp}
+            toggleEnviarWhatsappForm={toggleEnviarWhatsappForm}
+            selectedTalle={selectedTalle}
+          />
         </div>
       </div>
       <div className={styles.containerImgYTalleResponsive}>
@@ -68,16 +74,11 @@ const SinglePrimeraSeccion = ({
             <div className={styles.infoZapas}>
               <p className={styles.nombre}>{zapatillaEncontrada.nombre}</p>
               <p className={styles.genero}>
-                {zapatillaEncontrada.genero
-                  ? zapatillaEncontrada.genero
-                  : "zapatillas jordan para hombre"}
+                {zapatillaEncontrada.genero === "unisex"
+                  ? `zapatillas ${zapatillaEncontrada.marca} unisex`
+                  : `zapatillas ${zapatillaEncontrada.marca} para ${zapatillaEncontrada.genero}`}
               </p>
-              <p className={styles.precio}>
-                ${" "}
-                {zapatillaEncontrada.precio
-                  ? zapatillaEncontrada.precio
-                  : "120.000"}
-              </p>
+              <p className={styles.precio}>$ {zapatillaEncontrada.precio}</p>
               <p className={styles.genero}>
                 Hasta 6x{" "}
                 <span style={{ fontWeight: "bold", color: "black" }}>
@@ -89,12 +90,14 @@ const SinglePrimeraSeccion = ({
             </div>
           </div>
           <Slider {...settings3}>
-            {zapatillaEncontrada.imagen.map((zapa: any, i: any) => (
+            {zapatillaEncontrada.fotos.map((zapa: any, i: any) => (
               <div className={styles.divImagenSingle} key={i}>
                 <Image
                   className={styles.imagenSingle}
                   src={zapa}
                   alt="zapatilla"
+                  width={1000}
+                  height={1000}
                 />
               </div>
             ))}
@@ -104,6 +107,11 @@ const SinglePrimeraSeccion = ({
             toggleSelectedTalle={toggleSelectedTalle}
             selectedTalle={selectedTalle}
             tallesValidos={zapatillaEncontrada.talle}
+          />
+          <BotonSingleZapatilla
+            isOpenEnviarWhatsapp={isOpenEnviarWhatsapp}
+            toggleEnviarWhatsappForm={toggleEnviarWhatsappForm}
+            selectedTalle={selectedTalle}
           />
         </div>
       </div>
