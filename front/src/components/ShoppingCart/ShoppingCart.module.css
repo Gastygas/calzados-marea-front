@@ -1,21 +1,47 @@
-.shoppingContainer{
-    width:100%;
-    padding: 1vw;
+.shoppingContainer {
+  width: 100%;
+  padding: 1vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
 }
 
-.shoppingNav{
-    display: flex;
-    justify-content: space-between;
+.shoppingNav {
+  display: flex;
+  justify-content: space-between;
 }
 
 .cerrarButton {
-    text-transform: uppercase;
-    font-weight: 600;
-    border: none;
-    cursor: pointer;
-    font-size: 18px;
-  }
-  .cerrarButton:hover {
-    transition: 0.1s;
-    color: rgb(97, 97, 97);
-  }
+  text-transform: uppercase;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+}
+.cerrarButton:hover {
+  transition: 0.1s;
+  color: rgb(97, 97, 97);
+}
+.shoppingButtonDiv {
+  width: 70%;
+  margin: 0px auto 0px auto;
+}
+
+.shoppingButtonDiv button{
+  width: 100%;
+  background-color: black;
+  border-radius: 50px;
+  font-size: 20px;
+  text-align: center;
+  color: white;
+  transition: .3s;
+
+}
+.shoppingButtonDiv button:hover{
+  transition: .3s;
+  background-color: rgb(66, 66, 66);
+}
+.shoppingButtonDiv button:active{
+  transform: scale(.9);
+}

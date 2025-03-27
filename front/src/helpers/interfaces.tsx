@@ -10,4 +10,5 @@ export interface IZapatilla {
     nuevo:boolean;
     fotos:string[];
     genero:string;
+    stock?:string;
 };

@@ -16,6 +16,7 @@
         border-right: 1px solid #C7C7C7;
         height: 4vw;
         width: 50%;
+        text-transform: capitalize;
     }
     .itemNavBar:first-child{
         font-weight: 500;

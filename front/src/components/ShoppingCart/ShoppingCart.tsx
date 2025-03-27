@@ -13,7 +13,7 @@ const ShoppingCart = ({ toggleShopping }: { toggleShopping: () => void }) => {
       <div>
         contenido
       </div>
-      <div>
+      <div className={styles.shoppingButtonDiv}>
         <button>
             Enviar a whatsapp
         </button>

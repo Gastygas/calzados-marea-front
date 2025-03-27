@@ -20,9 +20,9 @@ const MenuNavbarIcons = ({
 }) => {
   return (
     <div className={styles.divIcons}>
-      <FaBars size={30} className={styles.bars} onClick={toggleMenu} />
       <FiSearch size={25} className={styles.icons} onClick={toggleLupa} />
       <FiShoppingCart size={25} className={styles.icons} onClick={toggleShopping} />
+      <FaBars size={30} className={styles.bars} onClick={toggleMenu} />
       <div className={`${styles.lupaDiv} ${isOpenLupa ? styles.open : ""}`}>
         <BarraDeBusqueda toggleLupa={toggleLupa}/>
       </div>

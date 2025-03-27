@@ -12,8 +12,8 @@ const ProductosEncontrados = ({zapatillasEncontradas} : {zapatillasEncontradas :
                 <Link href={`/calzado-${item.nombre}`}>
                   <Image
                     className={styles.imagenDestacada}
-                    width={100}
-                    height={100}
+                    width={1000}
+                    height={1000}
                     src={item.fotos[0]}
                     alt="zapatilla"
                   />

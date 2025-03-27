@@ -2,13 +2,13 @@
   .divIcons {
     display: flex;
     align-items: center;
+    width: 100%;
+    justify-content: space-around;
   }
 
   .bars {
-    margin-right: 5vw;
     cursor: pointer;
   }
-
   .lupa {
     cursor: pointer;
   }
@@ -29,6 +29,23 @@
   .lupaDiv.open {
     right: 0;
   }
+  .shoppingDiv{
+    right: -100%;
+    position: fixed;
+    top: 0;
+    width: 40%;
+    height: 100%;
+    background-color: white;
+    z-index: 10;
+    padding: 1vw;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+    transition: right 0.3s ease-in-out;
+  }
+
+  .shoppingDiv.open{
+    right: 0;
+  }
+
 }
 
 @media (min-width: 750px) {
