@@ -3,7 +3,6 @@ import { FiSearch } from "react-icons/fi";
 import BarraDeBusquedaMasBuscados from "../BarraDeBusquedaMasBuscados/BarraDeBusquedaMasBuscados";
 import { LogoCM } from "@/utils/LogoCM";
 import { useState } from "react";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 const BarraDeBusqueda = ({ toggleLupa }: { toggleLupa: () => void }) => {
@@ -52,6 +51,7 @@ const BarraDeBusqueda = ({ toggleLupa }: { toggleLupa: () => void }) => {
           <input
             type="text"
             placeholder="¿Que estas buscando?"
+            onChange={handleChange}
             value={data.buscar}
           />
         </div>
