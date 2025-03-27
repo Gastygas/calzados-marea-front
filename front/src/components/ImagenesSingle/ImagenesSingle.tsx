@@ -25,6 +25,7 @@ const ImagenesSingle = ({
                 alt="imagen secundaria"
                 width={1000}
                 height={1000}
+                loading="lazy"
               />
             </div>
           );
@@ -37,6 +38,7 @@ const ImagenesSingle = ({
           alt="principal imagen"
           width={1000}
           height={1000}
+          loading="lazy"
         />
       </div>
     </div>

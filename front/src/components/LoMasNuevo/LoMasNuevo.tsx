@@ -57,7 +57,8 @@ const LoMasNuevo = () => {
                       width={400}
                       height={400}
                       src={item.fotos[0]}
-                      alt="zapatilla"
+                      alt={`zapatilla ${item.nombre}`}
+                      loading="lazy"
                     />
                     <div className={styles.infoZapas}>
                       <p className={styles.nombre}>{item.nombre}</p>
@@ -89,7 +90,8 @@ const LoMasNuevo = () => {
                       width={1000}
                       height={1000}
                       src={item.fotos[0]}
-                      alt="zapatilla"
+                      alt={`zapatilla ${item.nombre}`}
+                      loading="lazy"
                     />
                     <div className={styles.infoZapas}>
                       <p className={styles.nombre}>{item.nombre}</p>
@@ -121,7 +123,8 @@ const LoMasNuevo = () => {
                       width={1000}
                       height={1000}
                       src={item.fotos[0]}
-                      alt="zapatilla"
+                      alt={`zapatilla ${item.nombre}`}
+                      loading="lazy"
                     />
                     <div className={styles.infoZapas}>
                       <p className={styles.nombre}>{item.nombre}</p>

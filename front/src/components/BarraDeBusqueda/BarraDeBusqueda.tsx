@@ -2,9 +2,26 @@ import styles from "./BarraDeBusqueda.module.css";
 import { FiSearch } from "react-icons/fi";
 import BarraDeBusquedaMasBuscados from "../BarraDeBusquedaMasBuscados/BarraDeBusquedaMasBuscados";
 import { LogoCM } from "@/utils/LogoCM";
+import { useState } from "react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const BarraDeBusqueda = ({ toggleLupa }: { toggleLupa: () => void }) => {
-  const handleBuscar = () => {};
+  const [data, setData] = useState<{ buscar: string }>({ buscar: "" });
+  const router = useRouter()
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setData({
+      ...data,
+      [e.target.name]: e.target.value,
+    });
+  };
+  const handleBuscar = () => {
+    if (data.buscar.trim() !== "") {
+      router.push(`/buscar/${data.buscar.toLowerCase()}`); // Redirección
+      toggleLupa()
+    }
+  };
   return (
     <>
       <div className={styles.divBarraDeBusqueda}>
@@ -14,7 +31,14 @@ const BarraDeBusqueda = ({ toggleLupa }: { toggleLupa: () => void }) => {
         <div className={styles.barraDeBusqueda}>
           <div className={styles.barraDiv}>
             <FiSearch size={25} />
-            <input type="text" placeholder="¿Que estas buscando?" />
+            <input
+              type="text"
+              name="buscar"
+              id="buscar"
+              placeholder="¿Que estas buscando?"
+              onChange={handleChange}
+              value={data.buscar}
+            />
           </div>
           <button onClick={handleBuscar}>Buscar</button>
         </div>
@@ -25,9 +49,13 @@ const BarraDeBusqueda = ({ toggleLupa }: { toggleLupa: () => void }) => {
       <div className={styles.barraDeBusquedaResponsive}>
         <div className={styles.barraDiv}>
           <FiSearch size={25} />
-          <input type="text" placeholder="¿Que estas buscando?" />
+          <input
+            type="text"
+            placeholder="¿Que estas buscando?"
+            value={data.buscar}
+          />
         </div>
-        <button>Buscar</button>
+        <button onClick={handleBuscar}>Buscar</button>
       </div>
       <BarraDeBusquedaMasBuscados />
     </>

@@ -15,8 +15,6 @@ interface Props {
   selectedTalle: string | null;
   imagenSeleccionada: any;
   toggleSelectedImage: (img: any) => void;
-  isOpenEnviarWhatsapp:boolean;
-  toggleEnviarWhatsappForm: () => void;
 }
 
 const SinglePrimeraSeccion = ({
@@ -25,8 +23,6 @@ const SinglePrimeraSeccion = ({
   selectedTalle,
   imagenSeleccionada,
   toggleSelectedImage,
-  isOpenEnviarWhatsapp,
-  toggleEnviarWhatsappForm,
 }: Props) => {
   return (
     <>
@@ -63,6 +59,7 @@ const SinglePrimeraSeccion = ({
           />
           <BotonSingleZapatilla
             selectedTalle={selectedTalle}
+            zapatilla={zapatillaEncontrada}
           />
         </div>
       </div>
@@ -93,9 +90,10 @@ const SinglePrimeraSeccion = ({
                 <Image
                   className={styles.imagenSingle}
                   src={zapa}
-                  alt="zapatilla"
                   width={1000}
                   height={1000}
+                  alt={`zapatilla ${zapa.nombre}`}
+                  loading="lazy"
                 />
               </div>
             ))}
@@ -108,6 +106,7 @@ const SinglePrimeraSeccion = ({
           />
           <BotonSingleZapatilla
             selectedTalle={selectedTalle}
+            zapatilla={zapatillaEncontrada}
           />
         </div>
       </div>

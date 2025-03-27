@@ -12,11 +12,11 @@
     justify-content: space-between;
   }
   .divImgSec{
-    border: 1px solid #525252;
+    border: 1px solid rgb(213, 213, 213);
     border-radius: 5px;
     cursor: pointer;
     transition: .3s;
-  
+    padding: .2vw;
   }
   .divImgSec:hover{
     transition: .3s;

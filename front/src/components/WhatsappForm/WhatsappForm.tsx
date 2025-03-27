@@ -11,15 +11,15 @@ import HeaderForm from "../HeaderForm/Headerform";
 interface Props {
   isOpenEnviarWhatsapp: boolean;
   toggleEnviarWhatsappForm: () => void;
-  talle: string | null;
-  zapatillaName: string;
+  talles: string[];
+  zapatillasNames: string[];
 }
 
 const WhatsappForm = ({
   isOpenEnviarWhatsapp,
   toggleEnviarWhatsappForm,
-  talle,
-  zapatillaName,
+  talles,
+  zapatillasNames,
 }: Props) => {
   const initialData = { name: "", surname: "", telephone: "", zipCode: "" };
   const initialDirty = {
@@ -38,8 +38,8 @@ const WhatsappForm = ({
     window.location.href = `https://api.whatsapp.com/send?phone=541136021862&text=
         // Nombre:${data.name}%20${data.surname}
         // Codigo Postal:${data.zipCode}
-        // Zapatilla:${zapatillaName}
-        // Talle: ${talle}`;
+        // Zapatillas:${zapatillasNames.map((zap:string) => zap)}
+        // Talles: ${talles}`;
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -128,13 +128,13 @@ const WhatsappForm = ({
             )}
           </div>
           <div className={styles.formDiv}>
-            <label htmlFor="zapatillaName">Zapatilla</label>
+            <label htmlFor="zapatillaName">Zapatillas</label>
             <input
               className={styles.inputChoosen}
               type="text"
               name="zapatillaName"
               id="zapatillaName"
-              value={zapatillaName}
+              value={zapatillasNames.map((zap:string) => zap)}
               disabled={true}
             />
           </div>
@@ -145,7 +145,7 @@ const WhatsappForm = ({
               type="text"
               name="talle"
               id="talle"
-              value={talle ? talle : ""}
+              value={talles.map((zap:string) => zap)}
               disabled={true}
             />
           </div>

@@ -8,16 +8,21 @@ import MenuNavbarList from "../MenuNavbarList/MenuNavbarList";
 
 const MenuNavbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isOpenLupa, setIsOpenLupa] = useState(false)
-  const [isOpenShopping, setIsOpenShopping] = useState(false)
+  const [isOpenLupa, setIsOpenLupa] = useState(false);
+  const [isOpenShopping, setIsOpenShopping] = useState(false);
+  const [isOpenEnviarWhatsapp, setIsOpenEnviarWhatsapp] =
+    useState<boolean>(false);
 
-  const toggleLupa = ():void => {
+  const toggleEnviarWhatsappForm = () => {
+    setIsOpenEnviarWhatsapp(!isOpenEnviarWhatsapp);
+  };
+  const toggleLupa = (): void => {
     setIsOpenLupa(!isOpenLupa);
   };
-  const toggleMenu = ():void => {
+  const toggleMenu = (): void => {
     setIsOpen(!isOpen);
   };
-  const toggleShopping = ():void => {
+  const toggleShopping = (): void => {
     setIsOpenShopping(!isOpenShopping);
   };
 
@@ -26,13 +31,19 @@ const MenuNavbar = () => {
       <div className={`${styles.divList} ${isOpen ? styles.open : ""}`}>
         <div className={styles.headerResponsive}>
           <Image src={Logo} alt="Logo Calzados Marea" width={40} />
-          <button onClick={toggleMenu}>
-            Cerrar
-          </button>
+          <button onClick={toggleMenu}>Cerrar</button>
         </div>
-        <MenuNavbarList/>
+        <MenuNavbarList />
       </div>
-      <MenuNavbarIcons toggleMenu={toggleMenu} toggleLupa={toggleLupa} isOpenLupa={isOpenLupa} toggleShopping={toggleShopping} isOpenShopping={isOpenShopping} />
+      <MenuNavbarIcons
+        toggleMenu={toggleMenu}
+        toggleLupa={toggleLupa}
+        isOpenLupa={isOpenLupa}
+        toggleShopping={toggleShopping}
+        isOpenShopping={isOpenShopping}
+        isOpenEnviarWhatsapp={isOpenEnviarWhatsapp}
+        toggleEnviarWhatsappForm={toggleEnviarWhatsappForm}
+      />
     </div>
   );
 };

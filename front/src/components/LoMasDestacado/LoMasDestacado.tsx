@@ -53,10 +53,11 @@ const LoMasDestacado = () => {
                   <Link href={`/calzado/${item.nombre}`}>
                     <Image
                       className={styles.imagenDestacada}
-                      width={400}
-                      height={400}
+                      width={1000}
+                      height={1000}
                       src={item.fotos[0]}
-                      alt="zapatilla"
+                      alt={`zapatilla ${item.nombre}`}
+                      loading="lazy"
                     />
                     <div className={styles.infoZapas}>
                       <p className={styles.nombre}>{item.nombre}</p>
@@ -88,7 +89,8 @@ const LoMasDestacado = () => {
                       width={1000}
                       height={1000}
                       src={item.fotos[0]}
-                      alt="zapatilla"
+                      alt={`zapatilla ${item.nombre}`}
+                      loading="lazy"
                     />
                     <div className={styles.infoZapas}>
                       <p className={styles.nombre}>{item.nombre}</p>
@@ -120,7 +122,8 @@ const LoMasDestacado = () => {
                       width={1000}
                       height={1000}
                       src={item.fotos[0]}
-                      alt="zapatilla"
+                      alt={`zapatilla ${item.nombre}`}
+                      loading="lazy"
                     />
                     <div className={styles.infoZapas}>
                       <p className={styles.nombre}>{item.nombre}</p>

@@ -1,12 +1,10 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Logo from "../../assets/cm logo.png";
-
 import { Kantumruy_Pro } from "next/font/google";
 import Navbar from "@/components/Navbar/Navbar";
-import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 import Header2 from "@/components/Header-2/Header-2";
+import { AuthContextProvider } from "@/utils/authContext";
 
 const kantumruy = Kantumruy_Pro({
   subsets: ["latin"],
@@ -30,12 +28,14 @@ export default function RootLayout({
   return (
     <html lang="es" className={kantumruy.className}>
       <body className={kantumruy.className}>
-        <main>
-          <Navbar />
-          <Header2/>
-          {children}
-          <Footer />
-        </main>
+      <AuthContextProvider>
+          <main>
+            <Navbar />
+            <Header2 />
+            {children}
+            <Footer />
+          </main>
+        </AuthContextProvider>
       </body>
     </html>
   );

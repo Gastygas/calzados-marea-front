@@ -4,9 +4,7 @@ import { useEffect, useState } from "react";
 import WhatsappForm from "../WhatsappForm/WhatsappForm";
 import SinglePrimeraSeccion from "../SinglePrimeraSeccion/SinglePrimeraSeccion";
 import { IZapatilla } from "@/helpers/interfaces";
-import {
-  FindOneByNameAction,
-} from "@/actions/zapatillas.actions";
+import { FindOneByNameAction } from "@/actions/zapatillas.actions";
 
 const SingleZapatilla = ({ nombreZapatilla }: { nombreZapatilla: string }) => {
   const [zapatillaEncontrada, setZapatillaEncontrada] = useState<IZapatilla>({
@@ -41,12 +39,7 @@ const SingleZapatilla = ({ nombreZapatilla }: { nombreZapatilla: string }) => {
   }, []);
 
   const [selectedTalle, setSelectedTalle] = useState<string | null>(null);
-  const [isOpenEnviarWhatsapp, setIsOpenEnviarWhatsapp] =
-    useState<boolean>(false);
 
-  const toggleEnviarWhatsappForm = () => {
-    setIsOpenEnviarWhatsapp(!isOpenEnviarWhatsapp);
-  };
   const toggleSelectedTalle = (talle: string) => {
     setSelectedTalle(talle);
   };
@@ -57,25 +50,13 @@ const SingleZapatilla = ({ nombreZapatilla }: { nombreZapatilla: string }) => {
   return (
     <div className={styles.container}>
       {!(zapatillaEncontrada.id === "none") ? (
-        <>
-          <div className={`${isOpenEnviarWhatsapp ? styles.divOpacity : ""}`}>
-            <SinglePrimeraSeccion
-              toggleSelectedImage={toggleSelectedImage}
-              zapatillaEncontrada={zapatillaEncontrada}
-              toggleSelectedTalle={toggleSelectedTalle}
-              selectedTalle={selectedTalle}
-              imagenSeleccionada={imagenSeleccionada}
-              isOpenEnviarWhatsapp={isOpenEnviarWhatsapp}
-              toggleEnviarWhatsappForm={toggleEnviarWhatsappForm}
-            />
-          </div>
-          <WhatsappForm
-            isOpenEnviarWhatsapp={isOpenEnviarWhatsapp}
-            toggleEnviarWhatsappForm={toggleEnviarWhatsappForm}
-            talle={selectedTalle}
-            zapatillaName={zapatillaEncontrada.nombre}
-          />
-        </>
+        <SinglePrimeraSeccion
+          toggleSelectedImage={toggleSelectedImage}
+          zapatillaEncontrada={zapatillaEncontrada}
+          toggleSelectedTalle={toggleSelectedTalle}
+          selectedTalle={selectedTalle}
+          imagenSeleccionada={imagenSeleccionada}
+        />
       ) : (
         <div>
           <p>Error: Zapatilla no encontrada</p>
