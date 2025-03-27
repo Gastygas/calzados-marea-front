@@ -35,7 +35,7 @@ const WhatsappForm = ({
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     alert("enviar");
-    window.location.href = `https://api.whatsapp.com/send?phone=541136021862&text=
+    window.location.href = `https://api.whatsapp.com/send?phone=541164960034&text=
         // Nombre:${data.name}%20${data.surname}
         // Codigo Postal:${data.zipCode}
         // Zapatillas:${zapatillasNames.map((zap:string) => zap)}
