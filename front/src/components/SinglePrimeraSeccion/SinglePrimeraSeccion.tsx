@@ -62,8 +62,6 @@ const SinglePrimeraSeccion = ({
             tallesValidos={zapatillaEncontrada.talle}
           />
           <BotonSingleZapatilla
-            isOpenEnviarWhatsapp={isOpenEnviarWhatsapp}
-            toggleEnviarWhatsappForm={toggleEnviarWhatsappForm}
             selectedTalle={selectedTalle}
           />
         </div>
@@ -109,8 +107,6 @@ const SinglePrimeraSeccion = ({
             tallesValidos={zapatillaEncontrada.talle}
           />
           <BotonSingleZapatilla
-            isOpenEnviarWhatsapp={isOpenEnviarWhatsapp}
-            toggleEnviarWhatsappForm={toggleEnviarWhatsappForm}
             selectedTalle={selectedTalle}
           />
         </div>
