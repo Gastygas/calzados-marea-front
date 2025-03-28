@@ -45,7 +45,7 @@ const LoMasNuevo = () => {
     <>
       <div className={styles.containerDestacado1}>
         <div className="m-auto w-11/12">
-          {zapatillaDestacadas.length === 1 ? (
+          {zapatillaDestacadas[0].nombre === "none" ? (
             <div>loading...</div>
           ) : (
             <Slider {...settings}>
@@ -78,7 +78,7 @@ const LoMasNuevo = () => {
       </div>
       <div className={styles.containerDestacado2}>
         <div className="m-auto w-11/12">
-          {zapatillaDestacadas.length === 1 ? (
+          {zapatillaDestacadas[0].nombre === "none" ? (
             <div>loading...</div>
           ) : (
             <Slider {...settings2}>
@@ -111,7 +111,7 @@ const LoMasNuevo = () => {
       </div>
       <div className={styles.containerDestacado3}>
         <div className="m-auto w-11/12">
-          {zapatillaDestacadas.length === 1 ? (
+          {zapatillaDestacadas[0].nombre === "none" ? (
             <div>loading...</div>
           ) : (
             <Slider {...settings3}>

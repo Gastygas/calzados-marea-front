@@ -1,5 +1,5 @@
 "use client"
-import { useEffect, useState } from "react";
+import {useState } from "react";
 import Filtros from "../Filtros/Filtros";
 import OrdenarPor from "../OrdenarPor/OrdenarPor";
 import ProductosEncontrados from "../ProductosEncontrados/ProductosEncontrados";
@@ -11,7 +11,7 @@ interface Props {
   busqueda:string;
 }
 
-const ResultadoBusqueda = ({zapatillasEncontradas,busqueda}: Props) => {
+const ResultadoBusqueda = ({zapatillasEncontradas}: Props) => {
   const [openFilters, setOpenFilters] = useState({
     genero: false,
     talle: false,
@@ -36,7 +36,7 @@ const ResultadoBusqueda = ({zapatillasEncontradas,busqueda}: Props) => {
       <div className={styles.productosEncontradosHeader}>
         <div className={styles.productosEncontrados}>
           <div>
-            <h4>{zapatillasEncontradas.length} Productos</h4>
+            <h4>{zapatillasEncontradas[0].nombre === "none" ? 0 : zapatillasEncontradas.length} Productos</h4>
           </div>
           <OrdenarPor isOrdenarPorOpen={isOrdenarPorOpen} toggleDropdown={toggleDropdown}/>
         </div>
