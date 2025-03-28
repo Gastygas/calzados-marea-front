@@ -57,7 +57,7 @@ const BarraDeBusqueda = ({ toggleLupa }: { toggleLupa: () => void }) => {
         </div>
         <button onClick={handleBuscar}>Buscar</button>
       </div>
-      <BarraDeBusquedaMasBuscados />
+      <BarraDeBusquedaMasBuscados toggleLupa={toggleLupa} />
     </>
   );
 };

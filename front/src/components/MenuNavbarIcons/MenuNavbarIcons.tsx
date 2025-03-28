@@ -38,7 +38,7 @@ const MenuNavbarIcons = ({
         <BarraDeBusqueda toggleLupa={toggleLupa}/>
       </div>
       <div className={`${styles.shoppingDiv} ${isOpenShopping ? styles.open : ""}`} >
-        <ShoppingCart isOpenEnviarWhatsapp={isOpenEnviarWhatsapp} toggleShopping={toggleShopping} toggleEnviarWhatsappForm={toggleEnviarWhatsappForm} />
+        <ShoppingCart isOpenShopping={isOpenShopping} isOpenEnviarWhatsapp={isOpenEnviarWhatsapp} toggleShopping={toggleShopping} toggleEnviarWhatsappForm={toggleEnviarWhatsappForm} />
       </div>
     </div>
   );

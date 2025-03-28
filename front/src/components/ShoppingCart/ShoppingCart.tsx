@@ -13,8 +13,10 @@ const ShoppingCart = ({
   toggleShopping,
   toggleEnviarWhatsappForm,
   isOpenEnviarWhatsapp,
+  isOpenShopping,
 }: {
   isOpenEnviarWhatsapp: boolean;
+  isOpenShopping:boolean;
   toggleShopping: () => void;
   toggleEnviarWhatsappForm: () => void;
 }) => {
@@ -77,7 +79,7 @@ const ShoppingCart = ({
         <div className={styles.carritoVacioDiv}>
           <MdOutlineRemoveShoppingCart size={60} />
           <h4 className=" font-semibold mt-4">Tu carrito esta vacío</h4>
-          <BarraDeBusquedaMasBuscados />
+          <BarraDeBusquedaMasBuscados toggleShopping={toggleShopping} isOpenShopping={isOpenShopping} />
         </div>
       )}
     </div>
