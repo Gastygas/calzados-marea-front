@@ -9,6 +9,7 @@ import { settings, settings2, settings3 } from "@/utils/settingsCarrousel";
 import { useEffect, useState } from "react";
 import { IZapatilla } from "@/helpers/interfaces";
 import { FindDestacadosAction } from "@/actions/zapatillas.actions";
+import Loading from "@/helpers/loading";
 
 const LoMasNuevo = () => {
 
@@ -46,7 +47,7 @@ const LoMasNuevo = () => {
       <div className={styles.containerDestacado1}>
         <div className="m-auto w-11/12">
           {zapatillaDestacadas[0].nombre === "none" ? (
-            <div>loading...</div>
+            <Loading/>
           ) : (
             <Slider {...settings}>
               {zapatillaDestacadas.map((item: IZapatilla) => (
@@ -79,7 +80,7 @@ const LoMasNuevo = () => {
       <div className={styles.containerDestacado2}>
         <div className="m-auto w-11/12">
           {zapatillaDestacadas[0].nombre === "none" ? (
-            <div>loading...</div>
+            <Loading/>
           ) : (
             <Slider {...settings2}>
               {zapatillaDestacadas.map((item: IZapatilla) => (
@@ -112,7 +113,7 @@ const LoMasNuevo = () => {
       <div className={styles.containerDestacado3}>
         <div className="m-auto w-11/12">
           {zapatillaDestacadas[0].nombre === "none" ? (
-            <div>loading...</div>
+            <Loading/>
           ) : (
             <Slider {...settings3}>
               {zapatillaDestacadas.map((item: IZapatilla) => (
