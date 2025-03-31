@@ -3,7 +3,7 @@ import styles from "./SeleccionarTalle.module.css";
 interface Props {
   tallesValidos: string[];
   toggleSelectedTalle: (talle:string) => void;
-  selectedTalle:string | null;
+  selectedTalle:string[];
 
 }
 
@@ -37,7 +37,7 @@ const SeleccionarTalle = ({ tallesValidos,toggleSelectedTalle,selectedTalle }: P
             <div
               key={talle}
               className={`${
-                selectedTalle === talle ? styles.talleSelected : styles.divTalle
+                selectedTalle.includes(talle) ? styles.talleSelected : styles.divTalle
               }`}
               onClick={() => toggleSelectedTalle(talle)}
             >

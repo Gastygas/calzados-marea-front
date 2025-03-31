@@ -1,10 +1,10 @@
 "use client";
 import styles from "./SingleZapatilla.module.css";
 import { useEffect, useState } from "react";
-import WhatsappForm from "../WhatsappForm/WhatsappForm";
 import SinglePrimeraSeccion from "../SinglePrimeraSeccion/SinglePrimeraSeccion";
 import { IZapatilla } from "@/helpers/interfaces";
 import { FindOneByNameAction } from "@/actions/zapatillas.actions";
+import ZapatillaNotFound from "../ZapatillaNotFound/ZapatillaNotFound";
 
 const SingleZapatilla = ({ nombreZapatilla }: { nombreZapatilla: string }) => {
   const [zapatillaEncontrada, setZapatillaEncontrada] = useState<IZapatilla>({
@@ -29,40 +29,43 @@ const SingleZapatilla = ({ nombreZapatilla }: { nombreZapatilla: string }) => {
         nombreZapatilla
       );
 
-      if (zapatilla !== null) {
+      if (zapatilla != null) {
         setZapatillaEncontrada(zapatilla);
         setImagenSeleccionada(zapatilla.fotos[0]);
       }
     };
-
     getZapatillas();
   }, []);
 
-  const [selectedTalle, setSelectedTalle] = useState<string | null>(null);
+  const [selectedTalle, setSelectedTalle] = useState<string[]>([]);
 
   const toggleSelectedTalle = (talle: string) => {
-    setSelectedTalle(talle);
+    setSelectedTalle((prevTalles) =>
+      prevTalles.includes(talle)
+        ? prevTalles.filter((t) => t !== talle) 
+        : [...prevTalles, talle] 
+    );
   };
   const toggleSelectedImage = (img: string) => {
     setImagenSeleccionada(img);
   };
 
   return (
-    <div className={styles.container}>
+    <>
       {!(zapatillaEncontrada.id === "none") ? (
-        <SinglePrimeraSeccion
-          toggleSelectedImage={toggleSelectedImage}
-          zapatillaEncontrada={zapatillaEncontrada}
-          toggleSelectedTalle={toggleSelectedTalle}
-          selectedTalle={selectedTalle}
-          imagenSeleccionada={imagenSeleccionada}
-        />
-      ) : (
-        <div>
-          <p>Error: Zapatilla no encontrada</p>
+        <div className={styles.container}>
+          <SinglePrimeraSeccion
+            toggleSelectedImage={toggleSelectedImage}
+            zapatillaEncontrada={zapatillaEncontrada}
+            toggleSelectedTalle={toggleSelectedTalle}
+            selectedTalle={selectedTalle}
+            imagenSeleccionada={imagenSeleccionada}
+          />
         </div>
+      ) : (
+        <ZapatillaNotFound />
       )}
-    </div>
+    </>
   );
 };
 

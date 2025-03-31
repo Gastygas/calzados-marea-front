@@ -8,14 +8,14 @@ const BotonSingleZapatilla = ({
   selectedTalle,
   zapatilla,
 }: {
-  selectedTalle: string | null;
+  selectedTalle: string[];
   zapatilla: IZapatilla;
 }) => {
   const shoppingContext = useContext(AuthContextShopping);
 
   const handleAddToCart = () => {
     if (shoppingContext) {
-      shoppingContext.addToCart({...zapatilla, talle:[selectedTalle ? selectedTalle : ""]});
+      shoppingContext.addToCart({...zapatilla, talle:[...selectedTalle ? selectedTalle : ""]});
     }
   };
   return (

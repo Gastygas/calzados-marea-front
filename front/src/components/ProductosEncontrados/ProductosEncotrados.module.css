@@ -10,21 +10,6 @@
     margin: 0px auto 0px auto;
   }
 
-  .noEncontradoDiv{
-    padding: 1vw;
-    width: 70vw;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-  .noEncontradoDiv h3{
-    text-transform:none;
-  }
-
-  .noEncontradoDiv p{
-    font-size: 18px;
-  }
   .infoZapas {
     width: 100%;
     text-align: start;
@@ -64,21 +49,6 @@
     margin: 0px auto 0px auto;
     height: fit-content;
   }
-  .noEncontradoDiv{
-    padding: .5vw;
-    width: 100vw;
-    display: flex;
-    flex-direction: column;
-  }
-  .noEncontradoDiv h3{
-    text-transform:none;
-    font-size: 19px;
-  }
-
-  .noEncontradoDiv p{
-    font-size: 16px;
-    font-weight: 600;
-  }
   .infoZapas {
     width: 100%;
     text-align: start;
@@ -115,20 +85,6 @@
     width: 90%;
     padding: 2rem 0;
     margin: 0px auto 0px auto;
-  }
-  .noEncontradoDiv{
-    padding: 1vw;
-    width: 70vw;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .noEncontradoDiv h3{
-    text-transform:none;
-  }
-
-  .noEncontradoDiv p{
-    font-size: 18px;
   }
   .infoZapas {
     width: 100%;

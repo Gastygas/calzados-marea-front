@@ -3,6 +3,7 @@ import styles from "./ProductosEncotrados.module.css";
 import Image from "next/image";
 import { IZapatilla } from "@/helpers/interfaces";
 import { FaRegFrownOpen } from "react-icons/fa";
+import BusquedaNotFound from "../BusquedaNotFound/BusquedaNotFound";
 
 const ProductosEncontrados = ({
   zapatillasEncontradas,
@@ -12,13 +13,7 @@ const ProductosEncontrados = ({
   return (
     <div className={styles.productosContainer}>
       {zapatillasEncontradas[0].nombre === "none" ? (
-        <div className={styles.noEncontradoDiv}>
-          <div>
-          <FaRegFrownOpen size={50} />
-          </div>
-         <h3> No encontramos ningun producto relacionado a tu busqueda</h3>
-         <p>Por favor revisa e intentalo</p>
-        </div>
+       <BusquedaNotFound/>
       ) : (
         zapatillasEncontradas.map((item: IZapatilla) => (
           <div className={styles.slide} key={item.id}>

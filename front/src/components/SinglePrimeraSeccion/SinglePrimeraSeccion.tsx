@@ -12,7 +12,7 @@ import BotonSingleZapatilla from "../BotonSingleZapatilla/BotonSingleZapatilla";
 interface Props {
   zapatillaEncontrada: IZapatilla;
   toggleSelectedTalle: (talle: string) => void;
-  selectedTalle: string | null;
+  selectedTalle: string[];
   imagenSeleccionada: any;
   toggleSelectedImage: (img: any) => void;
 }
