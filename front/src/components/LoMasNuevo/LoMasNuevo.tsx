@@ -8,7 +8,7 @@ import Image from "next/image";
 import { settings, settings2, settings3 } from "@/utils/settingsCarrousel";
 import { useEffect, useState } from "react";
 import { IZapatilla } from "@/helpers/interfaces";
-import { FindDestacadosAction } from "@/actions/zapatillas.actions";
+import { FindNuevosAction } from "@/actions/zapatillas.actions";
 import Loading from "@/helpers/loading";
 
 const LoMasNuevo = () => {
@@ -32,7 +32,7 @@ const LoMasNuevo = () => {
   
     useEffect(() => {
       const getZapatillas = async () => {
-        const zapatillas: IZapatilla[] | null = await FindDestacadosAction();
+        const zapatillas: IZapatilla[] | null = await FindNuevosAction();
   
         if (zapatillas !== null) {
           setZapatillasDestacadas(zapatillas);

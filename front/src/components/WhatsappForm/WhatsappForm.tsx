@@ -4,7 +4,8 @@ import { FormEvent, useEffect, useState } from "react";
 import {
   validateName,
   validatePhone,
-  validateZipCode,
+  validateProvincia,
+  validateCiudad,
 } from "@/helpers/validation";
 import HeaderForm from "../HeaderForm/Headerform";
 
@@ -21,12 +22,13 @@ const WhatsappForm = ({
   talles,
   zapatillasNames,
 }: Props) => {
-  const initialData = { name: "", surname: "", telephone: "", zipCode: "" };
+  const initialData = { name: "", surname: "", telephone: "", provincia: "", ciudad: "" };
   const initialDirty = {
     name: false,
     surname: false,
     telephone: false,
-    zipCode: false,
+    provincia: false,
+    ciudad: false
   };
   const [data, setData] = useState(initialData);
   const [error, setError] = useState(initialData);
@@ -37,7 +39,8 @@ const WhatsappForm = ({
     alert("enviar");
     window.location.href = `https://api.whatsapp.com/send?phone=541164960034&text=
         // Nombre:${data.name}%20${data.surname}
-        // Codigo Postal:${data.zipCode}
+        // Provincia:${data.provincia}
+        // Ciudad:${data.ciudad}
         // Zapatillas:${zapatillasNames.map((zap:string) => zap)}
         // Talles: ${talles}`;
   };
@@ -54,8 +57,9 @@ const WhatsappForm = ({
     setError({
       name: validateName(data.name),
       surname: validateName(data.surname),
-      zipCode: validateZipCode(data.zipCode),
+      provincia: validateProvincia(data.provincia),
       telephone: validatePhone(data.telephone),
+      ciudad: validateCiudad(data.ciudad)
     });
   }, [data]);
   return (
@@ -113,16 +117,31 @@ const WhatsappForm = ({
             )}
           </div>
           <div className={styles.formDiv}>
-            <label htmlFor="zipCode">Codigo Postal</label>
+            <label htmlFor="provincia">Provincia</label>
             <input
               type="text"
-              name="zipCode"
-              id="zipCode"
-              value={data.zipCode}
+              name="provincia"
+              id="provincia"
+              value={data.provincia}
               onChange={handleChange}
             />
-            {dirty.zipCode ? (
-              <p className={styles.inputError}>{error.zipCode}</p>
+            {dirty.provincia ? (
+              <p className={styles.inputError}>{error.provincia}</p>
+            ) : (
+              ""
+            )}
+          </div>
+          <div className={styles.formDiv}>
+            <label htmlFor="ciudad">Ciudad</label>
+            <input
+              type="text"
+              name="ciudad"
+              id="ciudad"
+              value={data.ciudad}
+              onChange={handleChange}
+            />
+            {dirty.ciudad ? (
+              <p className={styles.inputError}>{error.ciudad}</p>
             ) : (
               ""
             )}
@@ -149,7 +168,7 @@ const WhatsappForm = ({
               disabled={true}
             />
           </div>
-          {error.name || error.surname || error.telephone || error.zipCode ? (
+          {error.name || error.surname || error.telephone || error.provincia || error.ciudad ? (
             <button className={styles.buttonError} disabled={true}>
               Enviar a Whatsapp
             </button>

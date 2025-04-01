@@ -4,7 +4,7 @@ import styles from "./Busqueda.module.css";
 import ResultadoBusquedaResponsive from "../ResultadoBusquedaResponsive/ResultadoBusquedaResponsive";
 import { useEffect, useState } from "react";
 import { IZapatilla } from "@/helpers/interfaces";
-import { FindDestacadosAction } from "@/actions/zapatillas.actions";
+import { FindDestacadosAction, FindSearchAction } from "@/actions/zapatillas.actions";
 const Busqueda = ({busqueda}:{busqueda:string}) => {
   
   const [zapatillasEncontradas, setZapatillasEncontradas] = useState<
@@ -26,7 +26,7 @@ const Busqueda = ({busqueda}:{busqueda:string}) => {
   
     useEffect(() => {
       const getZapatillas = async () => {
-        const zapatillas: IZapatilla[] | null = await FindDestacadosAction();
+        const zapatillas: IZapatilla[] | null = await FindSearchAction(busqueda);
   
         if (zapatillas !== null) {
           setZapatillasEncontradas(zapatillas);

@@ -57,7 +57,7 @@ const ShoppingCart = ({
                   </div>
                   <div className={styles.infoZapaDiv}>
                     <h4>{zap.nombre}</h4>
-                    <p>{zap.precio}</p>
+                    <p>${zap.precio}</p>
                   </div>
                 </div>
                 <div className={styles.eliminarDiv}>

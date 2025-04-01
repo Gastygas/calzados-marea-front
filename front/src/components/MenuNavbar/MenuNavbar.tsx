@@ -7,9 +7,9 @@ import MenuNavbarIcons from "../MenuNavbarIcons/MenuNavbarIcons";
 import MenuNavbarList from "../MenuNavbarList/MenuNavbarList";
 
 const MenuNavbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [isOpenLupa, setIsOpenLupa] = useState(false);
-  const [isOpenShopping, setIsOpenShopping] = useState(false);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isOpenLupa, setIsOpenLupa] = useState<boolean>(false);
+  const [isOpenShopping, setIsOpenShopping] = useState<boolean>(false);
   const [isOpenEnviarWhatsapp, setIsOpenEnviarWhatsapp] =
     useState<boolean>(false);
 

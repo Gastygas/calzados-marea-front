@@ -12,10 +12,17 @@ export const validatePhone = (name:string): string => {
     if(!regexCountry.test(name)) validation = " Ingresa solo números entre 9 y 15 dígitos"
     return validation
 }
-export const validateZipCode = (zipCode:string): string => {
+export const validateProvincia = (provincia:string): string => {
     let validation = ""
-    const regexCountry = /^[A-Za-z]\d{4}$/
+    const regexCountry = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]{1,25}$/
 
-    if(!regexCountry.test(zipCode)) validation = " Ingresa solo una letra y 4 dígitos"
+    if(!regexCountry.test(provincia)) validation = " Ingresa una provincia"
+    return validation
+}
+export const validateCiudad = (ciudad:string): string => {
+    let validation = ""
+    const regexCountry = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]{1,50}$/
+
+    if(!regexCountry.test(ciudad)) validation = " Ingresa una ciudad"
     return validation
 }
