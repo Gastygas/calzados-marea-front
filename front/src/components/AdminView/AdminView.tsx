@@ -2,7 +2,6 @@
 import { FormEvent, useState } from "react";
 import styles from "./AdminView.module.css";
 import { ILoginData } from "@/helpers/interfaces";
-import { LogInAction } from "@/actions/admin.actions";
 import { useAuth } from "@/utils/authContext";
 
 const AdminView = () => {
