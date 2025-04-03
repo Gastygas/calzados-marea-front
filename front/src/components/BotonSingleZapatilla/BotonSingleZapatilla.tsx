@@ -1,8 +1,8 @@
 "use client"
 import { useContext } from "react";
 import styles from "./BotonSingleZapatilla.module.css";
-import AuthContextShopping from "@/utils/authContext";
 import { IZapatilla } from "@/helpers/interfaces";
+import { AuthContext } from "@/utils/authContext";
 
 const BotonSingleZapatilla = ({
   selectedTalle,
@@ -11,7 +11,7 @@ const BotonSingleZapatilla = ({
   selectedTalle: string[];
   zapatilla: IZapatilla;
 }) => {
-  const shoppingContext = useContext(AuthContextShopping);
+  const shoppingContext = useContext(AuthContext);
 
   const handleAddToCart = () => {
     if (shoppingContext) {

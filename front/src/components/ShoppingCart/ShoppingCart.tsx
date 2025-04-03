@@ -1,7 +1,7 @@
 "use client";
 import { LogoCM } from "@/utils/LogoCM";
 import styles from "./ShoppingCart.module.css";
-import AuthContextShopping from "@/utils/authContext";
+import { AuthContext } from "@/utils/authContext";
 import { useContext } from "react";
 import { IZapatilla } from "@/helpers/interfaces";
 import Image from "next/image";
@@ -20,7 +20,7 @@ const ShoppingCart = ({
   toggleShopping: () => void;
   toggleEnviarWhatsappForm: () => void;
 }) => {
-  const shoppingContext = useContext(AuthContextShopping);
+  const shoppingContext = useContext(AuthContext);
   if (!shoppingContext) return null;
   const { shoppingCart, removeFromCart } = shoppingContext;
 

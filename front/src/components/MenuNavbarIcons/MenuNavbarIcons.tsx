@@ -4,7 +4,7 @@ import { FaBars } from "react-icons/fa";
 import BarraDeBusqueda from "../BarraDeBusqueda/BarraDeBusqueda";
 import ShoppingCart from "../ShoppingCart/ShoppingCart";
 import { useContext } from "react";
-import AuthContextShopping from "@/utils/authContext";
+import { AuthContext } from "@/utils/authContext";
 
 
 const MenuNavbarIcons = ({
@@ -24,7 +24,7 @@ const MenuNavbarIcons = ({
   isOpenShopping: boolean;
   isOpenEnviarWhatsapp: boolean
 }) => {
-  const shoppingContext = useContext(AuthContextShopping);
+  const shoppingContext = useContext(AuthContext);
   const cartCount = shoppingContext?.shoppingCart.length ?? 0;
 
   return (
