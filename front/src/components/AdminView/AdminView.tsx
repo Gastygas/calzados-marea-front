@@ -3,6 +3,7 @@ import { FormEvent, useState } from "react";
 import styles from "./AdminView.module.css";
 import { ILoginData } from "@/helpers/interfaces";
 import { useAuth } from "@/utils/authContext";
+import { useRouter } from "next/navigation";
 
 const AdminView = () => {
   const initialData:ILoginData = { user: "", password: "" };
@@ -11,6 +12,7 @@ const AdminView = () => {
   const [dirty, setDirty] = useState(initialDirty);
   const { logIn } = useAuth();
 
+  const router = useRouter()
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setData({
       ...data,
@@ -24,19 +26,10 @@ const AdminView = () => {
     try {
         await logIn(data);
         alert("Inicio de sesión exitoso");
-      } catch (error:any) {
-        alert(`Leer: ${error.message === "missing email or phone" ? "email o contraseña incorrecto" : ""} `);
+        router.push("admin/dashboard")
+      } catch (e:unknown) {
+        alert(`Leer: email o contraseña incorrecto`);
       }
-    // const login = await LogInAction(data)
-    // if(login.success === true){
-    // alert("inicio de sesion exitoso");
-
-    // }
-    // else{
-    //     alert(`Leer: ${login.message === "missing email or phone" ? "email o password incorrecto" : ""} `)
-    //     return
-    // }
-    
   };
 
   return (
@@ -59,7 +52,7 @@ const AdminView = () => {
           <div>
             <label htmlFor="">contraseña</label>
             <input
-              type="text"
+              type="password"
               name="password"
               id="password"
               value={data.password}
