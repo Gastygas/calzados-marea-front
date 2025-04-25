@@ -3,6 +3,23 @@
 import { IZapatilla } from "@/helpers/interfaces";
 import { createClient } from "@/utils/supabase/server";
 
+export const FindAllZapatillasAction= async():Promise<IZapatilla[] | null> => {
+  try {
+    const supabase = await createClient();
+
+    const { data, error } = await supabase
+      .from("zapatillas")
+      .select("*")
+      .select();
+    if (error) throw error;
+
+    return data;
+  } catch (error) {
+    console.log("❌ Error en Supabase:", error);
+    return null;
+  }
+}
+
 export const FindDestacadosAction = async (): Promise<IZapatilla[] | null> => {
   try {
     const supabase = await createClient();
@@ -100,3 +117,23 @@ export const FindSearchAction = async (
     return null;
   }
 };
+
+export const newStockZapatillaAction = async(id:string,newStock:string,talles:string[]):Promise<null | true> => {
+  try {    
+    console.log("🔧 Intentando actualizar:", { id, newStock });
+    const supabase = await createClient();
+    const { data, error } = await supabase
+      .from("zapatillas")
+      .update({ stock: newStock,talle:talles }) // como string
+      .eq("id", id)
+      .select();
+
+    if (error) throw error;
+
+    console.log("✅ Stock actualizado:", data[0]);
+    return true;
+  } catch (error) {
+    console.log("❌ Error en Supabase:", error);
+    return null;
+  }
+}
