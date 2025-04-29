@@ -6,7 +6,7 @@ const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 );
 
-export const LogInAction = async (data:ILoginData ) => {
+export const LogInAction = async (data: ILoginData) => {
   try {
     const { data: authData, error } = await supabase.auth.signInWithPassword({
       email: data.user,
@@ -27,7 +27,7 @@ export const LogInAction = async (data:ILoginData ) => {
   }
 };
 
-export const EditarZapatillaAction = async (data:IZapatilla) => {
+export const EditarZapatillaAction = async (data: IZapatilla) => {
   const {
     data: { user },
     error: authError,
@@ -40,7 +40,7 @@ export const EditarZapatillaAction = async (data:IZapatilla) => {
 
   // Actualizamos la zapatilla por su ID
   const { error, data: updatedZapatilla } = await supabase
-    .from('zapatillas')
+    .from("zapatillas")
     .update({
       nombre: data.nombre,
       precio: data.precio,
@@ -54,7 +54,7 @@ export const EditarZapatillaAction = async (data:IZapatilla) => {
       genero: data.genero,
       stock: data.stock,
     })
-    .eq('id', data.id)
+    .eq("id", data.id)
     .select();
 
   if (error) {
@@ -63,4 +63,19 @@ export const EditarZapatillaAction = async (data:IZapatilla) => {
   }
 
   return { success: true, zapatilla: updatedZapatilla };
+};
+
+export const deleteZapatillaAction = async (id: string) => {
+  const { error } = await supabase
+    .from("zapatillas")
+    .delete()
+    .eq("id", id)
+    .select();
+
+  if (error) {
+    console.error("Error al actualizar zapatilla:", error.message);
+    return { success: false, message: error.message };
+  }
+
+  return { success: true };
 };
