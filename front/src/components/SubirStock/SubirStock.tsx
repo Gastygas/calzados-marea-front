@@ -5,11 +5,7 @@ import { IZapatilla } from "@/helpers/interfaces";
 import { useState } from "react";
 import { SubirZapatillaAction } from "@/actions/admin.actions";
 
-const SubirStock = ({
-  toggleSubirStock,
-}: {
-  toggleSubirStock: () => void;
-}) => {
+const SubirStock = ({ toggleSubirStock }: { toggleSubirStock: () => void }) => {
   const initialData = {
     nombre: "",
     precio: "",
@@ -22,20 +18,18 @@ const SubirStock = ({
     fotos: [],
     genero: "",
     stock: "",
-  }
+  };
   const [editData, setEditData] = useState<IZapatilla>(initialData);
 
   const handleSubmitEditData = async (e: React.FormEvent) => {
     e.preventDefault();
     const response = await SubirZapatillaAction(editData);
     if (response.success === false) {
-      return alert(`Error: ${response.message}`)
-    }
-    else{
-      setEditData(initialData)
+      return alert(`Error: ${response.message}`);
+    } else {
+      setEditData(initialData);
       return alert("La zapatilla se subiocorrectamente");
     }
-    
   };
 
   const ALL_TALLES = Array.from({ length: 45 - 32 + 1 }, (_, i) =>
@@ -43,8 +37,8 @@ const SubirStock = ({
   );
 
   const uploadImageHandle = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log('hola',e.target.files?.[0]);
-    
+    console.log("hola", e.target.files?.[0]);
+
     const file = e.target.files?.[0];
     if (!file) return;
 
@@ -266,7 +260,32 @@ const SubirStock = ({
           <div className="flex justify-around w-full">
             <button
               type="submit"
-              className="bg-blue-500 text-lg font-semibold text-white p-2 rounded mt-2 w-1/2 hover:bg-blue-700 duration-75"
+              className={`text-lg font-semibold text-white p-2 rounded mt-2 w-1/2 duration-75 ${
+                !editData.color ||
+                !editData.fotos ||
+                !editData.genero ||
+                !editData.marca ||
+                !editData.material ||
+                !editData.nombre ||
+                !editData.precio ||
+                !editData.stock ||
+                !editData.talle
+                  ?
+                  "bg-gray-500 cursor-not-allowed"
+                  : 
+                  "bg-blue-500  hover:bg-blue-700"
+              }  `}
+              disabled={
+                !editData.color ||
+                !editData.fotos ||
+                !editData.genero ||
+                !editData.marca ||
+                !editData.material ||
+                !editData.nombre ||
+                !editData.precio ||
+                !editData.stock ||
+                !editData.talle
+              }
             >
               Subir Zapatilla
             </button>
