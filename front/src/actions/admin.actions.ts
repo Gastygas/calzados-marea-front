@@ -79,3 +79,19 @@ export const deleteZapatillaAction = async (id: string) => {
 
   return { success: true };
 };
+
+export const SubirZapatillaAction = async (formData:IZapatilla) => {
+
+  const {data, error} = await supabase
+  .from("zapatillas")
+  .insert(formData)
+  .select()
+
+  if (error) {
+    console.error("Error al subir zapatilla:", error.message);
+    return { success: false, message: error.message };
+  }
+
+  return { success: true, zapatilla:data };
+
+}

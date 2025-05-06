@@ -30,7 +30,6 @@ const ActualizarStock = ({
   );
   const [editData, setEditData] = useState<IZapatilla>({
     nombre: "",
-    id: "",
     precio: "",
     marca: "",
     talle: [],
@@ -68,7 +67,7 @@ const ActualizarStock = ({
         // Inicializar el estado del input con el stock actual
         const initialStocks: { [id: string]: string | undefined } = {};
         zapatillas.forEach((zap: IZapatilla) => {
-          initialStocks[zap.id] = zap.stock;
+          zap.id ? (initialStocks[zap.id] = zap.stock) : "";
         });
         setStockById(initialStocks);
       }
@@ -172,7 +171,7 @@ const ActualizarStock = ({
               </button>
               <h4 className="text-lg mr-4">Stock:</h4>
               <p className="text-lg text-center mr-4">
-                {stockById[zap.id] || ""}
+                {zap.id ? stockById[zap.id] : ""}
               </p>
             </div>
           </div>
@@ -320,21 +319,23 @@ const ActualizarStock = ({
             </div>
             <div>
               <label>Fotos:</label>
-              <div className="flex justify-around w-fit">
+              <p className="font-medium text-gray-800">Máximo 5</p>
+
+              <div className="flex flex-col md:grid md:grid-cols-3 md:gap-5 w-full mt-4">
                 {editData.fotos.map((img: string, i) => (
                   <div key={i}>
                     <MdCancel
                       className="absolute hover:size-7 cursor-pointer"
                       size={24}
                       color="red"
-                      onClick={(e) => {
+                      onClick={() => {
                         const nuevasFotos =
                           editData.fotos?.filter((foto) => foto !== img) || [];
                         setEditData({ ...editData, fotos: nuevasFotos });
                       }}
                     />
                     <Image
-                      className="w-40"
+                      className="w-32 h-32"
                       src={img}
                       alt="imagen de zapatilla"
                       width={1000}
@@ -342,12 +343,12 @@ const ActualizarStock = ({
                     />
                   </div>
                 ))}
-                <div className="flex items-center p-5 border border-gray-600 justify-cente rounded-3xl bg-green-300">
+                <div className="flex items-center p-5 border border-gray-600 justify-cente rounded-3xl bg-green-300 w-1/2">
                   <label
-                    className="cursor-pointer text-lg text-center text-black hover:text-gray-500 transform duration-75"
+                    className="w-full cursor-pointer text-lg text-center text-black hover:text-gray-500 transform duration-75"
                     htmlFor="addPhoto"
                   >
-                    Subir Imagen
+                    Subir
                   </label>
                   <input
                     type="file"
@@ -410,7 +411,11 @@ const ActualizarStock = ({
                     </button>
                     <button
                       className="border bg-red-500 rounded-lg p-5 font-bold  w-1/2"
-                      onClick={() => handleDeletePhoto(zapatillaEditando.id)}
+                      onClick={() => {
+                        zapatillaEditando.id
+                          ? handleDeletePhoto(zapatillaEditando.id)
+                          : "";
+                      }}
                     >
                       Si, Eliminar
                     </button>

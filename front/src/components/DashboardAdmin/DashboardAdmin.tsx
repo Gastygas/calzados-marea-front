@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import styles from "./DashboardAdmin.module.css";
 import ActualizarStock from "../ActualizarStock/ActualizarStock";
-import RenovarStock from "../RenovarStock/RenovarStock";
+import SubirStock from "../SubirStock/SubirStock";
 import { useAuth } from "@/utils/authContext";
 import { useRouter } from "next/navigation";
 import Loading from "@/helpers/loading";
@@ -11,7 +11,7 @@ const DashboardAdmin = () => {
   const {user, loading} = useAuth()
   const router = useRouter();
   const [actualizarStock, setActualizarStock] = useState<boolean>(false);
-  const [renovarStock, setRenovarStock] = useState<boolean>(false);
+  const [subirStock, setSubirStock] = useState<boolean>(false);
 
   useEffect(() => {
     if (!loading && !user) {      
@@ -22,8 +22,8 @@ const DashboardAdmin = () => {
     setActualizarStock(!actualizarStock);
   };
 
-  const toggleRenovarStock = () => {
-    setRenovarStock(!renovarStock);
+  const toggleSubirStock = () => {
+    setSubirStock(!subirStock);
   };
   if(loading || user === null) {return (<Loading/>) }
   return (
@@ -33,12 +33,12 @@ const DashboardAdmin = () => {
       ) : (
         ""
       )}
-      {renovarStock ? (
-        <RenovarStock toggleRenovarStock={toggleRenovarStock} />
+      {subirStock ? (
+        <SubirStock toggleSubirStock={toggleSubirStock} />
       ) : (
         ""
       )}
-      {actualizarStock || renovarStock ? (
+      {actualizarStock || subirStock ? (
         ""
       ) : (
         <div className={styles.divFlex}>
@@ -51,7 +51,7 @@ const DashboardAdmin = () => {
               <button onClick={toggleActualizarStock}>actualizar stock</button>
             </div>
             <div>
-              <button onClick={toggleRenovarStock}>renovar stock</button>
+              <button onClick={toggleSubirStock}>Subir stock</button>
             </div>
           </div>
         </div>

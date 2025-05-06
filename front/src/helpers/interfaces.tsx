@@ -1,6 +1,6 @@
 export interface IZapatilla {
   nombre: string;
-  id: string;
+  id?: string;
   precio: string;
   marca: string;
   talle: string[];
@@ -10,7 +10,7 @@ export interface IZapatilla {
   nuevo: boolean;
   fotos: string[];
   genero: string;
-  stock?: string;
+  stock: string;
 }
 
 export interface ILoginData {
