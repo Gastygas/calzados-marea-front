@@ -11,22 +11,18 @@ const Footer = () => {
         <h4>Calzados Marea</h4>
       </div>
       <div className={styles.socialMedia}>
-        <Link target="blank" href="">
+        <Link target="_blank" href="">
           <FaInstagram className={styles.logos} />
         </Link>
-        <Link target="blank" href="">
+        <Link target="_blank" href="">
           <FaFacebookF className={styles.logos} />
         </Link>
-        <Link target="blank" href="">
+        <Link target="_blank" href="">
           <FaWhatsapp className={styles.logos} />
         </Link>
       </div>
       <div className={styles.copyright}>
-        <FaRegCopyright/>
-        <p>todos los derechos reservados</p>
-      </div>
-      <div className={styles.year}>
-        <p>2025</p>
+      <p>&copy; 2025 Calzados Marea. Todos los derechos reservados.</p>
       </div>
     </div>
   );

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Kantumruy_Pro } from "next/font/google";
 import Navbar from "@/components/Navbar/Navbar";
-// import Footer from "@/components/Footer/Footer";
+import Footer from "@/components/Footer/Footer";
 import Header2 from "@/components/Header-2/Header-2";
 import AuthProvider from "@/utils/authContext";
 
@@ -33,8 +33,8 @@ export default function RootLayout({
               <Navbar />
               <Header2 />
               {children}
+              <Footer />
             </main>
-              {/* <Footer /> */}
           </AuthProvider>
       </body>
     </html>

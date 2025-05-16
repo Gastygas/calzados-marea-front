@@ -128,12 +128,12 @@ const ActualizarStock = ({
   };
 
   return (
-    <div>
+    <div className="min-h-screen flex flex-col">
       <button onClick={toggleActualizarStock}>
         <RiArrowGoBackFill size={30} />
       </button>
-      <h3 className="">Actualizar stock</h3>
-      <div>
+      <h3>Actualizar stock</h3>
+      <div className="flex-grow">
         {zapatilla.map((zap) => (
           <div
             key={zap.id}

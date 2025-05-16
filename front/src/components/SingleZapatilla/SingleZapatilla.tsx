@@ -18,6 +18,7 @@ const SingleZapatilla = ({ nombreZapatilla }: { nombreZapatilla: string }) => {
     nuevo: false,
     fotos: ["https://none.jpg"],
     genero: "none",
+    stock:"0"
   });
   const [imagenSeleccionada, setImagenSeleccionada] = useState(
     zapatillaEncontrada.fotos[0]

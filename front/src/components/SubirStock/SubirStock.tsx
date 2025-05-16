@@ -75,11 +75,11 @@ const SubirStock = ({ toggleSubirStock }: { toggleSubirStock: () => void }) => {
     }
   };
   return (
-    <>
+    <div className="relative">
       <button onClick={toggleSubirStock}>
         <RiArrowGoBackFill size={30} />
       </button>
-      <div className="h-fit flex flex-col items-center pb-10">
+      <div className="min-h-screen flex flex-col items-center pb-10">
         <h3 className="text-2xl font-bold">Subir stock</h3>
         <form
           onSubmit={handleSubmitEditData}
@@ -292,7 +292,7 @@ const SubirStock = ({ toggleSubirStock }: { toggleSubirStock: () => void }) => {
           </div>
         </form>
       </div>
-    </>
+    </div>
   );
 };
 

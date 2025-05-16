@@ -1,5 +1,6 @@
 .containerDashboard{
-    height: 50vw;
+    height: fit-content;
+    min-height: 50vh;
     padding: 2vw;
 }
 

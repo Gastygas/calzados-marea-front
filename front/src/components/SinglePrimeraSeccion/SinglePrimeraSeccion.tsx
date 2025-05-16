@@ -42,14 +42,15 @@ const SinglePrimeraSeccion = ({
                   : `zapatillas ${zapatillaEncontrada.marca} para ${zapatillaEncontrada.genero}`}
               </p>
               <p className={styles.precio}>$ {zapatillaEncontrada.precio}</p>
-              <p className={styles.genero}>
+              {/* <p className={styles.genero}>
                 Hasta 6x{" "}
                 <span style={{ fontWeight: "bold", color: "black" }}>
                   {" "}
                   20.000
                 </span>{" "}
                 sin interes
-              </p>
+              </p> */}
+          <p className={styles.genero}>Stock disponible: <span className="font-bold text-black">{zapatillaEncontrada.stock}</span></p>
             </div>
           </div>
           <SeleccionarTalle

@@ -61,7 +61,7 @@ const ShoppingCart = ({
                   </div>
                 </div>
                 <div className={styles.eliminarDiv}>
-                  <button onClick={() => removeFromCart(zap.id)}>
+                  <button onClick={() => removeFromCart(`${zap.id ? zap.id : ""}`)}>
                     eliminar
                   </button>
                 </div>
