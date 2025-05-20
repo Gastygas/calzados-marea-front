@@ -1,12 +1,13 @@
 import styles from "./OrdenarPor.module.css"
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 
-interface Props{
+interface Props {
   toggleDropdown: () => void;
-  isOrdenarPorOpen: boolean
+  isOrdenarPorOpen: boolean;
+  handleOrdenSeleccionado: (orden: "mayor" | "menor") => void;
 }
 
-const OrdenarPor = ({toggleDropdown,isOrdenarPorOpen}:Props) => {
+const OrdenarPor = ({toggleDropdown,isOrdenarPorOpen, handleOrdenSeleccionado}:Props) => {
     return (
       <div className={styles.ordenarPor}>
       <div className={styles.ordenarPorHeader} onClick={toggleDropdown}>
@@ -15,10 +16,15 @@ const OrdenarPor = ({toggleDropdown,isOrdenarPorOpen}:Props) => {
       </div>
       {isOrdenarPorOpen && (
         <div className={styles.dropdown}>
-          <div className={styles.dropdownItem} onClick={() => toggleDropdown()}>
+          <div className={styles.dropdownItem} onClick={() => {
+            toggleDropdown() 
+            handleOrdenSeleccionado("mayor")}}>
             Mayor Precio
           </div>
-          <div className={styles.dropdownItem} onClick={() => toggleDropdown()}>
+          <div className={styles.dropdownItem} onClick={() =>{ 
+            toggleDropdown()
+            handleOrdenSeleccionado("menor")
+            }}>
             Menor Precio
           </div>
         </div>

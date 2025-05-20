@@ -24,6 +24,9 @@ const ResultadoBusquedaResponsive = ({
     color: false,
   });
   const [isOrdenarPorOpen, setIsOrdenarPorOpen] = useState(false);
+  const [ordenSeleccionado, setOrdenSeleccionado] = useState<
+    "mayor" | "menor" | ""
+  >("");
   const [filtrosSeleccionados, setFiltrosSeleccionados] = useState<{
     genero: string[];
     talle: string[];
@@ -51,6 +54,10 @@ const ResultadoBusquedaResponsive = ({
       };
     });
   };
+  const handleOrdenSeleccionado = (orden: "mayor" | "menor") => {
+    setOrdenSeleccionado(orden);
+    setIsOrdenarPorOpen(false);
+  };
 
   const zapatillasFiltradas = zapatillasEncontradas.filter((zapa) => {
     const matchGenero =
@@ -73,6 +80,19 @@ const ResultadoBusquedaResponsive = ({
 
     return matchGenero && matchTalle && matchTipo && matchColor;
   });
+
+  const parsePrecio = (precio: string): number => {
+    return Number(precio.replace(/[^0-9.-]+/g, ""));
+  };
+  if (ordenSeleccionado === "mayor") {
+    zapatillasFiltradas.sort(
+      (a, b) => parsePrecio(b.precio) - parsePrecio(a.precio)
+    );
+  } else if (ordenSeleccionado === "menor") {
+    zapatillasFiltradas.sort(
+      (a, b) => parsePrecio(a.precio) - parsePrecio(b.precio)
+    );
+  }
 
   const toggleMenuFilter = (): void => {
     setIsOpenFilters(!isOpenFilters);
@@ -111,6 +131,7 @@ const ResultadoBusquedaResponsive = ({
           <OrdenarPor
             isOrdenarPorOpen={isOrdenarPorOpen}
             toggleDropdown={toggleDropdown}
+            handleOrdenSeleccionado={handleOrdenSeleccionado}
           />
         </div>
       </div>

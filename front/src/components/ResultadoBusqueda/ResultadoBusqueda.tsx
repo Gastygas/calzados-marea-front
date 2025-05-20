@@ -30,9 +30,13 @@ const ResultadoBusqueda = ({ zapatillasEncontradas }: Props) => {
     color: [],
   });
   const [isOrdenarPorOpen, setIsOrdenarPorOpen] = useState(false);
+  const [ordenSeleccionado, setOrdenSeleccionado] = useState<
+    "mayor" | "menor" | ""
+  >("");
   const toggleDropdown = () => {
     setIsOrdenarPorOpen((prev) => !prev);
   };
+
   const handleFiltroChange = (
     categoria: keyof typeof filtrosSeleccionados,
     valor: string
@@ -48,6 +52,10 @@ const ResultadoBusqueda = ({ zapatillasEncontradas }: Props) => {
         [categoria]: nuevosValores,
       };
     });
+  };
+  const handleOrdenSeleccionado = (orden: "mayor" | "menor") => {
+    setOrdenSeleccionado(orden);
+    setIsOrdenarPorOpen(false);
   };
 
   const toggleFilter = (filter: keyof typeof openFilters) => {
@@ -78,6 +86,19 @@ const ResultadoBusqueda = ({ zapatillasEncontradas }: Props) => {
     return matchGenero && matchTalle && matchTipo && matchColor;
   });
 
+  const parsePrecio = (precio: string): number => {
+    return Number(precio.replace(/[^0-9.-]+/g, ""));
+  };
+  if (ordenSeleccionado === "mayor") {
+    zapatillasFiltradas.sort(
+      (a, b) => parsePrecio(b.precio) - parsePrecio(a.precio)
+    );
+  } else if (ordenSeleccionado === "menor") {
+    zapatillasFiltradas.sort(
+      (a, b) => parsePrecio(a.precio) - parsePrecio(b.precio)
+    );
+  }
+
   return (
     <div className={styles.resultadoBusquedaContainer}>
       <Filtros
@@ -98,6 +119,7 @@ const ResultadoBusqueda = ({ zapatillasEncontradas }: Props) => {
           <OrdenarPor
             isOrdenarPorOpen={isOrdenarPorOpen}
             toggleDropdown={toggleDropdown}
+            handleOrdenSeleccionado={handleOrdenSeleccionado}
           />
         </div>
         <ProductosEncontrados zapatillasEncontradas={zapatillasFiltradas} />
