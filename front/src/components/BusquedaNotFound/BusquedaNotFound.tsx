@@ -1,16 +1,18 @@
 import { FaRegFrownOpen } from "react-icons/fa";
-import styles from "./BusquedaNotFound.module.css"
+import styles from "./BusquedaNotFound.module.css";
 
 const BusquedaNotFound = () => {
-    return (
-        <div className={styles.noEncontradoDiv}>
+  return (
+    <div className="flex items-center justify-center min-h-screen">
+      <div className={styles.noEncontradoDiv}>
         <div>
-        <FaRegFrownOpen size={50} />
+          <FaRegFrownOpen size={50} />
         </div>
-       <h3> No encontramos ningun producto relacionado a tu busqueda</h3>
-       <p>Por favor revisa e intentalo</p>
+        <h3> No encontramos ningun producto relacionado a tu busqueda</h3>
+        <p>Por favor revisa e intentalo</p>
       </div>
-    )
+    </div>
+  );
 };
 
-export default BusquedaNotFound
+export default BusquedaNotFound;

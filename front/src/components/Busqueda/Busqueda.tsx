@@ -8,24 +8,11 @@ import {
   FindDestacadosAction,
   FindSearchAction,
 } from "@/actions/zapatillas.actions";
+import BusquedaNotFound from "../BusquedaNotFound/BusquedaNotFound";
 const Busqueda = ({ busqueda }: { busqueda: string }) => {
   const [zapatillasEncontradas, setZapatillasEncontradas] = useState<
     IZapatilla[] | []
-  >([
-    {
-      nombre: "none",
-      id: "none",
-      precio: "none",
-      marca: "nike",
-      talle: ["none"],
-      color: "none",
-      destacado: false,
-      nuevo: false,
-      fotos: ["https://none.jpg"],
-      genero: "none",
-      stock: "0"
-    },
-  ]);
+  >([]);
 
   useEffect(() => {
     const getZapatillas = async () => {
@@ -38,6 +25,8 @@ const Busqueda = ({ busqueda }: { busqueda: string }) => {
 
     getZapatillas();
   }, []);
+
+  if(zapatillasEncontradas.length === 0) return <BusquedaNotFound/>
 
   return (
     <div>

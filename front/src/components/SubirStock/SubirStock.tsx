@@ -6,7 +6,7 @@ import { useState } from "react";
 import { SubirZapatillaAction } from "@/actions/admin.actions";
 
 const SubirStock = ({ toggleSubirStock }: { toggleSubirStock: () => void }) => {
-  const initialData = {
+  const initialData: IZapatilla = {
     nombre: "",
     precio: "",
     marca: "",
@@ -181,6 +181,33 @@ const SubirStock = ({ toggleSubirStock }: { toggleSubirStock: () => void }) => {
               className="border p-1 rounded border-black ml-3 w-fit"
             />
           </div>
+          <div className="flex items-center justify-around mb-4">
+            <div className="flex items-center">
+              <label htmlFor="nuevo">Nuevo:</label>
+              <input
+                type="checkbox"
+                id="nuevo"
+                checked={editData.nuevo}
+                onChange={(e) =>
+                  setEditData({ ...editData, nuevo: e.target.checked })
+                }
+                className="border p-1 rounded border-black ml-3 w-fit"
+              />
+            </div>
+
+            <div className="flex items-center">
+              <label htmlFor="destacado">Destacado:</label>
+              <input
+                type="checkbox"
+                id="destacado"
+                checked={editData.destacado}
+                onChange={(e) =>
+                  setEditData({ ...editData, destacado: e.target.checked })
+                }
+                className="border p-1 rounded border-black ml-3 w-fit"
+              />
+            </div>
+          </div>
           <div className="flex flex-col mb-4">
             <label htmlFor="talle">Talle:</label>
             <div id="talle" className="grid grid-cols-4 mt-4">
@@ -270,10 +297,8 @@ const SubirStock = ({ toggleSubirStock }: { toggleSubirStock: () => void }) => {
                 !editData.precio ||
                 !editData.stock ||
                 !editData.talle
-                  ?
-                  "bg-gray-500 cursor-not-allowed"
-                  : 
-                  "bg-blue-500  hover:bg-blue-700"
+                  ? "bg-gray-500 cursor-not-allowed"
+                  : "bg-blue-500  hover:bg-blue-700"
               }  `}
               disabled={
                 !editData.color ||

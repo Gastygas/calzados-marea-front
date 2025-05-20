@@ -7,22 +7,8 @@ import { FindOneByNameAction } from "@/actions/zapatillas.actions";
 import ZapatillaNotFound from "../ZapatillaNotFound/ZapatillaNotFound";
 
 const SingleZapatilla = ({ nombreZapatilla }: { nombreZapatilla: string }) => {
-  const [zapatillaEncontrada, setZapatillaEncontrada] = useState<IZapatilla>({
-    nombre: "none",
-    id: "none",
-    precio: "none",
-    marca: "nike",
-    talle: ["none"],
-    color: "none",
-    destacado: false,
-    nuevo: false,
-    fotos: ["https://none.jpg"],
-    genero: "none",
-    stock:"0"
-  });
-  const [imagenSeleccionada, setImagenSeleccionada] = useState(
-    zapatillaEncontrada.fotos[0]
-  );
+  const [zapatillaEncontrada, setZapatillaEncontrada] = useState<IZapatilla>();
+  const [imagenSeleccionada, setImagenSeleccionada] = useState<string>("");
 
   useEffect(() => {
     const getZapatillas = async () => {
@@ -30,7 +16,7 @@ const SingleZapatilla = ({ nombreZapatilla }: { nombreZapatilla: string }) => {
         nombreZapatilla
       );
 
-      if (zapatilla != null) {
+      if (zapatilla) {
         setZapatillaEncontrada(zapatilla);
         setImagenSeleccionada(zapatilla.fotos[0]);
       }
@@ -50,10 +36,11 @@ const SingleZapatilla = ({ nombreZapatilla }: { nombreZapatilla: string }) => {
   const toggleSelectedImage = (img: string) => {
     setImagenSeleccionada(img);
   };
-
+  
+  if(!zapatillaEncontrada) return <ZapatillaNotFound />
+  
   return (
     <>
-      {!(zapatillaEncontrada.id === "none") ? (
         <div className={styles.container}>
           <SinglePrimeraSeccion
             toggleSelectedImage={toggleSelectedImage}
@@ -63,9 +50,7 @@ const SingleZapatilla = ({ nombreZapatilla }: { nombreZapatilla: string }) => {
             imagenSeleccionada={imagenSeleccionada}
           />
         </div>
-      ) : (
-        <ZapatillaNotFound />
-      )}
+        
     </>
   );
 };
