@@ -1,5 +1,6 @@
 "use client";
 import Section1 from "@/components/Section-1/Section-1";
+import Section3 from "@/components/Section-3/Section-3";
 import SingleZapatilla from "@/components/SingleZapatilla/SingleZapatilla";
 import { useParams } from "next/navigation";
 
@@ -9,6 +10,7 @@ const page = () => {
   return (
     <>
       <SingleZapatilla nombreZapatilla={nombreZapatilla.toLocaleLowerCase()} />
+      <Section3 />
       <Section1 />
     </>
   );

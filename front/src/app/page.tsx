@@ -5,9 +5,9 @@ import Section3 from "@/components/Section-3/Section-3";
 export default function Home() {
   return (
     <div>
-      <Section1/>
-      <Section2/>
-      <Section3/>
+      <Section3 />
+      <Section1 />
+      <Section2 />
     </div>
   );
 }
