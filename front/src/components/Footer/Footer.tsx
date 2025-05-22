@@ -1,7 +1,6 @@
 import { LogoCM } from "@/utils/LogoCM";
 import styles from "./Footer.module.css";
-import Link from "next/link";
-import { FaInstagram, FaFacebookF, FaWhatsapp, FaRegCopyright } from "react-icons/fa";
+import { FaInstagram, FaWhatsapp, FaTiktok } from "react-icons/fa";
 
 const Footer = () => {
   return (
@@ -11,18 +10,18 @@ const Footer = () => {
         <h4>Calzados Marea</h4>
       </div>
       <div className={styles.socialMedia}>
-        <Link target="_blank" href="">
+        <a target="blank" href="/">
           <FaInstagram className={styles.logos} />
-        </Link>
-        <Link target="_blank" href="">
-          <FaFacebookF className={styles.logos} />
-        </Link>
-        <Link target="_blank" href="">
+        </a>
+        <a target="_blank" href="/">
           <FaWhatsapp className={styles.logos} />
-        </Link>
+        </a>
+        <a target="_blank" href="/">
+          <FaTiktok className={styles.logos} />
+        </a>
       </div>
       <div className={styles.copyright}>
-      <p>&copy; 2025 Calzados Marea. Todos los derechos reservados.</p>
+        <p>&copy; 2025 Calzados Marea. Todos los derechos reservados.</p>
       </div>
     </div>
   );

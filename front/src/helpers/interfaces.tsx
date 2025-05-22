@@ -12,6 +12,7 @@ export interface IZapatilla {
   genero: string;
   tipo?:string;
   stock?: string;
+  oldPrice?: string
 }
 
 export interface ILoginData {

@@ -56,6 +56,22 @@ export const FindNuevosAction = async (): Promise<IZapatilla[] | null> => {
     return null;
   }
 };
+export const FindSpecificsAction = async (type:string): Promise<IZapatilla[] | null> => {
+  try {
+    const supabase = await createClient();
+
+    const { data, error } = await supabase
+      .from("zapatillas")
+      .select("*")
+      .eq(type, true)
+      .select();
+    if (error) throw error;
+    return data;
+  } catch (error) {
+    console.log("❌ Error en Supabase:", error);
+    return null;
+  }
+};
 
 export const FindOneByNameAction = async (
   nombre: string

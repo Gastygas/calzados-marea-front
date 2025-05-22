@@ -1,6 +1,5 @@
 import styles from "./Section-1.module.css";
-import LoMasDestacado from "../LoMasDestacado/LoMasDestacado";
-import { Suspense } from "react";
+import Sections from "../Sections/Sections";
 
 
 const Section1 = () => {
@@ -9,9 +8,7 @@ const Section1 = () => {
       <div>
         <h3>Lo mas Destacado</h3>
       </div>
-      <Suspense>
-        <LoMasDestacado />
-      </Suspense>
+      <Sections type="destacado"/>
     </div>
   );
 };
