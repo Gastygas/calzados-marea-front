@@ -81,6 +81,9 @@ export const deleteZapatillaAction = async (id: string) => {
 };
 
 export const SubirZapatillaAction = async (formData:IZapatilla) => {
+  formData.nombre === formData.nombre.toLocaleLowerCase()
+  formData.genero === formData.genero.toLocaleLowerCase()
+  formData.marca === formData.marca.toLocaleLowerCase()
 
   const {data, error} = await supabase
   .from("zapatillas")

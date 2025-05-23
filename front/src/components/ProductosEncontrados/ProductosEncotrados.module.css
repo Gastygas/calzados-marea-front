@@ -25,6 +25,8 @@
     color: #525252;
     font-size: 16.5px;
     text-transform: capitalize;
+    min-height: 30px;
+
   }
   .precio {
     color: #056505;

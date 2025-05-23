@@ -5,7 +5,6 @@ import ResultadoBusquedaResponsive from "../ResultadoBusquedaResponsive/Resultad
 import { useEffect, useState } from "react";
 import { IZapatilla } from "@/helpers/interfaces";
 import {
-  FindDestacadosAction,
   FindSearchAction,
 } from "@/actions/zapatillas.actions";
 import BusquedaNotFound from "../BusquedaNotFound/BusquedaNotFound";

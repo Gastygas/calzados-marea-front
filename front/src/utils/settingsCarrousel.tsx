@@ -27,3 +27,12 @@ export const settings = {
     },
   ],
 };
+export const settingsSingle = {
+  dots: false,
+  infinite: true,
+  speed: 700,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  prevArrow: <CustomPrevArrow />,
+  nextArrow: <CustomNextArrow />,
+};

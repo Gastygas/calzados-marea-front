@@ -145,7 +145,7 @@ const ResultadoBusquedaResponsive = ({
               {zapatillasFiltradas.length === 0
                 ? 0
                 : zapatillasFiltradas.length}{" "}
-              Productos
+              Productos 
             </h4>
           </div>
         </div>

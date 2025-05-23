@@ -1,17 +1,14 @@
 import Sections from "../Sections/Sections";
-import styles from "./Section-3.module.css"
 
 const Section3 = () => {
- return (
-        <div className={styles.containerSection2}>
+  return (
+    <div>
       <div>
-        <h3>
-          Las Mejores Ofertas
-        </h3>
+        <h3>Las Mejores Ofertas</h3>
       </div>
-      <Sections type="oferta"/>
+      <Sections type="oferta" />
     </div>
-    )
+  );
 };
 
-export default Section3
+export default Section3;

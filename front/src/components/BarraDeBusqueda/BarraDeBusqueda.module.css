@@ -76,7 +76,7 @@
   }
   .cerrarButton:hover {
     transition: 0.1s;
-    color: rgb(97, 97, 97);
+    color: rgb(100, 100, 100);
   }
 
   .divBarraDeBusqueda {
@@ -115,10 +115,7 @@
     margin-right: 5vw;
   }
 
-  .barraDiv {
-    display: flex;
-    align-items: center;
-  }
+
 
   .barraDiv input {
     margin-left: 2vw;

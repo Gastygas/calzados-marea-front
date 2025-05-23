@@ -4,7 +4,7 @@ import styles from "./SinglePrimeraSeccion.module.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-import { settings } from "@/utils/settingsCarrousel";
+import { settings, settingsSingle } from "@/utils/settingsCarrousel";
 import Image from "next/image";
 import { IZapatilla } from "@/helpers/interfaces";
 import BotonSingleZapatilla from "../BotonSingleZapatilla/BotonSingleZapatilla";
@@ -41,7 +41,20 @@ const SinglePrimeraSeccion = ({
                   ? `zapatillas ${zapatillaEncontrada.marca} unisex`
                   : `zapatillas ${zapatillaEncontrada.marca} para ${zapatillaEncontrada.genero}`}
               </p>
-              <p className={styles.precio}>$ {zapatillaEncontrada.precio}</p>
+               {zapatillaEncontrada.oferta ? (
+                  <div className="flex items-center">
+                    <p className="text-[14px] md:text-[17px] text-[#525252] font-bold line-through mr-3">
+                      $ {zapatillaEncontrada.oldPrice || "10.000"}
+                    </p>
+                    <p className="text-[16px] md:text-[20px] text-[#056505] font-bold">
+                      $ {zapatillaEncontrada.precio}
+                    </p>
+                  </div>
+                ) : (
+                  <p className="text-[14px] md:text-[20px] text-[#056505] font-bold">
+                    $ {zapatillaEncontrada.precio}
+                  </p>
+                )}
               {/* <p className={styles.genero}>
                 Hasta 6x{" "}
                 <span style={{ fontWeight: "bold", color: "black" }}>
@@ -74,7 +87,20 @@ const SinglePrimeraSeccion = ({
                   ? `zapatillas ${zapatillaEncontrada.marca} unisex`
                   : `zapatillas ${zapatillaEncontrada.marca} para ${zapatillaEncontrada.genero}`}
               </p>
-              <p className={styles.precio}>$ {zapatillaEncontrada.precio}</p>
+               {zapatillaEncontrada.oferta ? (
+                  <div className="flex items-center">
+                    <p className="text-[16px] md:text-[17px] text-[#525252] font-bold line-through mr-3">
+                      $ {zapatillaEncontrada.oldPrice || "10.000"}
+                    </p>
+                    <p className="text-[20px] md:text-[17px] text-[#056505] font-bold">
+                      $ {zapatillaEncontrada.precio}
+                    </p>
+                  </div>
+                ) : (
+                  <p className="text-[14px] md:text-[17px] text-[#056505] font-bold">
+                    $ {zapatillaEncontrada.precio}
+                  </p>
+                )}
               <p className={styles.genero}>
                 Hasta 6x{" "}
                 <span style={{ fontWeight: "bold", color: "black" }}>
@@ -85,20 +111,23 @@ const SinglePrimeraSeccion = ({
               </p>
             </div>
           </div>
-          <Slider {...settings}>
-            {zapatillaEncontrada.fotos.map((zapa: any, i: any) => (
+          <div className=" ">
+
+          <Slider {...settingsSingle}>
+            {zapatillaEncontrada.fotos.map((zapa: string, i: any) => (
               <div className={styles.divImagenSingle} key={i}>
                 <Image
                   className={styles.imagenSingle}
                   src={zapa}
                   width={1000}
                   height={1000}
-                  alt={`zapatilla ${zapa.nombre}`}
+                  alt={`foto de zapatilla`}
                   loading="lazy"
-                />
+                  />
               </div>
             ))}
           </Slider>
+            </div>
 
           <SeleccionarTalle
             toggleSelectedTalle={toggleSelectedTalle}

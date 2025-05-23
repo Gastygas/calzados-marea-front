@@ -107,6 +107,16 @@ export const FindSearchAction = async (
       return data;
     }
 
+    if(search === "nuevo" || search === "oferta" || search === "destacado"){
+      const { data, error } = await supabase
+        .from("zapatillas")
+        .select("*")
+        .eq(search, true)
+        .select();
+
+      return data;
+    }
+
     if (search === "nike" || search === "adidas" || search === "new balance") {
       const { data, error } = await supabase
         .from("zapatillas")
