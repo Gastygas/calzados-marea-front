@@ -25,7 +25,7 @@ const SinglePrimeraSeccion = ({
   toggleSelectedImage,
 }: Props) => {
   return (
-    <>
+    <div>
       <div className={styles.containerImgYTalle}>
         <ImagenesSingle
           imagenSeleccionada={imagenSeleccionada}
@@ -111,7 +111,20 @@ const SinglePrimeraSeccion = ({
           />
         </div>
       </div>
-    </>
+      <div className="p-7 min-h-[400px]">
+        <h4 className="font-normal text-3xl">Descripción</h4>
+          {zapatillaEncontrada.description 
+            ? (
+          
+        <p className="mt-5 text-xl"> {zapatillaEncontrada.description}
+        </p>
+        ): 
+        (
+          <p className="mt-10 text-xl text-center">Esta zapatilla no tiene descripción, mil disculpas</p>
+        )
+      }
+      </div>
+    </div>
   );
 };
 

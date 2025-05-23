@@ -5,7 +5,7 @@
 .container{
   padding: 2vw 2vw 2vw 2vw ;
   width: 90%;
-  height: 50vw;
+  min-height: 100vh;
 }
 
 @media(max-width:1000px){

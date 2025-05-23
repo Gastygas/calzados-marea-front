@@ -2,6 +2,7 @@ import styles from "./Navbar.module.css";
 import MenuNavbar from "../MenuNavbar/MenuNavbar";
 import { LogoCM } from "@/utils/LogoCM";
 import Header from "../Header/Header";
+import Header2 from "../Header-2/Header-2";
 
 const Navbar = () => {
   return (
@@ -13,6 +14,7 @@ const Navbar = () => {
         </div>
         <MenuNavbar />
       </div>
+      <Header2 />
     </div>
   );
 };

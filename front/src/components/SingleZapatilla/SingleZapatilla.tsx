@@ -40,7 +40,6 @@ const SingleZapatilla = ({ nombreZapatilla }: { nombreZapatilla: string }) => {
   if(!zapatillaEncontrada) return <ZapatillaNotFound />
   
   return (
-    <>
         <div className={styles.container}>
           <SinglePrimeraSeccion
             toggleSelectedImage={toggleSelectedImage}
@@ -50,8 +49,6 @@ const SingleZapatilla = ({ nombreZapatilla }: { nombreZapatilla: string }) => {
             imagenSeleccionada={imagenSeleccionada}
           />
         </div>
-        
-    </>
   );
 };
 

@@ -18,6 +18,9 @@ const SubirStock = ({ toggleSubirStock }: { toggleSubirStock: () => void }) => {
     fotos: [],
     genero: "",
     stock: "",
+    oferta: false,
+    description: "",
+    oldPrice: "",
   };
   const [editData, setEditData] = useState<IZapatilla>(initialData);
 
@@ -83,9 +86,9 @@ const SubirStock = ({ toggleSubirStock }: { toggleSubirStock: () => void }) => {
         <h3 className="text-2xl font-bold">Subir stock</h3>
         <form
           onSubmit={handleSubmitEditData}
-          className="h-fit w-fit flex flex-col mt-4 p-10 border border-gray-400 rounded-xl bg-gray-200"
+          className="h-fit w-fit flex flex-col mt-4 p-10 border border-black rounded-xl "
         >
-          <div className="flex items-center mb-4">
+          <div className="flex items-center mb-4 ">
             <label htmlFor="">Nombre:</label>
             <input
               type="text"
@@ -99,20 +102,7 @@ const SubirStock = ({ toggleSubirStock }: { toggleSubirStock: () => void }) => {
               className="border p-1 rounded border-black ml-3 w-fit"
             />
           </div>
-          <div className="flex items-center mb-4">
-            <label htmlFor="">Precio: $</label>
-            <input
-              type="text"
-              value={`${editData.precio}`}
-              onChange={(e) =>
-                setEditData({ ...editData, precio: e.target.value })
-              }
-              placeholder="Precio"
-              className="border p-1 rounded border-black ml-1 w-fit"
-              name="precio"
-              id="precio"
-            />
-          </div>
+
           <div className="flex items-center mb-4">
             <label htmlFor="">Marca:</label>
             <input
@@ -181,7 +171,59 @@ const SubirStock = ({ toggleSubirStock }: { toggleSubirStock: () => void }) => {
               className="border p-1 rounded border-black ml-3 w-fit"
             />
           </div>
+          <div className="flex items-center mb-4">
+            <label htmlFor="">
+              {editData.oferta ? "Precio Viejo" : "Precio"}: $
+            </label>
+            <input
+              type="text"
+              value={`${
+                editData.oferta && editData.oldPrice
+                  ? editData.oldPrice
+                  : editData.precio
+              }`}
+              onChange={(e) => {
+                if (editData.oferta) {
+                  setEditData({ ...editData, oldPrice: e.target.value });
+                } else setEditData({ ...editData, precio: e.target.value });
+              }}
+              placeholder="Precio"
+              className={`border p-1 rounded  ml-1 w-fit ${
+                editData.oferta ? "border-gray-500" : "border-black"
+              }`}
+              name="precio"
+              id="precio"
+            />
+          </div>
+          {editData.oferta && (
+            <div className="flex items-center mb-4">
+              <label htmlFor="">Precio Oferta: $</label>
+              <input
+                type="text"
+                value={`${editData.precio}`}
+                onChange={(e) =>
+                  setEditData({ ...editData, precio: e.target.value })
+                }
+                placeholder="Precio Oferta"
+                className="border p-1 rounded border-green-800 ml-1 w-fit"
+                name="precio"
+                id="precio"
+              />
+            </div>
+          )}
           <div className="flex items-center justify-around mb-4">
+            <div className="flex items-center">
+              <label htmlFor="oferta">Oferta:</label>
+              <input
+                type="checkbox"
+                id="oferta"
+                checked={editData.oferta}
+                onChange={(e) =>
+                  setEditData({ ...editData, oferta: e.target.checked })
+                }
+                className="border p-1 rounded border-black ml-3 w-fit"
+              />
+            </div>
             <div className="flex items-center">
               <label htmlFor="nuevo">Nuevo:</label>
               <input
@@ -207,6 +249,21 @@ const SubirStock = ({ toggleSubirStock }: { toggleSubirStock: () => void }) => {
                 className="border p-1 rounded border-black ml-3 w-fit"
               />
             </div>
+          </div>
+          <div className="flex flex-col  mb-4">
+            <label htmlFor="description">Descripción:</label>
+            <textarea
+              value={editData.description}
+              onChange={(e) =>
+                setEditData({ ...editData, description: e.target.value })
+              }
+              placeholder="Describe tu zapatilla"
+              className={`border p-1 rounded  ml-1 w-fit border-black`}
+              name="description"
+              id="description"
+              cols={35}
+              rows={6}
+            ></textarea>
           </div>
           <div className="flex flex-col mb-4">
             <label htmlFor="talle">Talle:</label>
@@ -267,12 +324,13 @@ const SubirStock = ({ toggleSubirStock }: { toggleSubirStock: () => void }) => {
                   />
                 </div>
               ))}
-              <div className="flex items-center p-4 border w-fit border-gray-600  rounded-3xl bg-green-300">
+              <div className="flex items-center p-4 rounded-3xl ">
                 <label
-                  className="cursor-pointer text-lg text-center text-black hover:text-gray-500 transform duration-75"
+                  className="cursor-pointer text-lg text-center text-blue-700 underline hover:text-gray-500 transform duration-75"
                   htmlFor="addPhoto"
                 >
-                  Subir
+                  Subir <br />
+                  Foto
                 </label>
                 <input
                   type="file"

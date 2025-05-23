@@ -6,10 +6,10 @@ const Section3 = () => {
         <div className={styles.containerSection2}>
       <div>
         <h3>
-          Ofertas
+          Las Mejores Ofertas
         </h3>
       </div>
-      <Sections type="nuevo"/>
+      <Sections type="oferta"/>
     </div>
     )
 };
