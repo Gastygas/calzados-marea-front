@@ -33,13 +33,10 @@
     font-weight: bold;
   }
   .selecTalleDiv {
-    position: absolute;
     display: flex;
     flex-direction: column;
-    height: fit-content;
-    width: 70%;
-    left: 15vw;
-    top: 10vw;
+    max-height: 90vh;
+    max-width: 100%;
     background: white;
     border: 1px solid black;
   }

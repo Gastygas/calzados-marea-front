@@ -3,7 +3,7 @@
   padding-top: 2vw;
   display: flex;
   flex-direction: column;
-  height: 100%;
+  position: relative;
 }
 .infoZapas {
   width: 100%;
@@ -32,18 +32,22 @@
   flex-direction: row;
   justify-content: space-around;
   margin-bottom: 7vw;
+  position: relative;
+  min-height: 150vh;
 }
 
 .containerImgYTalleResponsive{
     display: none;
 }
 
-@media (max-width:999px){
+@media (max-width:768px){
     .containerImgYTalle{
         display: none;
     }
+
     .containerImgYTalleResponsive{
         display: block;
+        height: 100vh;
     }
     .divImagenSingle{
         margin-top: 1vw;

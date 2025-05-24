@@ -2,7 +2,7 @@
     width: 100%;
     display: flex;
     justify-content: center;
-    margin-top: 9.5vw;
+    margin-top: 15vh;
 }
 
 .divButton{
@@ -26,7 +26,7 @@
     transform: scale(.9);
 }
 
-@media (max-width:1000px){
+@media (max-width:768px){
     .containerButon{
         margin-top: 10vw;
     }

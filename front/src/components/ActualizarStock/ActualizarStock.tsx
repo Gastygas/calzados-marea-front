@@ -45,8 +45,8 @@ const ActualizarStock = ({
   // const [selectedTalles, setSelectedTalles] = useState<{
   //   [id: string]: string[];
   // }>({});
-  const ALL_TALLES = Array.from({ length: 45 - 32 + 1 }, (_, i) =>
-    (32 + i).toString()
+  const ALL_TALLES = Array.from({ length: 45 - 18 + 1 }, (_, i) =>
+    (18 + i).toString()
   );
 
   const handleSubmitEditData = async (e: React.FormEvent) => {
@@ -178,252 +178,205 @@ const ActualizarStock = ({
         ))}
       </div>
       {openEditar && zapatillaEditando && (
-        <div className={`${styles.selecTalleDiv} p-5 z-10`}>
-          <div className="flex justify-between">
-            <h4 className="uppercase">Editar zapatilla</h4>
-            <button onClick={() => setOpenEditar(false)}>Cerrar</button>
-          </div>
+        <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 z-40 flex items-center justify-center">
+          <div
+            className={`${styles.selecTalleDiv} p-5 z-10 max-w-full overflow-y-auto rounded-xl`}
+          >
+            <div className="flex justify-between items-center mb-4">
+              <h4 className="uppercase text-lg font-semibold">
+                Editar zapatilla
+              </h4>
+              <button
+                onClick={() => setOpenEditar(false)}
+                className="text-red-600 font-bold"
+              >
+                Cerrar
+              </button>
+            </div>
 
-          <form onSubmit={handleSubmitEditData} className="grid gap-4 mt-4">
-            <div className="flex items-center">
-              <label htmlFor="">Nombre:</label>
-              <input
-                type="text"
-                value={editData.nombre}
-                onChange={(e) =>
-                  setEditData({ ...editData, nombre: e.target.value })
-                }
-                name="nombre"
-                id="nombre"
-                placeholder="Nombre"
-                className="border p-1 rounded border-black ml-3 w-fit"
-              />
-            </div>
-            <div>
-              <label htmlFor="">Precio: $</label>
-              <input
-                type="text"
-                value={`${editData.precio}`}
-                onChange={(e) =>
-                  setEditData({ ...editData, precio: e.target.value })
-                }
-                placeholder="Precio"
-                className="border p-1 rounded border-black ml-1 w-fit"
-                name="precio"
-                id="precio"
-              />
-            </div>
-            <div>
-              <label htmlFor="">Marca:</label>
-              <input
-                type="text"
-                value={editData.marca}
-                onChange={(e) =>
-                  setEditData({ ...editData, marca: e.target.value })
-                }
-                placeholder="Marca"
-                id="marca"
-                name="marca"
-                className="border p-1 rounded border-black ml-3 w-fit"
-              />
-            </div>
-            <div className="flex items-center">
-              <label htmlFor="">Color:</label>
-              <input
-                type="text"
-                value={editData.color}
-                name="color"
-                id="color"
-                onChange={(e) =>
-                  setEditData({ ...editData, color: e.target.value })
-                }
-                placeholder="Color"
-                className="border p-1 rounded border-black ml-3 w-fit"
-              />
-            </div>
-            <div className="flex items-center">
-              <label htmlFor="">Género:</label>
-              <input
-                type="text"
-                value={editData.genero}
-                onChange={(e) =>
-                  setEditData({ ...editData, genero: e.target.value })
-                }
-                placeholder="Género"
-                className="border p-1 rounded border-black ml-3 w-fit"
-              />
-            </div>
-            <div className="flex items-center">
-              <label htmlFor="">Stock:</label>
-              <input
-                type="text"
-                value={editData.stock}
-                onChange={(e) =>
-                  setEditData({ ...editData, stock: e.target.value })
-                }
-                name="stock"
-                id="stock"
-                placeholder="Stock"
-                className="border p-1 rounded border-black ml-3 w-fit"
-              />
-            </div>
-            <div>
-              <label htmlFor="">Material:</label>
-              <input
-                type="text"
-                value={editData.material}
-                onChange={(e) =>
-                  setEditData({ ...editData, material: e.target.value })
-                }
-                name="material"
-                id="material"
-                placeholder="material"
-                className="border p-1 rounded border-black ml-3 w-fit"
-              />
-            </div>
-            <div>
-              <label htmlFor="talle">Talle:</label>
-              <div id="talle" className="grid grid-cols-4 w-1/2">
-                {ALL_TALLES.map((num, i) => (
-                  <div key={i} className={`p-1 flex `}>
-                    <p
-                      className={`p-6 rounded-md cursor-pointer text-xl font-bold border hover:scale-95 transform duration-100 ${
-                        zapatillaEditando.talle.includes(num)
-                          ? "text-white  bg-black"
-                          : "text-black  bg-white border-black hover:text-white hover:bg-black  "
-                      } `}
-                      onClick={() => {
-                        let nuevosTalles: string[] = [];
+            <form
+              onSubmit={handleSubmitEditData}
+              className="flex flex-col gap-4"
+            >
+              {/* Campos de texto */}
+              {[
+                { label: "Nombre", key: "nombre" },
+                { label: "Precio", key: "precio" },
+                { label: "Marca", key: "marca" },
+                { label: "Color", key: "color" },
+                { label: "Género", key: "genero" },
+                { label: "Stock", key: "stock" },
+                { label: "Material", key: "material" },
+              ].map(({ label, key }) => (
+                <div
+                  key={key}
+                  className="flex flex-col sm:flex-row items-start sm:items-center"
+                >
+                  <label htmlFor={key} className="min-w-[80px] font-medium">
+                    {label}:
+                  </label>
+                  <input
+                    type="text"
+                    id={key}
+                    name={key}
+                    value={editData[key as keyof IZapatilla] as string}
+                    onChange={(e) =>
+                      setEditData({ ...editData, [key]: e.target.value })
+                    }
+                    placeholder={label}
+                    className="border p-2 rounded border-black w-full sm:w-auto sm:ml-3"
+                  />
+                </div>
+              ))}
 
-                        if (zapatillaEditando.talle.includes(num)) {
-                          nuevosTalles = zapatillaEditando.talle.filter(
-                            (t) => t !== num
-                          );
-                        } else {
-                          nuevosTalles = [...zapatillaEditando.talle, num];
-                        }
-
-                        setZapatillaEditando({
-                          ...zapatillaEditando,
-                          talle: nuevosTalles,
-                        });
-
-                        setEditData({ ...editData, talle: nuevosTalles });
-                      }}
-                    >
-                      {num}
-                    </p>
-                  </div>
-                ))}
+              {/* Talles */}
+              <div>
+                <label htmlFor="talle" className="font-medium">
+                  Talle:
+                </label>
+                <div
+                  id="talle"
+                  className="grid grid-cols-4 sm:grid-cols-6 gap-2 mt-2"
+                >
+                  {ALL_TALLES.map((num, i) => (
+                    <div key={i}>
+                      <p
+                        className={`rounded-md cursor-pointer text-sm text-center font-bold border transition transform duration-100 p-2 ${
+                          zapatillaEditando.talle.includes(num)
+                            ? "text-white bg-black"
+                            : "text-black bg-white border-black hover:bg-black hover:text-white"
+                        }`}
+                        onClick={() => {
+                          let nuevosTalles = zapatillaEditando.talle.includes(
+                            num
+                          )
+                            ? zapatillaEditando.talle.filter((t) => t !== num)
+                            : [...zapatillaEditando.talle, num];
+                          setZapatillaEditando({
+                            ...zapatillaEditando,
+                            talle: nuevosTalles,
+                          });
+                          setEditData({ ...editData, talle: nuevosTalles });
+                        }}
+                      >
+                        {num}
+                      </p>
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
-            <div>
-              <label>Fotos:</label>
-              <p className="font-medium text-gray-800">Máximo 5</p>
 
-              <div className="flex flex-col md:grid md:grid-cols-3 md:gap-5 w-full mt-4">
-                {editData.fotos.map((img: string, i) => (
-                  <div key={i}>
-                    <MdCancel
-                      className="absolute hover:size-7 cursor-pointer"
-                      size={24}
-                      color="red"
-                      onClick={() => {
-                        const nuevasFotos =
-                          editData.fotos?.filter((foto) => foto !== img) || [];
-                        setEditData({ ...editData, fotos: nuevasFotos });
-                      }}
+              {/* Fotos */}
+              <div>
+                <label className="font-medium">Fotos:</label>
+                <p className="text-sm text-gray-600">Máximo 5</p>
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mt-2">
+                  {editData.fotos.map((img: string, i) => (
+                    <div key={i} className="relative">
+                      <MdCancel
+                        className="absolute top-0 right-0 hover:size-7 cursor-pointer z-10"
+                        size={24}
+                        color="red"
+                        onClick={() => {
+                          const nuevasFotos = editData.fotos.filter(
+                            (foto) => foto !== img
+                          );
+                          setEditData({ ...editData, fotos: nuevasFotos });
+                        }}
+                      />
+                      <Image
+                        className="w-full h-32 object-cover rounded"
+                        src={img}
+                        alt="imagen de zapatilla"
+                        width={500}
+                        height={100}
+                      />
+                    </div>
+                  ))}
+                  <div className="flex items-center justify-center rounded-xl p-4">
+                    <label
+                      className="cursor-pointer text-lg text-center text-blue-700 underline hover:text-gray-500 transform duration-75"
+                      htmlFor="addPhoto"
+                    >
+                      Subir <br />
+                      Foto
+                    </label>
+                    <input
+                      type="file"
+                      name="addPhoto"
+                      id="addPhoto"
+                      hidden
+                      onChange={uploadImageHandle}
                     />
+                  </div>
+                </div>
+              </div>
+
+              {/* Botones */}
+              <div className="flex flex-col sm:flex-row gap-3 justify-around">
+                <button
+                  className="bg-red-600 text-white p-2 rounded"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setOpenEliminarZapatilla(true);
+                  }}
+                >
+                  Eliminar
+                </button>
+                <button
+                  onClick={() => setOpenEditar(!openEditar)}
+                  className="bg-yellow-600 text-white p-2 rounded"
+                >
+                  Cancelar
+                </button>
+                <button
+                  type="submit"
+                  className="bg-blue-600 text-white p-2 rounded"
+                >
+                  Guardar cambios
+                </button>
+              </div>
+
+              {/* Confirmación de eliminación */}
+              {openEliminarZapatilla && zapatillaEditando && (
+                <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-40 flex items-center justify-center z-50">
+                  <div className="bg-red-300 p-6 rounded-xl w-[90%] max-w-md text-center">
+                    <p className="text-lg font-bold mb-4">
+                      ¿Estás seguro de eliminar "
+                      <span className="italic text-blue-950">
+                        {zapatillaEditando.nombre}
+                      </span>
+                      "?
+                    </p>
                     <Image
-                      className="w-32 h-32"
-                      src={img}
+                      className="w-20 rounded-xl mx-auto mb-4"
+                      src={zapatillaEditando.fotos[0]}
                       alt="imagen de zapatilla"
                       width={1000}
                       height={100}
                     />
-                  </div>
-                ))}
-                <div className="flex items-center p-5 border border-gray-600 justify-cente rounded-3xl bg-green-300 w-1/2">
-                  <label
-                    className="w-full cursor-pointer text-lg text-center text-black hover:text-gray-500 transform duration-75"
-                    htmlFor="addPhoto"
-                  >
-                    Subir
-                  </label>
-                  <input
-                    type="file"
-                    name="addPhoto"
-                    id="addPhoto"
-                    hidden
-                    onChange={uploadImageHandle}
-                  />
-                </div>
-              </div>
-            </div>
-            <div className="flex justify-around">
-              <button
-                className="bg-red-600 text-white p-2 rounded mt-2"
-                onClick={(e) => {
-                  e.preventDefault();
-                  setOpenEliminarZapatilla(true);
-                }}
-              >
-                Eliminar
-              </button>
-              <button
-                onClick={() => setOpenEditar(!openEditar)}
-                className="bg-green-600 text-white p-2 rounded mt-2"
-              >
-                Cancelar
-              </button>
-              <button
-                type="submit"
-                className="bg-blue-600 text-white p-2 rounded mt-2"
-              >
-                Guardar cambios
-              </button>
-              {openEliminarZapatilla && zapatillaEditando && (
-                <div className="flex flex-col p-10 absolute top-[25vh]  border rounded-2xl bg-red-300 border-black items-center">
-                  <p className="text-xl font-bold">
-                    ¿Estas seguro de eliminar "
-                    {
-                      <span className="text-blue-950 italic">
-                        {zapatillaEditando.nombre}
-                      </span>
-                    }
-                    " ?
-                  </p>
-                  <Image
-                    className="w-20 rounded-xl mt-5"
-                    src={zapatillaEditando.fotos[0]}
-                    alt="imagen de zapatilla"
-                    width={1000}
-                    height={100}
-                  />
-                  <div className=" flex w-full p-10 ">
-                    <button
-                      className="border bg-green-500 rounded-lg p-5 font-bold w-1/2 mr-10"
-                      onClick={() =>
-                        setOpenEliminarZapatilla(!openEliminarZapatilla)
-                      }
-                    >
-                      No, Volver atras
-                    </button>
-                    <button
-                      className="border bg-red-500 rounded-lg p-5 font-bold  w-1/2"
-                      onClick={() => {
-                        zapatillaEditando.id
-                          ? handleDeletePhoto(zapatillaEditando.id)
-                          : "";
-                      }}
-                    >
-                      Si, Eliminar
-                    </button>
+                    <div className="flex flex-col gap-2">
+                      <button
+                        className="bg-green-500 text-white p-2 rounded font-bold"
+                        onClick={() => setOpenEliminarZapatilla(false)}
+                      >
+                        No, volver atrás
+                      </button>
+                      <button
+                        className="bg-red-500 text-white p-2 rounded font-bold"
+                        onClick={() => {
+                          if (zapatillaEditando.id)
+                            handleDeletePhoto(zapatillaEditando.id);
+                        }}
+                      >
+                        Sí, eliminar
+                      </button>
+                    </div>
                   </div>
                 </div>
               )}
-            </div>
-          </form>
+            </form>
+          </div>
         </div>
       )}
     </div>

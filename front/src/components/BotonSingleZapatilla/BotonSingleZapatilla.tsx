@@ -13,19 +13,41 @@ const BotonSingleZapatilla = ({
 }) => {
   const shoppingContext = useContext(AuthContext);
 
-  const handleAddToCart = () => {
-    if (shoppingContext) {
-      shoppingContext.addToCart({...zapatilla, talle:[...selectedTalle ? selectedTalle : ""]});
+   const isAlreadyInCart = () => {
+    if (!shoppingContext?.shoppingCart) return false;
+
+    return shoppingContext.shoppingCart.some(
+      (item) =>
+        item.id === zapatilla.id &&
+        JSON.stringify(item.talle) === JSON.stringify(selectedTalle)
+    );
+  };
+
+ const handleAddToCart = () => {
+    if (
+      shoppingContext &&
+      !isAlreadyInCart() &&
+      selectedTalle.length > 0
+    ) {
+      shoppingContext.addToCart({
+        ...zapatilla,
+        talle: [...selectedTalle],
+      });
     }
   };
+
+    const disabled = selectedTalle.length === 0 || isAlreadyInCart();
+
   return (
     <div className={styles.containerButon}>
       <div className={styles.divButton}>
-        {selectedTalle ? (
-          <button onClick={handleAddToCart}>Agregar al carrito</button>
-        ) : (
-          <button disabled>Selecciona el talle</button>
-        )}
+          <button onClick={handleAddToCart} disabled={disabled}>
+          {disabled
+            ? isAlreadyInCart()
+              ? "Ya está en el carrito"
+              : "Selecciona el talle"
+            : "Agregar al carrito"}
+        </button>
       </div>
     </div>
   );

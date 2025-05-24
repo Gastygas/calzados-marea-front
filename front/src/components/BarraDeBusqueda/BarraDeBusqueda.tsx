@@ -35,7 +35,7 @@ const BarraDeBusqueda = ({ toggleLupa }: { toggleLupa: () => void }) => {
         <div className="flex justify-start w-full">
           <LogoCM />
         </div>
-        <div className="mt-5 md:mt-0 md:w-[600px] h-[50px] rounded-[30px] flex items-center bg-[#eeeeee] justify-around ">
+        <div className="mt-5 md:mt-0 md:w-[1500px] h-[50px] rounded-[30px] flex items-center bg-[#eeeeee] justify-around ">
           <FiSearch size={25} className="ml-2" />
           <input
             type="text"

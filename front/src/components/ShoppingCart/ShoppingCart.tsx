@@ -58,6 +58,9 @@ const ShoppingCart = ({
                   <div className={styles.infoZapaDiv}>
                     <h4>{zap.nombre}</h4>
                     <p>${zap.precio}</p>
+                    <h4>Talles:{" "}{zap.talle.map((t,k) => {
+                      return k== 0 ? t : ", " + t 
+                    })}</h4>
                   </div>
                 </div>
                 <div className={styles.eliminarDiv}>
@@ -67,7 +70,7 @@ const ShoppingCart = ({
                 </div>
               </div>
             ))}
-            <WhatsappForm isOpenEnviarWhatsapp={isOpenEnviarWhatsapp} toggleEnviarWhatsappForm={toggleEnviarWhatsappForm} zapatillasNames={shoppingCart.map((zap:IZapatilla) => zap.nombre)} talles={shoppingCart.flatMap((zap:IZapatilla) => zap.talle)} />
+            <WhatsappForm isOpenEnviarWhatsapp={isOpenEnviarWhatsapp} toggleEnviarWhatsappForm={toggleEnviarWhatsappForm} zapatillas={shoppingCart.map((zap:IZapatilla) => zap)} talles={shoppingCart.flatMap((zap:IZapatilla) => zap.talle)} />
           </div>
           <div className={styles.shoppingButtonDiv}>
             <button onClick={toggleEnviarWhatsappForm}>

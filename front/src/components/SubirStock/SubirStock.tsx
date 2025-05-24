@@ -35,12 +35,11 @@ const SubirStock = ({ toggleSubirStock }: { toggleSubirStock: () => void }) => {
     }
   };
 
-  const ALL_TALLES = Array.from({ length: 45 - 32 + 1 }, (_, i) =>
-    (32 + i).toString()
+  const ALL_TALLES = Array.from({ length: 45 - 18 + 1 }, (_, i) =>
+    (18 + i).toString()
   );
 
   const uploadImageHandle = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log("hola", e.target.files?.[0]);
 
     const file = e.target.files?.[0];
     if (!file) return;

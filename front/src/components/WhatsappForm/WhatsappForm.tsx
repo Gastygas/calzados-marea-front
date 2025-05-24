@@ -8,19 +8,20 @@ import {
   validateCiudad,
 } from "@/helpers/validation";
 import HeaderForm from "../HeaderForm/Headerform";
+import { IZapatilla } from "@/helpers/interfaces";
 
 interface Props {
   isOpenEnviarWhatsapp: boolean;
   toggleEnviarWhatsappForm: () => void;
   talles: string[];
-  zapatillasNames: string[];
+  zapatillas: IZapatilla[];
 }
 
 const WhatsappForm = ({
   isOpenEnviarWhatsapp,
   toggleEnviarWhatsappForm,
   talles,
-  zapatillasNames,
+  zapatillas,
 }: Props) => {
   const initialData = {
     name: "",
@@ -42,13 +43,28 @@ const WhatsappForm = ({
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    alert("enviar");
-    window.location.href = `https://api.whatsapp.com/send?phone=541164960034&text=
-        // Nombre:${data.name}%20${data.surname}
-        // Provincia:${data.provincia}
-        // Ciudad:${data.ciudad}
-        // Zapatillas:${zapatillasNames.map((zap: string) => zap)}
-        // Talles: ${talles}`;
+
+    // Armar mensaje de zapatillas formateado
+    const zapatillasTexto = zapatillas
+      .map((zap) => {
+        const tallesTexto = zap.talle.join(", ");
+        return `👟 Zapatilla: ${zap.nombre}\nTalles: ${tallesTexto}\nPrecio: $${zap.precio}`;
+      })
+      .join("\n\n");
+
+    // Armar el mensaje completo
+    const mensaje = `👤 Nombre: ${data.name} ${data.surname}
+    📞 Teléfono: ${data.telephone}
+    📍 Provincia: ${data.provincia}
+    🏙️ Ciudad: ${data.ciudad}
+
+${zapatillasTexto}`;
+
+    // Codificar el texto para usarlo en la URL
+    const mensajeCodificado = encodeURIComponent(mensaje);
+
+    // Redirigir a WhatsApp con el mensaje
+    window.location.href = `https://api.whatsapp.com/send?phone=541164960034&text=${mensajeCodificado}`;
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -155,25 +171,25 @@ const WhatsappForm = ({
             </div>
             <div className={styles.formDiv}>
               <label htmlFor="zapatillaName">Zapatillas</label>
-              <input
-                className={styles.inputChoosen}
-                type="text"
-                name="zapatillaName"
-                id="zapatillaName"
-                value={zapatillasNames.map((zap: string) => zap)}
-                disabled={true}
-              />
-            </div>
-            <div className={styles.formDiv}>
-              <label htmlFor="talle">Talle</label>
-              <input
-                className={styles.inputChoosen}
-                type="text"
-                name="talle"
-                id="talle"
-                value={talles.map((zap: string) => zap)}
-                disabled={true}
-              />
+              <div className="grid grid-cols-2 gap-5">
+                {zapatillas.map((zap, i) => (
+                  <div key={i}>
+                    <p className="font-semibold capitalize">{zap.nombre}</p>
+                    <img
+                      src={zap.fotos[0]}
+                      alt="zapatilla foto"
+                      className="h-28 w-28"
+                    />
+                    <p className="font-bold text-[#056505]">$ {zap.precio}</p>
+                    <p className="font-semibold">
+                      Talles:
+                      {zap.talle.map((t, k) => {
+                        return k == 0 ? t : ", " + t;
+                      })}
+                    </p>
+                  </div>
+                ))}
+              </div>
             </div>
             {error.name ||
             error.surname ||
