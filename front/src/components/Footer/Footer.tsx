@@ -1,3 +1,4 @@
+'use client'
 import { LogoCM } from "@/utils/LogoCM";
 import styles from "./Footer.module.css";
 import { FaInstagram, FaWhatsapp, FaTiktok } from "react-icons/fa";
