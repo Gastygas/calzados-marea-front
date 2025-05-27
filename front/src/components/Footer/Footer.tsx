@@ -13,15 +13,13 @@ const Footer = () => {
         <a target="blank" href="/">
           <FaInstagram className={styles.logos} />
         </a>
-        <a
-          target="_blank"
-          href="/"
+        <button
           onClick={() => {
             window.location.href = `https://api.whatsapp.com/send?phone=541164960034`;
           }}
         >
           <FaWhatsapp className={styles.logos} />
-        </a>
+        </button>
         <a target="_blank" href="/">
           <FaTiktok className={styles.logos} />
         </a>
