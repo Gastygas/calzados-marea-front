@@ -20,7 +20,6 @@ interface Props {
 const WhatsappForm = ({
   isOpenEnviarWhatsapp,
   toggleEnviarWhatsappForm,
-  talles,
   zapatillas,
 }: Props) => {
   const initialData = {

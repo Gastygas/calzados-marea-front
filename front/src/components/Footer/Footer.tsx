@@ -13,7 +13,13 @@ const Footer = () => {
         <a target="blank" href="/">
           <FaInstagram className={styles.logos} />
         </a>
-        <a target="_blank" href="/">
+        <a
+          target="_blank"
+          href="/"
+          onClick={() => {
+            window.location.href = `https://api.whatsapp.com/send?phone=541164960034`;
+          }}
+        >
           <FaWhatsapp className={styles.logos} />
         </a>
         <a target="_blank" href="/">
