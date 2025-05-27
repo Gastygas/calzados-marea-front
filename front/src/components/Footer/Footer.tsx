@@ -18,6 +18,7 @@ const Footer = () => {
           onClick={() => {
             window.location.href = `https://api.whatsapp.com/send?phone=541164960034`;
           }}
+          className="mr-[15px]"
         >
           <FaWhatsapp className={styles.logos} />
         </button>
