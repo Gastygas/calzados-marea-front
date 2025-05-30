@@ -37,14 +37,14 @@ const ActualizarStock = ({
     material: "",
     destacado: false,
     nuevo: false,
+    oferta: false,
     fotos: [],
     genero: "",
     stock: "",
+    description: "",
+    oldPrice: "",
   });
 
-  // const [selectedTalles, setSelectedTalles] = useState<{
-  //   [id: string]: string[];
-  // }>({});
   const ALL_TALLES = Array.from({ length: 45 - 18 + 1 }, (_, i) =>
     (18 + i).toString()
   );
@@ -158,7 +158,20 @@ const ActualizarStock = ({
                 </div>
                 <div className={styles.infoZapaDiv}>
                   <h4>{zap.nombre}</h4>
-                  <p>${zap.precio}</p>
+                  {zap.oferta ? (
+                    <div className="flex items-center">
+                      <p className="text-[14px] md:text-[17px] text-[#525252] font-bold line-through mr-3">
+                        $ {zap.oldPrice}
+                      </p>
+                      <p className="text-[15px] md:text-[17px] text-[#056505] font-bold">
+                        $ {zap.precio}
+                      </p>
+                    </div>
+                  ) : (
+                    <p className="text-[14px] md:text-[17px] text-[#056505] font-bold">
+                      $ {zap.precio}
+                    </p>
+                  )}
                 </div>
               </Link>
             </div>
@@ -198,10 +211,9 @@ const ActualizarStock = ({
               onSubmit={handleSubmitEditData}
               className="flex flex-col gap-4"
             >
-              {/* Campos de texto */}
+              {/* Campos comunes (sin precio) */}
               {[
                 { label: "Nombre", key: "nombre" },
-                { label: "Precio", key: "precio" },
                 { label: "Marca", key: "marca" },
                 { label: "Color", key: "color" },
                 { label: "Género", key: "genero" },
@@ -210,7 +222,7 @@ const ActualizarStock = ({
               ].map(({ label, key }) => (
                 <div
                   key={key}
-                  className="flex flex-col sm:flex-row items-start sm:items-center"
+                  className="flex flex-col sm:flex-row items-start sm:items-center mb-4"
                 >
                   <label htmlFor={key} className="min-w-[80px] font-medium">
                     {label}:
@@ -228,6 +240,123 @@ const ActualizarStock = ({
                   />
                 </div>
               ))}
+
+              {/* Sección de precio según si es oferta o no */}
+              {editData.oferta ? (
+                <>
+                  {/* Precio viejo */}
+                  <div className="flex items-center mb-4">
+                    <label htmlFor="oldPrice" className="font-medium">
+                      Precio Viejo: $
+                    </label>
+                    <input
+                      type="text"
+                      id="oldPrice"
+                      name="oldPrice"
+                      value={editData.oldPrice}
+                      onChange={(e) =>
+                        setEditData({ ...editData, oldPrice: e.target.value })
+                      }
+                      placeholder="Precio anterior"
+                      className="border p-2 rounded border-gray-500 w-full sm:w-auto sm:ml-3"
+                    />
+                  </div>
+
+                  {/* Precio actual (oferta) */}
+                  <div className="flex items-center mb-4">
+                    <label htmlFor="precio" className="font-medium">
+                      Precio: $
+                    </label>
+                    <input
+                      type="text"
+                      id="precio"
+                      name="precio"
+                      value={editData.precio}
+                      onChange={(e) =>
+                        setEditData({ ...editData, precio: e.target.value })
+                      }
+                      placeholder="Precio con descuento"
+                      className="border p-2 rounded border-green-800 w-full sm:w-auto sm:ml-3"
+                    />
+                  </div>
+                </>
+              ) : (
+                <div className="flex items-center mb-4">
+                  <label htmlFor="precio" className="min-w-[100px]">
+                    Precio: $
+                  </label>
+                  <input
+                    type="text"
+                    id="precio"
+                    name="precio"
+                    value={editData.precio}
+                    onChange={(e) =>
+                      setEditData({ ...editData, precio: e.target.value })
+                    }
+                    placeholder="Precio"
+                    className="border p-2 rounded border-black w-full sm:w-auto sm:ml-3"
+                  />
+                </div>
+              )}
+              {/* Checkboxes */}
+              <div className="flex items-center justify-around mb-4">
+                {/* Oferta */}
+                <div className="flex items-center">
+                  <label htmlFor="oferta">Oferta:</label>
+                  <input
+                    type="checkbox"
+                    id="oferta"
+                    checked={editData.oferta}
+                    onChange={(e) =>
+                      setEditData({ ...editData, oferta: e.target.checked })
+                    }
+                    className="border p-1 rounded border-black ml-3 w-fit"
+                  />
+                </div>
+                {/* Nuevo */}
+                <div className="flex items-center">
+                  <label htmlFor="nuevo">Nuevo:</label>
+                  <input
+                    type="checkbox"
+                    id="nuevo"
+                    checked={editData.nuevo}
+                    onChange={(e) =>
+                      setEditData({ ...editData, nuevo: e.target.checked })
+                    }
+                    className="border p-1 rounded border-black ml-3 w-fit"
+                  />
+                </div>
+                {/* Destacado */}
+                <div className="flex items-center">
+                  <label htmlFor="destacado">Destacado:</label>
+                  <input
+                    type="checkbox"
+                    id="destacado"
+                    checked={editData.destacado}
+                    onChange={(e) =>
+                      setEditData({ ...editData, destacado: e.target.checked })
+                    }
+                    className="border p-1 rounded border-black ml-3 w-fit"
+                  />
+                </div>
+              </div>
+
+              {/* Descripción */}
+              <div className="flex flex-col mb-4">
+                <label htmlFor="description">Descripción:</label>
+                <textarea
+                  value={editData.description}
+                  onChange={(e) =>
+                    setEditData({ ...editData, description: e.target.value })
+                  }
+                  placeholder="Describe tu zapatilla"
+                  className="border p-1 rounded border-black"
+                  name="description"
+                  id="description"
+                  cols={35}
+                  rows={6}
+                />
+              </div>
 
               {/* Talles */}
               <div>

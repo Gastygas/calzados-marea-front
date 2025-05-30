@@ -58,7 +58,7 @@ const Sections = ({ type }: { type: string }) => {
                       {type === "oferta" ? (
                         <div className="flex">
                         <p className="text-[13px] md:text-[17px] text-[#525252] font-bold line-through mr-3">
-                          $ {item.oldPrice || "10.000"}
+                          $ {item.oldPrice}
                         </p>
                         <p className="text-[13px] md:text-[17px] text-[#056505] font-bold">
                           $ {item.precio}

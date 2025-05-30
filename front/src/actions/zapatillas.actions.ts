@@ -56,7 +56,9 @@ export const FindNuevosAction = async (): Promise<IZapatilla[] | null> => {
     return null;
   }
 };
-export const FindSpecificsAction = async (type:string): Promise<IZapatilla[] | null> => {
+export const FindSpecificsAction = async (
+  type: string
+): Promise<IZapatilla[] | null> => {
   try {
     const supabase = await createClient();
 
@@ -97,7 +99,7 @@ export const FindSearchAction = async (
 ): Promise<IZapatilla[] | null> => {
   try {
     const supabase = await createClient();
-    if (search === "hombre" || search === "mujer" || search === "nino") {
+    if (search === "hombre" || search === "mujer") {
       const { data, error } = await supabase
         .from("zapatillas")
         .select("*")
@@ -106,8 +108,17 @@ export const FindSearchAction = async (
 
       return data;
     }
+    if (search === "niña" || search === "niño" || search === "niños" || search === "niñas") {
+      const { data, error } = await supabase
+        .from("zapatillas")
+        .select("*")
+        .in("genero", ["niña", "niño"])
+        .select();
 
-    if(search === "nuevo" || search === "oferta" || search === "destacado"){
+      return data;
+    }
+
+    if (search === "nuevo" || search === "oferta" || search === "destacado") {
       const { data, error } = await supabase
         .from("zapatillas")
         .select("*")
@@ -122,6 +133,14 @@ export const FindSearchAction = async (
         .from("zapatillas")
         .select("*")
         .eq("marca", search)
+        .select();
+
+      return data;
+    }
+    if (search === "todo") {
+      const { data, error } = await supabase
+        .from("zapatillas")
+        .select("*")
         .select();
 
       return data;
@@ -167,5 +186,3 @@ export const FindSearchAction = async (
 //     return null;
 //   }
 // };
-
-

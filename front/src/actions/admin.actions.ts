@@ -53,6 +53,9 @@ export const EditarZapatillaAction = async (data: IZapatilla) => {
       fotos: data.fotos,
       genero: data.genero,
       stock: data.stock,
+      description:data.description,
+      oldPrice:data.oldPrice,
+      oferta:data.oferta
     })
     .eq("id", data.id)
     .select();

@@ -13,10 +13,10 @@ const SeleccionarTalle = ({
   selectedTalle,
   genero,
 }: Props) => {
-  const talles = Array.from({ length: 45 - 32 + 1 }, (_, i) =>
-    (32 + i).toString()
+  const talles = Array.from({ length: 45 - 34 + 1 }, (_, i) =>
+    (34 + i).toString()
   );
-  const tallesKid = Array.from({ length: 32 - 18 + 1 }, (_, i) =>
+  const tallesKid = Array.from({ length: 33 - 18 + 1 }, (_, i) =>
     (18 + i).toString()
   );
 

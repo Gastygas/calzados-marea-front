@@ -35,7 +35,7 @@ const ProductosEncontrados = ({
                 {item.oferta ? (
                   <div className="flex items-center">
                     <p className="text-[14px] md:text-[17px] text-[#525252] font-bold line-through mr-3">
-                      $ {item.oldPrice || "10.000"}
+                      $ {item.oldPrice}
                     </p>
                     <p className="text-[15px] md:text-[17px] text-[#056505] font-bold">
                       $ {item.precio}

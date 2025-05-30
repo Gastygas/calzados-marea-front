@@ -12,12 +12,12 @@ const MenuNavbarList = () => {
         <li className={styles.item}>Mujer</li>
         <MdNavigateNext size={30} className={styles.nextIcon} />
       </Link>
-      <Link href="/buscar/nino" className={styles.items}>
+      <Link href="/buscar/niño" className={styles.items}>
         <li className={styles.item}>Niño/a</li>
         <MdNavigateNext size={30} className={styles.nextIcon} />
       </Link>
-      <Link href="/buscar/nuevo" className={styles.items}>
-        <li className={styles.item}>Nuevo</li>
+      <Link href="/buscar/todo" className={styles.items}>
+        <li className={styles.item}>Todo</li>
         <MdNavigateNext size={30} className={styles.nextIcon} />
       </Link>
     </ul>

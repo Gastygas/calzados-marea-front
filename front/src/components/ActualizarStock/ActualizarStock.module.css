@@ -28,10 +28,7 @@
     font-weight: 600;
   }
   
-  .infoZapaDiv p {
-    color: #056505;
-    font-weight: bold;
-  }
+
   .selecTalleDiv {
     display: flex;
     flex-direction: column;

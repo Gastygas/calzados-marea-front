@@ -6,10 +6,10 @@ const BarraDeBusquedaMasBuscados = ({toggleLupa, toggleShopping, isOpenShopping}
         <div className={styles.masBuscado}>
         <h4>Lo mas buscado</h4>
         <Link href={`/buscar/oferta`} onClick={isOpenShopping ? toggleShopping : toggleLupa}>Oferta</Link>
+        <Link href={`/buscar/todo`} onClick={isOpenShopping ? toggleShopping : toggleLupa}>Todo</Link>
         <Link href={`/buscar/jordan`} onClick={isOpenShopping ? toggleShopping : toggleLupa}>Jordan</Link>
         <Link href={`/buscar/nike`} onClick={isOpenShopping ? toggleShopping : toggleLupa}>Nike</Link>
         <Link href={`/buscar/adidas`} onClick={isOpenShopping ? toggleShopping : toggleLupa}>Adidas</Link>
-        <Link href={`/buscar/hombre`} onClick={isOpenShopping ? toggleShopping : toggleLupa}>Hombre</Link>
       </div>
     )
 };

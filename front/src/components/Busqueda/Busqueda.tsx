@@ -7,7 +7,6 @@ import { IZapatilla } from "@/helpers/interfaces";
 import {
   FindSearchAction,
 } from "@/actions/zapatillas.actions";
-import BusquedaNotFound from "../BusquedaNotFound/BusquedaNotFound";
 const Busqueda = ({ busqueda }: { busqueda: string }) => {
   const [zapatillasEncontradas, setZapatillasEncontradas] = useState<
     IZapatilla[] | []
@@ -25,7 +24,6 @@ const Busqueda = ({ busqueda }: { busqueda: string }) => {
     getZapatillas();
   }, []);
 
-  if(zapatillasEncontradas.length === 0) return <BusquedaNotFound/>
 
   return (
     <div>
