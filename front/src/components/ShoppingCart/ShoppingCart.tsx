@@ -40,7 +40,7 @@ const ShoppingCart = ({
           <h4>Mi Compra</h4>
         </div>
       </div>
-      <div className="overflow-y-scroll h-full">
+      <div className="overflow-y-scroll h-full ">
         {shoppingCart.length ? (
           <div className="flex flex-col justify-between h-full">
             <div className={styles.contenidoDiv}>
