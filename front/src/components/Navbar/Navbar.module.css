@@ -12,3 +12,9 @@
     width: 100%;
     background-color: white;
 }
+
+@media(max-width:768px){
+    .containerNav{
+        padding: 2vw .5vw 2vw .5vw;
+    }
+}

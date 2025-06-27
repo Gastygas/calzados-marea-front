@@ -11,18 +11,23 @@ const Busqueda = ({ busqueda }: { busqueda: string }) => {
   const [zapatillasEncontradas, setZapatillasEncontradas] = useState<
     IZapatilla[] | []
   >([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const getZapatillas = async () => {
+      setIsLoading(true); 
+
       const zapatillas: IZapatilla[] | null = await FindSearchAction(busqueda);
 
       if (zapatillas !== null) {
         setZapatillasEncontradas(zapatillas);
       }
+
+      setIsLoading(false);
     };
 
     getZapatillas();
-  }, []);
+  }, [busqueda]);
 
 
   return (
@@ -33,10 +38,12 @@ const Busqueda = ({ busqueda }: { busqueda: string }) => {
       <ResultadoBusqueda
         zapatillasEncontradas={zapatillasEncontradas}
         busqueda={busqueda}
+        isLoading= {isLoading}
       />
       <ResultadoBusquedaResponsive
         zapatillasEncontradas={zapatillasEncontradas}
         busqueda={busqueda}
+        isLoading= {isLoading}
       />
     </div>
   );

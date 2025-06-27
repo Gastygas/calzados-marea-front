@@ -9,9 +9,10 @@ import { IZapatilla } from "@/helpers/interfaces";
 interface Props {
   zapatillasEncontradas: IZapatilla[];
   busqueda: string;
+  isLoading: boolean
 }
 
-const ResultadoBusqueda = ({ zapatillasEncontradas }: Props) => {
+const ResultadoBusqueda = ({ zapatillasEncontradas, isLoading }: Props) => {
   const [openFilters, setOpenFilters] = useState({
     genero: false,
     talle: false,
@@ -122,7 +123,7 @@ const ResultadoBusqueda = ({ zapatillasEncontradas }: Props) => {
             handleOrdenSeleccionado={handleOrdenSeleccionado}
           />
         </div>
-        <ProductosEncontrados zapatillasEncontradas={zapatillasFiltradas} />
+        <ProductosEncontrados zapatillasEncontradas={zapatillasFiltradas} isLoading={isLoading} />
       </div>
     </div>
   );

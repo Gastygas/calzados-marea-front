@@ -4,7 +4,7 @@ import styles from "./SinglePrimeraSeccion.module.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-import { settings, settingsSingle } from "@/utils/settingsCarrousel";
+import { settingsSingle } from "@/utils/settingsCarrousel";
 import Image from "next/image";
 import { IZapatilla } from "@/helpers/interfaces";
 import BotonSingleZapatilla from "../BotonSingleZapatilla/BotonSingleZapatilla";

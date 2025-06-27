@@ -16,7 +16,7 @@ const ShoppingCart = ({
   isOpenShopping,
 }: {
   isOpenEnviarWhatsapp: boolean;
-  isOpenShopping:boolean;
+  isOpenShopping: boolean;
   toggleShopping: () => void;
   toggleEnviarWhatsappForm: () => void;
 }) => {
@@ -40,51 +40,53 @@ const ShoppingCart = ({
           <h4>Mi Compra</h4>
         </div>
       </div>
-      {shoppingCart.length ? (
-        <>
-          <div className={styles.contenidoDiv}>
-            {shoppingCart.map((zap: IZapatilla) => (
-              <div key={zap.id} className={styles.flexZapasDiv}>
-                <div className={styles.zapaInfoContainer}>
-                  <div className={styles.zapaImagenDiv}>
-                    <Image
-                      src={zap.fotos[0]}
-                      alt={`${zap.nombre} imagen`}
-                      width={1000}
-                      height={1000}
-                      loading="lazy"
-                    />
+      <div className="overflow-y-scroll h-full">
+        {shoppingCart.length ? (
+          <div className="flex flex-col justify-between h-full">
+            <div className={styles.contenidoDiv}>
+              {shoppingCart.map((zap: IZapatilla) => (
+                <div key={zap.id} className={styles.flexZapasDiv}>
+                  <div className={styles.zapaInfoContainer}>
+                    <div className={styles.zapaImagenDiv}>
+                      <Image
+                        src={zap.fotos[0]}
+                        alt={`${zap.nombre} imagen`}
+                        width={1000}
+                        height={1000}
+                        loading="lazy"
+                      />
+                    </div>
+                    <div className={styles.infoZapaDiv}>
+                      <h4>{zap.nombre}</h4>
+                      <p>${zap.precio}</p>
+                      <h4>Talles:{" "}{zap.talle.map((t, k) => {
+                        return k == 0 ? t : ", " + t
+                      })}</h4>
+                    </div>
                   </div>
-                  <div className={styles.infoZapaDiv}>
-                    <h4>{zap.nombre}</h4>
-                    <p>${zap.precio}</p>
-                    <h4>Talles:{" "}{zap.talle.map((t,k) => {
-                      return k== 0 ? t : ", " + t 
-                    })}</h4>
+                  <div className={styles.eliminarDiv}>
+                    <button onClick={() => removeFromCart(`${zap.id ? zap.id : ""}`)}>
+                      eliminar
+                    </button>
                   </div>
                 </div>
-                <div className={styles.eliminarDiv}>
-                  <button onClick={() => removeFromCart(`${zap.id ? zap.id : ""}`)}>
-                    eliminar
-                  </button>
-                </div>
-              </div>
-            ))}
-            <WhatsappForm isOpenEnviarWhatsapp={isOpenEnviarWhatsapp} toggleEnviarWhatsappForm={toggleEnviarWhatsappForm} zapatillas={shoppingCart.map((zap:IZapatilla) => zap)} talles={shoppingCart.flatMap((zap:IZapatilla) => zap.talle)} />
+              ))}
+              <WhatsappForm isOpenEnviarWhatsapp={isOpenEnviarWhatsapp} toggleEnviarWhatsappForm={toggleEnviarWhatsappForm} zapatillas={shoppingCart.map((zap: IZapatilla) => zap)} talles={shoppingCart.flatMap((zap: IZapatilla) => zap.talle)} />
+            </div>
+            <div className={styles.shoppingButtonDiv}>
+              <button onClick={toggleEnviarWhatsappForm}>
+                Enviar a WhatsApp
+              </button>
+            </div>
           </div>
-          <div className={styles.shoppingButtonDiv}>
-            <button onClick={toggleEnviarWhatsappForm}>
-              Enviar a WhatsApp
-            </button>
+        ) : (
+          <div className={styles.carritoVacioDiv}>
+            <MdOutlineRemoveShoppingCart size={60} />
+            <h4 className=" font-semibold mt-4">Tu carrito esta vacío</h4>
+            <BarraDeBusquedaMasBuscados toggleShopping={toggleShopping} isOpenShopping={isOpenShopping} />
           </div>
-        </>
-      ) : (
-        <div className={styles.carritoVacioDiv}>
-          <MdOutlineRemoveShoppingCart size={60} />
-          <h4 className=" font-semibold mt-4">Tu carrito esta vacío</h4>
-          <BarraDeBusquedaMasBuscados toggleShopping={toggleShopping} isOpenShopping={isOpenShopping} />
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };

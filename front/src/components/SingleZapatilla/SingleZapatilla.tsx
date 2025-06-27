@@ -5,13 +5,17 @@ import SinglePrimeraSeccion from "../SinglePrimeraSeccion/SinglePrimeraSeccion";
 import { IZapatilla } from "@/helpers/interfaces";
 import { FindOneByNameAction } from "@/actions/zapatillas.actions";
 import ZapatillaNotFound from "../ZapatillaNotFound/ZapatillaNotFound";
+import Loading from "@/helpers/loading";
 
 const SingleZapatilla = ({ nombreZapatilla }: { nombreZapatilla: string }) => {
   const [zapatillaEncontrada, setZapatillaEncontrada] = useState<IZapatilla>();
   const [imagenSeleccionada, setImagenSeleccionada] = useState<string>("");
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const getZapatillas = async () => {
+    const getZapatilla = async () => {
+      setIsLoading(true); 
+
       const zapatilla: IZapatilla | null = await FindOneByNameAction(
         nombreZapatilla
       );
@@ -20,8 +24,9 @@ const SingleZapatilla = ({ nombreZapatilla }: { nombreZapatilla: string }) => {
         setZapatillaEncontrada(zapatilla);
         setImagenSeleccionada(zapatilla.fotos[0]);
       }
+      setIsLoading(false)
     };
-    getZapatillas();
+    getZapatilla();
   }, []);
 
   const [selectedTalle, setSelectedTalle] = useState<string[]>([]);
@@ -36,7 +41,7 @@ const SingleZapatilla = ({ nombreZapatilla }: { nombreZapatilla: string }) => {
   const toggleSelectedImage = (img: string) => {
     setImagenSeleccionada(img);
   };
-  
+  if(isLoading) return <Loading/>
   if(!zapatillaEncontrada) return <ZapatillaNotFound />
   
   return (

@@ -11,10 +11,12 @@ import { IZapatilla } from "@/helpers/interfaces";
 interface Props {
   zapatillasEncontradas: IZapatilla[];
   busqueda: string;
+  isLoading:boolean;
 }
 const ResultadoBusquedaResponsive = ({
   zapatillasEncontradas,
   busqueda,
+  isLoading
 }: Props) => {
   const [isOpenFilters, setIsOpenFilters] = useState(false);
   const [openFilters, setOpenFilters] = useState({
@@ -149,7 +151,7 @@ const ResultadoBusquedaResponsive = ({
             </h4>
           </div>
         </div>
-        <ProductosEncontrados zapatillasEncontradas={zapatillasFiltradas} />
+        <ProductosEncontrados zapatillasEncontradas={zapatillasFiltradas} isLoading={isLoading} />
       </div>
     </div>
   );

@@ -3,12 +3,20 @@ import styles from "./ProductosEncotrados.module.css";
 import Image from "next/image";
 import { IZapatilla } from "@/helpers/interfaces";
 import BusquedaNotFound from "../BusquedaNotFound/BusquedaNotFound";
+import Loading from "@/helpers/loading";
 
 const ProductosEncontrados = ({
   zapatillasEncontradas,
+  isLoading
 }: {
   zapatillasEncontradas: IZapatilla[];
+  isLoading:boolean;
 }) => {
+
+  if(isLoading){
+    return <Loading />
+  }
+
   return (
     <div className={styles.productosContainer}>
       {zapatillasEncontradas.length === 0 ? (
