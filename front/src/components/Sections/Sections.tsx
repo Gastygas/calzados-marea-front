@@ -15,6 +15,8 @@ const Sections = ({ type }: { type: string }) => {
     IZapatilla[] | []
   >([]);
 
+  const [mounted, setMounted] = useState(false);
+
   useEffect(() => {
     const getZapatillas = async () => {
       const zapatillas: IZapatilla[] | null = await FindSpecificsAction(type);
@@ -25,9 +27,11 @@ const Sections = ({ type }: { type: string }) => {
     };
 
     getZapatillas();
+    setMounted(true);
+
   }, []);
 
-  return (
+  return mounted && (
     <>
       <div>
         <div className="mx-auto w-[90%]">
@@ -39,7 +43,7 @@ const Sections = ({ type }: { type: string }) => {
                 <div key={item.id}>
                   <Link href={`/calzado/${item.nombre}`}>
                     <Image
-                      className="h-36 w-36 md:w-64 md:h-[300px] rounded-md object-center"
+                      className="h-36 w-36 md:w-72 md:h-[300px] rounded-md object-center"
                       width={1000}
                       height={1000}
                       src={item.fotos[0]}
@@ -57,12 +61,12 @@ const Sections = ({ type }: { type: string }) => {
                       </p>
                       {type === "oferta" ? (
                         <div className="flex">
-                        <p className="text-[13px] md:text-[17px] text-[#525252] font-bold line-through mr-3">
-                          $ {item.oldPrice}
-                        </p>
-                        <p className="text-[13px] md:text-[17px] text-[#056505] font-bold">
-                          $ {item.precio}
-                        </p>
+                          <p className="text-[13px] md:text-[17px] text-[#525252] font-bold line-through mr-3">
+                            $ {item.oldPrice}
+                          </p>
+                          <p className="text-[13px] md:text-[17px] text-[#056505] font-bold">
+                            $ {item.precio}
+                          </p>
                         </div>
                       ) : (
                         <p className="text-[13px] md:text-[17px] text-[#056505] font-bold">

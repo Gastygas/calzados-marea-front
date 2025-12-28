@@ -34,37 +34,41 @@ const AdminView = () => {
 
   return (
     <div className={styles.containerView}>
-      <div className={styles.divView}>
-        <div className={styles.headerDiv}>
-          <h4>Inicia Sesion</h4>
-        </div>
-        <form className={styles.formAdmin} onSubmit={handleSubmit}>
-          <div>
-            <label htmlFor="">user</label>
-            <input
-              type="text"
-              name="user"
-              id="user"
-              value={data.user}
-              onChange={handleChange}
-            />
-          </div>
-          <div>
-            <label htmlFor="">contraseña</label>
-            <input
-              type="password"
-              name="password"
-              id="password"
-              value={data.password}
-              onChange={handleChange}
-            />
-          </div>
-          <div>
-            <button>Ingresar</button>
-          </div>
-        </form>
-      </div>
+  <div className={styles.divView}>
+    <div className={styles.headerDiv}>
+      <h4>Panel de Administración</h4>
+      <p>Iniciar sesión</p>
     </div>
+
+    <form className={styles.formAdmin} onSubmit={handleSubmit}>
+      <div className={styles.formGroup}>
+        <label htmlFor="user">Usuario</label>
+        <input
+          type="text"
+          name="user"
+          id="user"
+          placeholder="Ingresá tu usuario"
+          value={data.user}
+          onChange={handleChange}
+        />
+      </div>
+
+      <div className={styles.formGroup}>
+        <label htmlFor="password">Contraseña</label>
+        <input
+          type="password"
+          name="password"
+          id="password"
+          placeholder="Ingresá tu contraseña"
+          value={data.password}
+          onChange={handleChange}
+        />
+      </div>
+
+      <button className={styles.submitBtn}>Ingresar</button>
+    </form>
+  </div>
+</div>
   );
 };
 

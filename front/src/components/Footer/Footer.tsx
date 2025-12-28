@@ -16,7 +16,7 @@ const Footer = () => {
         </a>
         <button
           onClick={() => {
-            window.location.href = `https://api.whatsapp.com/send?phone=541164960034`;
+            window.location.href = `https://api.whatsapp.com/send?phone=${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER}`;
           }}
           className="mr-[15px]"
         >

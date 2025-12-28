@@ -8,52 +8,54 @@ import { useRouter } from "next/navigation";
 import Loading from "@/helpers/loading";
 
 const DashboardAdmin = () => {
-  const {user, loading} = useAuth()
+  const { user, loading } = useAuth();
   const router = useRouter();
-  const [actualizarStock, setActualizarStock] = useState<boolean>(false);
-  const [subirStock, setSubirStock] = useState<boolean>(false);
+
+  const [actualizarStock, setActualizarStock] = useState(false);
+  const [subirStock, setSubirStock] = useState(false);
 
   useEffect(() => {
-    if (!loading && !user) {      
-      router.push("/")
+    if (!loading && !user) {
+      router.push("/");
     }
   }, [user, loading, router]);
-  const toggleActualizarStock = () => {
-    setActualizarStock(!actualizarStock);
-  };
 
-  const toggleSubirStock = () => {
-    setSubirStock(!subirStock);
-  };
-  if(loading || user === null) {return (<Loading/>) }
+  if (loading || user === null) return <Loading />;
+
   return (
     <div className={styles.containerDashboard}>
-      {actualizarStock ? (
-        <ActualizarStock toggleActualizarStock={toggleActualizarStock} />
-      ) : (
-        ""
+      {actualizarStock && (
+        <ActualizarStock toggleActualizarStock={() => setActualizarStock(false)} />
       )}
-      {subirStock ? (
-        <SubirStock toggleSubirStock={toggleSubirStock} />
-      ) : (
-        ""
+
+      {subirStock && (
+        <SubirStock toggleSubirStock={() => setSubirStock(false)} />
       )}
-      {actualizarStock || subirStock ? (
-        ""
-      ) : (
-        <div className={styles.divFlex}>
-          <div className={styles.headerDiv}>
-            <h4>Bienvenido Admin</h4>
-            <p>Que hacemos hoy?</p>
-          </div>
-          <div className={styles.divMain}>
-            <div>
-              <button onClick={toggleActualizarStock}>actualizar stock</button>
-            </div>
-            <div>
-              <button onClick={toggleSubirStock}>Subir stock</button>
-            </div>
-          </div>
+
+      {!actualizarStock && !subirStock && (
+        <div className={styles.dashboardCard}>
+          <header className={styles.header}>
+            <h2>Panel de Administración</h2>
+            <p>Seleccioná una acción para continuar</p>
+          </header>
+
+          <section className={styles.actionsGrid}>
+            <button
+              className={styles.actionCard}
+              onClick={() => setActualizarStock(true)}
+            >
+              <h3>Actualizar stock</h3>
+              <p>Modificar cantidades de productos existentes</p>
+            </button>
+
+            <button
+              className={styles.actionCard}
+              onClick={() => setSubirStock(true)}
+            >
+              <h3>Subir stock</h3>
+              <p>Agregar nuevos productos al catálogo</p>
+            </button>
+          </section>
         </div>
       )}
     </div>
@@ -61,3 +63,4 @@ const DashboardAdmin = () => {
 };
 
 export default DashboardAdmin;
+

@@ -1,61 +1,91 @@
-.containerView{
-    height: 40vw;
-    padding: 2vw;
-    display: flex;
-    justify-content: center;
+.containerView {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f4f4f4;
 }
 
-.divView{
-    width: 70%;
-    border: 1px solid rgb(146, 132, 95);
-    height: fit-content;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: rgb(246, 228, 177);
-    border-radius: 10px;
-    padding: 2vw;
+.divView {
+  width: 100%;
+  max-width: 420px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 32px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
 }
 
-.headerDiv h4{
-    font-size: 22px;
-    font-weight: 600;
+.headerDiv {
+  text-align: center;
+  margin-bottom: 28px;
 }
 
-.formAdmin div{
-    display: flex;
-    flex-direction: column;
-    margin: 10px;
+.headerDiv h4 {
+  font-size: 22px;
+  font-weight: 700;
+  color: #111111;
 }
 
-.formAdmin div label{
-    font-size: 18px;
-    font-weight: 500;
-    margin:5px
+.headerDiv p {
+  font-size: 14px;
+  color: #666666;
+  margin-top: 4px;
 }
 
-.formAdmin div input{
-    padding: 3px;
-    border-radius: 5px;
-    width: 25vw;
-    border: 1px solid rgb(146, 132, 95);
-    background-color: rgb(249, 236, 198);
+/* Form */
+
+.formAdmin {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
 }
 
-.formAdmin div button{
-    margin:20px auto 0px auto;
-    width: 60%;
-    background-color: black;
-    border-radius: 50px;
-    font-size: 20px;
-    text-align: center;
-    color: white;
-    transition: .3s;
+.formGroup {
+  display: flex;
+  flex-direction: column;
 }
-.formAdmin div button:hover{
-    transition: .3s;
-    background-color: rgb(66, 66, 66);
+
+.formGroup label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #333333;
+  margin-bottom: 6px;
 }
-.formAdmin div button:active{
-    transform: scale(.9);
+
+.formGroup input {
+  height: 42px;
+  padding: 0 12px;
+  border-radius: 6px;
+  border: 1px solid #cccccc;
+  font-size: 14px;
+  transition: border 0.2s, box-shadow 0.2s;
+}
+
+.formGroup input:focus {
+  outline: none;
+  border-color: #111111;
+  box-shadow: 0 0 0 1px #111111;
+}
+
+/* Botón */
+
+.submitBtn {
+  margin-top: 12px;
+  height: 44px;
+  background-color: #111111;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.submitBtn:hover {
+  background-color: #2b2b2b;
+}
+
+.submitBtn:active {
+  transform: scale(0.98);
 }

@@ -47,7 +47,7 @@ const WhatsappForm = ({
     const zapatillasTexto = zapatillas
       .map((zap) => {
         const tallesTexto = zap.talle.join(", ");
-        return `👟 Zapatilla: ${zap.nombre}\nTalles: ${tallesTexto}\nPrecio: $${zap.precio}`;
+        return `👟 Zapatilla:\n -${zap.nombre}\nTalles: ${tallesTexto}\nPrecio: $${zap.precio}`;
       })
       .join("\n\n");
 
@@ -63,7 +63,7 @@ ${zapatillasTexto}`;
     const mensajeCodificado = encodeURIComponent(mensaje);
 
     // Redirigir a WhatsApp con el mensaje
-    window.location.href = `https://api.whatsapp.com/send?phone=541164960034&text=${mensajeCodificado}`;
+    window.location.href = `https://api.whatsapp.com/send?phone=${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER}&text=${mensajeCodificado}`;
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -173,7 +173,7 @@ ${zapatillasTexto}`;
               <div className="grid grid-cols-2 gap-5">
                 {zapatillas.map((zap, i) => (
                   <div key={i}>
-                    <p className="font-semibold capitalize">{zap.nombre}</p>
+                    <p className="font-normal capitalize">{zap.nombre}</p>
                     <img
                       src={zap.fotos[0]}
                       alt="zapatilla foto"

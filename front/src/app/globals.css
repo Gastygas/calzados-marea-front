@@ -21,6 +21,10 @@ body {
   width: 100%;
 }
 
+a:focus {
+  outline: none;
+}
+
 h3{
   font-size: 24px;
   font-weight: 400;

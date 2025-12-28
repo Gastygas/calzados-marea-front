@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react";
-import styles from "./ActualizarStock.module.css";
 import { RiArrowGoBackFill } from "react-icons/ri";
 import { IZapatilla } from "@/helpers/interfaces";
 import { FindAllZapatillasAction } from "@/actions/zapatillas.actions";
 import Image from "next/image";
-import SeleccionarTalle from "../SeleccionarTalle/SeleccionarTalle";
 import {
   deleteZapatillaAction,
   EditarZapatillaAction,
@@ -17,17 +15,14 @@ const ActualizarStock = ({
 }: {
   toggleActualizarStock: () => void;
 }) => {
-  const [zapatilla, setZapatillas] = useState<IZapatilla[] | []>([]);
-  const [openEditar, setOpenEditar] = useState<boolean>(false);
-  const [editSuccess, setEditSucces] = useState<boolean>(false);
-  const [stockById, setStockById] = useState<{
-    [id: string]: string | undefined;
-  }>({});
-  const [openEliminarZapatilla, setOpenEliminarZapatilla] =
-    useState<boolean>(false);
-  const [zapatillaEditando, setZapatillaEditando] = useState<IZapatilla | null>(
-    null
-  );
+  const [zapatillas, setZapatillas] = useState<IZapatilla[]>([]);
+  const [openEditar, setOpenEditar] = useState(false);
+  const [editSuccess, setEditSuccess] = useState(false);
+  const [openEliminarZapatilla, setOpenEliminarZapatilla] = useState(false);
+
+  const [zapatillaEditando, setZapatillaEditando] =
+    useState<IZapatilla | null>(null);
+
   const [editData, setEditData] = useState<IZapatilla>({
     nombre: "",
     precio: "",
@@ -49,44 +44,36 @@ const ActualizarStock = ({
     (18 + i).toString()
   );
 
-  const handleSubmitEditData = async (e: React.FormEvent) => {
-    e.preventDefault();
-    const response = await EditarZapatillaAction(editData);
-    if (response.success === false) return alert(`Error: ${response.message}`);
-    setEditSucces(!editSuccess);
-    setOpenEditar(!openEditar);
-    return alert("La zapatilla se edito correctamente");
-  };
   useEffect(() => {
     const getZapatillas = async () => {
-      const zapatillas: IZapatilla[] | null = await FindAllZapatillasAction();
-
-      if (zapatillas !== null) {
-        setZapatillas(zapatillas);
-
-        // Inicializar el estado del input con el stock actual
-        const initialStocks: { [id: string]: string | undefined } = {};
-        zapatillas.forEach((zap: IZapatilla) => {
-          zap.id ? (initialStocks[zap.id] = zap.stock) : "";
-        });
-        setStockById(initialStocks);
-      }
+      const data = await FindAllZapatillasAction();
+      if (data) setZapatillas(data);
     };
     getZapatillas();
   }, [editSuccess]);
 
-  const handleDeletePhoto = async (id: string) => {
-    const response = await deleteZapatillaAction(id);
-    if (response.success === false) return alert(`Error: ${response.message}`);
-    setEditSucces(!editSuccess);
-    setOpenEditar(!openEditar);
-    return alert("La zapatilla se elimino correctamente");
-  };
-
   const abrirFormularioEdicion = (zapa: IZapatilla) => {
     setZapatillaEditando(zapa);
-    setEditData(zapa); // copiamos los datos iniciales al estado de edición
+    setEditData(zapa);
     setOpenEditar(true);
+  };
+
+  const handleSubmitEditData = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const response = await EditarZapatillaAction(editData);
+    if (!response.success) return alert(`Error: ${response.message}`);
+    setEditSuccess(!editSuccess);
+    setOpenEditar(false);
+    alert("Zapatilla actualizada correctamente");
+  };
+
+  const handleDeleteZapatilla = async (id: string) => {
+    const response = await deleteZapatillaAction(id);
+    if (!response.success) return alert(`Error: ${response.message}`);
+    setEditSuccess(!editSuccess);
+    setOpenEliminarZapatilla(false);
+    setOpenEditar(false);
+    alert("Zapatilla eliminada");
   };
 
   const uploadImageHandle = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -98,107 +85,160 @@ const ActualizarStock = ({
     formData.append(
       "upload_preset",
       `${process.env.NEXT_PUBLIC_UPLOAD_PRESET}`
-    ); // <-- cambia esto por tu upload preset
-    // formData.append('folder', 'zapatillas'); // Opcional: carpeta en Cloudinary
+    );
 
-    try {
-      const res = await fetch(
-        `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUD_NAME}/image/upload`,
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
+    const res = await fetch(
+      `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUD_NAME}/image/upload`,
+      { method: "POST", body: formData }
+    );
 
-      const data = await res.json();
-
-      if (data.secure_url) {
-        setEditData((prev) => ({
-          ...prev,
-          fotos: [...(prev.fotos || []), data.secure_url],
-        }));
-      } else {
-        console.error("Error al subir imagen a Cloudinary:", data);
-        alert("Error subiendo imagen");
-      }
-    } catch (error) {
-      console.error("Error en upload:", error);
-      alert("Error subiendo imagen");
+    const data = await res.json();
+    if (data.secure_url) {
+      setEditData((prev) => ({
+        ...prev,
+        fotos: [...prev.fotos, data.secure_url],
+      }));
     }
   };
 
+  const [search, setSearch] = useState("");
+  const [page, setPage] = useState(1);
+
+  const ITEMS_PER_PAGE = 10;
+
+  const filteredZapatillas = zapatillas.filter((z) =>
+    `${z.nombre} ${z.marca} ${z.color}`
+      .toLowerCase()
+      .includes(search.toLowerCase())
+  );
+
+  const totalPages = Math.ceil(filteredZapatillas.length / ITEMS_PER_PAGE);
+
+  const paginatedZapatillas = filteredZapatillas.slice(
+    (page - 1) * ITEMS_PER_PAGE,
+    page * ITEMS_PER_PAGE
+  );
+
   return (
-    <div className="min-h-screen flex flex-col">
-      <button onClick={toggleActualizarStock}>
-        <RiArrowGoBackFill size={30} />
-      </button>
-      <h3>Actualizar stock</h3>
-      <div className="flex-grow">
-        {zapatilla.map((zap) => (
+
+    <div className="min-h-screen bg-gray-100 py-10">
+      <div className="mx-auto w-full max-w-6xl px-6">
+
+      {/* Header */}
+      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">
+        <div className="flex items-center gap-3">
+          <button
+            onClick={toggleActualizarStock}
+            className="p-2 rounded-lg border hover:bg-gray-200 transition"
+          >
+            <RiArrowGoBackFill size={22} />
+          </button>
+
+          <h2 className="text-3xl font-extrabold tracking-tight">
+            Actualizar stock
+          </h2>
+        </div>
+
+        <input
+          type="text"
+          placeholder="Buscar zapatilla..."
+          value={search}
+          onChange={(e) => {
+            setSearch(e.target.value);
+            setPage(1);
+          }}
+          className="w-full md:w-80 border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-black"
+        />
+      </div>
+
+      {/* Listado */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {paginatedZapatillas.map((zap) => (
           <div
             key={zap.id}
-            className={`${styles.flexZapasDiv} hover:bg-gray-400 transform duration-100 ease-in-out
-          
-          `}
+            className="bg-white rounded-xl border p-5 hover:shadow-lg transition flex gap-4"
           >
-            <div className={styles.zapaInfoContainer}>
-              <Link
-                href={`/calzado/${zap.nombre}`}
-                target="blank"
-                className="flex items-center"
-              >
-                <div className={styles.zapaImagenDiv}>
-                  <Image
-                    src={zap.fotos[0]}
-                    alt={`${zap.nombre} imagen`}
-                    width={1000}
-                    height={1000}
-                    loading="lazy"
-                  />
-                </div>
-                <div className={styles.infoZapaDiv}>
-                  <h4>{zap.nombre}</h4>
+            <Link
+              href={`/calzado/${zap.nombre}`}
+              target="_blank"
+              className="flex gap-4 flex-1"
+            >
+              <Image
+                src={zap.fotos[0]}
+                alt={zap.nombre}
+                width={96}
+                height={96}
+                className="rounded-lg object-cover"
+              />
+
+              <div className="flex flex-col justify-between">
+                <div>
+                  <h4 className="font-bold text-lg">{zap.nombre}</h4>
+
                   {zap.oferta ? (
-                    <div className="flex items-center">
-                      <p className="text-[14px] md:text-[17px] text-[#525252] font-bold line-through mr-3">
-                        $ {zap.oldPrice}
-                      </p>
-                      <p className="text-[15px] md:text-[17px] text-[#056505] font-bold">
-                        $ {zap.precio}
-                      </p>
+                    <div className="flex gap-2 text-sm mt-1">
+                      <span className="line-through text-gray-400">
+                        ${zap.oldPrice}
+                      </span>
+                      <span className="text-green-600 font-bold">
+                        ${zap.precio}
+                      </span>
                     </div>
                   ) : (
-                    <p className="text-[14px] md:text-[17px] text-[#056505] font-bold">
-                      $ {zap.precio}
+                    <p className="text-green-600 font-bold mt-1">
+                      ${zap.precio}
                     </p>
                   )}
                 </div>
-              </Link>
-            </div>
-            <div className={`${styles.cambiarStock} flex items-center`}>
+
+                <span className="text-sm text-gray-600">
+                  Stock: <strong>{zap.stock}</strong>
+                </span>
+              </div>
+            </Link>
+
+            <div className="flex items-end">
               <button
-                className="bg-gray-800 p-1 border rounded-lg mr-5 text-white"
                 onClick={() => abrirFormularioEdicion(zap)}
+                className="bg-black text-white px-5 py-2 rounded-lg hover:bg-gray-800 transition"
               >
                 Editar
               </button>
-              <h4 className="text-lg mr-4">Stock:</h4>
-              <p className="text-lg text-center mr-4">
-                {zap.id ? stockById[zap.id] : ""}
-              </p>
             </div>
           </div>
         ))}
       </div>
-      {openEditar && zapatillaEditando && (
-        <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 z-40 flex items-center justify-center">
-          <div
-            className={`${styles.selecTalleDiv} p-5 z-10 max-w-full overflow-y-auto rounded-xl`}
+
+        <div className="flex justify-center items-center gap-3 mt-10">
+          <button
+            disabled={page === 1}
+            onClick={() => setPage((p) => p - 1)}
+            className="px-4 py-2 rounded border disabled:opacity-40"
           >
+            Anterior
+          </button>
+
+          <span className="font-semibold">
+            Página {page} de {totalPages}
+          </span>
+
+          <button
+            disabled={page === totalPages}
+            onClick={() => setPage((p) => p + 1)}
+            className="px-4 py-2 rounded border disabled:opacity-40"
+          >
+            Siguiente
+          </button>
+        </div>
+
+      </div>
+
+      {/* Modal edición */}
+      {openEditar && zapatillaEditando && (
+        <div className="fixed inset-0 bg-black/50 z-40 flex items-center justify-center">
+          <div className="bg-white w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-xl p-6">
             <div className="flex justify-between items-center mb-4">
-              <h4 className="uppercase text-lg font-semibold">
-                Editar zapatilla
-              </h4>
+              <h3 className="text-xl font-bold">Editar zapatilla</h3>
               <button
                 onClick={() => setOpenEditar(false)}
                 className="text-red-600 font-bold"
@@ -207,304 +247,146 @@ const ActualizarStock = ({
               </button>
             </div>
 
-            <form
-              onSubmit={handleSubmitEditData}
-              className="flex flex-col gap-4"
-            >
-              {/* Campos comunes (sin precio) */}
+            <form onSubmit={handleSubmitEditData} className="space-y-4">
               {[
-                { label: "Nombre", key: "nombre" },
-                { label: "Marca", key: "marca" },
-                { label: "Color", key: "color" },
-                { label: "Género", key: "genero" },
-                { label: "Stock", key: "stock" },
-                { label: "Material", key: "material" },
-              ].map(({ label, key }) => (
-                <div
-                  key={key}
-                  className="flex flex-col sm:flex-row items-start sm:items-center mb-4"
-                >
-                  <label htmlFor={key} className="min-w-[80px] font-medium">
-                    {label}:
+                "nombre",
+                "marca",
+                "color",
+                "genero",
+                "stock",
+                "material",
+              ].map((field) => (
+                <div key={field}>
+                  <label className="block text-sm font-medium capitalize">
+                    {field}
                   </label>
                   <input
                     type="text"
-                    id={key}
-                    name={key}
-                    value={editData[key as keyof IZapatilla] as string}
+                    value={editData[field as keyof IZapatilla] as string}
                     onChange={(e) =>
-                      setEditData({ ...editData, [key]: e.target.value })
+                      setEditData({ ...editData, [field]: e.target.value })
                     }
-                    placeholder={label}
-                    className="border p-2 rounded border-black w-full sm:w-auto sm:ml-3"
+                    className="w-full border rounded px-3 py-2"
                   />
                 </div>
               ))}
 
-              {/* Sección de precio según si es oferta o no */}
-              {editData.oferta ? (
-                <>
-                  {/* Precio viejo */}
-                  <div className="flex items-center mb-4">
-                    <label htmlFor="oldPrice" className="font-medium">
-                      Precio Viejo: $
-                    </label>
-                    <input
-                      type="text"
-                      id="oldPrice"
-                      name="oldPrice"
-                      value={editData.oldPrice}
-                      onChange={(e) =>
-                        setEditData({ ...editData, oldPrice: e.target.value })
-                      }
-                      placeholder="Precio anterior"
-                      className="border p-2 rounded border-gray-500 w-full sm:w-auto sm:ml-3"
-                    />
-                  </div>
-
-                  {/* Precio actual (oferta) */}
-                  <div className="flex items-center mb-4">
-                    <label htmlFor="precio" className="font-medium">
-                      Precio: $
-                    </label>
-                    <input
-                      type="text"
-                      id="precio"
-                      name="precio"
-                      value={editData.precio}
-                      onChange={(e) =>
-                        setEditData({ ...editData, precio: e.target.value })
-                      }
-                      placeholder="Precio con descuento"
-                      className="border p-2 rounded border-green-800 w-full sm:w-auto sm:ml-3"
-                    />
-                  </div>
-                </>
-              ) : (
-                <div className="flex items-center mb-4">
-                  <label htmlFor="precio" className="min-w-[100px]">
-                    Precio: $
-                  </label>
-                  <input
-                    type="text"
-                    id="precio"
-                    name="precio"
-                    value={editData.precio}
-                    onChange={(e) =>
-                      setEditData({ ...editData, precio: e.target.value })
-                    }
-                    placeholder="Precio"
-                    className="border p-2 rounded border-black w-full sm:w-auto sm:ml-3"
-                  />
-                </div>
-              )}
-              {/* Checkboxes */}
-              <div className="flex items-center justify-around mb-4">
-                {/* Oferta */}
-                <div className="flex items-center">
-                  <label htmlFor="oferta">Oferta:</label>
-                  <input
-                    type="checkbox"
-                    id="oferta"
-                    checked={editData.oferta}
-                    onChange={(e) =>
-                      setEditData({ ...editData, oferta: e.target.checked })
-                    }
-                    className="border p-1 rounded border-black ml-3 w-fit"
-                  />
-                </div>
-                {/* Nuevo */}
-                <div className="flex items-center">
-                  <label htmlFor="nuevo">Nuevo:</label>
-                  <input
-                    type="checkbox"
-                    id="nuevo"
-                    checked={editData.nuevo}
-                    onChange={(e) =>
-                      setEditData({ ...editData, nuevo: e.target.checked })
-                    }
-                    className="border p-1 rounded border-black ml-3 w-fit"
-                  />
-                </div>
-                {/* Destacado */}
-                <div className="flex items-center">
-                  <label htmlFor="destacado">Destacado:</label>
-                  <input
-                    type="checkbox"
-                    id="destacado"
-                    checked={editData.destacado}
-                    onChange={(e) =>
-                      setEditData({ ...editData, destacado: e.target.checked })
-                    }
-                    className="border p-1 rounded border-black ml-3 w-fit"
-                  />
-                </div>
-              </div>
-
-              {/* Descripción */}
-              <div className="flex flex-col mb-4">
-                <label htmlFor="description">Descripción:</label>
-                <textarea
-                  value={editData.description}
+              {/* Precio */}
+              <div>
+                <label className="block font-medium">Precio</label>
+                <input
+                  type="text"
+                  value={editData.precio}
                   onChange={(e) =>
-                    setEditData({ ...editData, description: e.target.value })
+                    setEditData({ ...editData, precio: e.target.value })
                   }
-                  placeholder="Describe tu zapatilla"
-                  className="border p-1 rounded border-black"
-                  name="description"
-                  id="description"
-                  cols={35}
-                  rows={6}
+                  className="w-full border rounded px-3 py-2"
                 />
               </div>
 
               {/* Talles */}
               <div>
-                <label htmlFor="talle" className="font-medium">
-                  Talle:
-                </label>
-                <div
-                  id="talle"
-                  className="grid grid-cols-4 sm:grid-cols-6 gap-2 mt-2"
-                >
-                  {ALL_TALLES.map((num, i) => (
-                    <div key={i}>
-                      <p
-                        className={`rounded-md cursor-pointer text-sm text-center font-bold border transition transform duration-100 p-2 ${
-                          zapatillaEditando.talle.includes(num)
-                            ? "text-white bg-black"
-                            : "text-black bg-white border-black hover:bg-black hover:text-white"
+                <label className="block font-medium mb-2">Talles</label>
+                <div className="grid grid-cols-6 gap-2">
+                  {ALL_TALLES.map((num) => (
+                    <button
+                      type="button"
+                      key={num}
+                      onClick={() => {
+                        const existe = editData.talle.includes(num);
+                        const nuevos = existe
+                          ? editData.talle.filter((t) => t !== num)
+                          : [...editData.talle, num];
+                        setEditData({ ...editData, talle: nuevos });
+                      }}
+                      className={`border rounded py-1 text-sm font-bold ${editData.talle.includes(num)
+                        ? "bg-black text-white"
+                        : "bg-white"
                         }`}
-                        onClick={() => {
-                          let nuevosTalles = zapatillaEditando.talle.includes(
-                            num
-                          )
-                            ? zapatillaEditando.talle.filter((t) => t !== num)
-                            : [...zapatillaEditando.talle, num];
-                          setZapatillaEditando({
-                            ...zapatillaEditando,
-                            talle: nuevosTalles,
-                          });
-                          setEditData({ ...editData, talle: nuevosTalles });
-                        }}
-                      >
-                        {num}
-                      </p>
-                    </div>
+                    >
+                      {num}
+                    </button>
                   ))}
                 </div>
               </div>
 
               {/* Fotos */}
               <div>
-                <label className="font-medium">Fotos:</label>
-                <p className="text-sm text-gray-600">Máximo 5</p>
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mt-2">
-                  {editData.fotos.map((img: string, i) => (
+                <label className="font-medium block">Fotos</label>
+                <div className="grid grid-cols-3 gap-3 mt-2">
+                  {editData.fotos.map((img, i) => (
                     <div key={i} className="relative">
                       <MdCancel
-                        className="absolute top-0 right-0 hover:size-7 cursor-pointer z-10"
-                        size={24}
-                        color="red"
-                        onClick={() => {
-                          const nuevasFotos = editData.fotos.filter(
-                            (foto) => foto !== img
-                          );
-                          setEditData({ ...editData, fotos: nuevasFotos });
-                        }}
+                        size={22}
+                        className="absolute top-1 right-1 text-red-600 cursor-pointer"
+                        onClick={() =>
+                          setEditData({
+                            ...editData,
+                            fotos: editData.fotos.filter((f) => f !== img),
+                          })
+                        }
                       />
                       <Image
-                        className="w-full h-32 object-cover rounded"
                         src={img}
-                        alt="imagen de zapatilla"
-                        width={500}
-                        height={100}
+                        alt="zapatilla"
+                        width={150}
+                        height={150}
+                        className="rounded object-cover"
                       />
                     </div>
                   ))}
-                  <div className="flex items-center justify-center rounded-xl p-4">
-                    <label
-                      className="cursor-pointer text-lg text-center text-blue-700 underline hover:text-gray-500 transform duration-75"
-                      htmlFor="addPhoto"
-                    >
-                      Subir <br />
-                      Foto
-                    </label>
-                    <input
-                      type="file"
-                      name="addPhoto"
-                      id="addPhoto"
-                      hidden
-                      onChange={uploadImageHandle}
-                    />
-                  </div>
+                  <label className="border rounded flex items-center justify-center cursor-pointer">
+                    + Subir
+                    <input hidden type="file" onChange={uploadImageHandle} />
+                  </label>
                 </div>
               </div>
 
               {/* Botones */}
-              <div className="flex flex-col sm:flex-row gap-3 justify-around">
+              <div className="flex justify-between pt-4">
                 <button
-                  className="bg-red-600 text-white p-2 rounded"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setOpenEliminarZapatilla(true);
-                  }}
+                  type="button"
+                  onClick={() => setOpenEliminarZapatilla(true)}
+                  className="bg-red-600 text-white px-4 py-2 rounded"
                 >
                   Eliminar
                 </button>
                 <button
-                  onClick={() => setOpenEditar(!openEditar)}
-                  className="bg-yellow-600 text-white p-2 rounded"
-                >
-                  Cancelar
-                </button>
-                <button
                   type="submit"
-                  className="bg-blue-600 text-white p-2 rounded"
+                  className="bg-black text-white px-6 py-2 rounded"
                 >
                   Guardar cambios
                 </button>
               </div>
-
-              {/* Confirmación de eliminación */}
-              {openEliminarZapatilla && zapatillaEditando && (
-                <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-40 flex items-center justify-center z-50">
-                  <div className="bg-red-300 p-6 rounded-xl w-[90%] max-w-md text-center">
-                    <p className="text-lg font-bold mb-4">
-                      ¿Estás seguro de eliminar "
-                      <span className="italic text-blue-950">
-                        {zapatillaEditando.nombre}
-                      </span>
-                      "?
-                    </p>
-                    <Image
-                      className="w-20 rounded-xl mx-auto mb-4"
-                      src={zapatillaEditando.fotos[0]}
-                      alt="imagen de zapatilla"
-                      width={1000}
-                      height={100}
-                    />
-                    <div className="flex flex-col gap-2">
-                      <button
-                        className="bg-green-500 text-white p-2 rounded font-bold"
-                        onClick={() => setOpenEliminarZapatilla(false)}
-                      >
-                        No, volver atrás
-                      </button>
-                      <button
-                        className="bg-red-500 text-white p-2 rounded font-bold"
-                        onClick={() => {
-                          if (zapatillaEditando.id)
-                            handleDeletePhoto(zapatillaEditando.id);
-                        }}
-                      >
-                        Sí, eliminar
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              )}
             </form>
+          </div>
+        </div>
+      )}
+
+      {/* Confirmar eliminación */}
+      {openEliminarZapatilla && zapatillaEditando && (
+        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center">
+          <div className="bg-white p-6 rounded-xl text-center max-w-sm">
+            <p className="font-bold mb-4">
+              ¿Eliminar "{zapatillaEditando.nombre}"?
+            </p>
+            <div className="flex gap-3 justify-center">
+              <button
+                className="bg-gray-300 px-4 py-2 rounded"
+                onClick={() => setOpenEliminarZapatilla(false)}
+              >
+                Cancelar
+              </button>
+              <button
+                className="bg-red-600 text-white px-4 py-2 rounded"
+                onClick={() =>
+                  zapatillaEditando.id &&
+                  handleDeleteZapatilla(zapatillaEditando.id)
+                }
+              >
+                Eliminar
+              </button>
+            </div>
           </div>
         </div>
       )}
