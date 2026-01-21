@@ -41,19 +41,43 @@ const ProductosEncontrados = ({
                     : `zapatillas ${item.marca} para ${item.genero}`}
                 </p>
                 {item.oferta ? (
-                  <div className="flex items-center">
-                    <p className="text-[14px] md:text-[17px] text-[#525252] font-bold line-through mr-3">
-                      $ {item.oldPrice}
-                    </p>
-                    <p className="text-[15px] md:text-[17px] text-[#056505] font-bold">
-                      $ {item.precio}
-                    </p>
-                  </div>
-                ) : (
-                  <p className="text-[14px] md:text-[17px] text-[#056505] font-bold">
-                    $ {item.precio}
-                  </p>
-                )}
+                        <div>
+                          <div className="flex">
+                            <p className="text-[13px] md:text-[17px] font-bold  mr-3">Mayor: </p>
+                            <p className="text-[13px] md:text-[17px] text-[#525252] font-bold line-through mr-3">
+                              $ {item.oldPrecioMayor}
+                            </p>
+                            <p className="text-[13px] md:text-[17px] text-[#056505] font-bold">
+                              $ {item.precioMayor}
+                            </p>
+                          </div>
+                          <div className="flex">
+                            <p className="text-[13px] md:text-[17px] font-bold  mr-3">Menor: </p>
+                            <p className="text-[13px] md:text-[17px] text-[#525252] font-bold line-through mr-3">
+                              $ {item.oldPrecioMenor}
+                            </p>
+                            <p className="text-[13px] md:text-[17px] text-[#056505] font-bold">
+                              $ {item.precioMenor}
+                            </p>
+                          </div>
+                        </div>
+
+                      ) : (
+                        <>
+                          <div className="flex">
+                            <p className="text-[13px] md:text-[17px] font-bold  mr-3">Mayor: </p>
+                            <p className="text-[13px] md:text-[17px] text-[#056505] font-bold">
+                              $ {item.precioMayor}
+                            </p>
+                          </div>
+                          <div className="flex">
+                            <p className="text-[13px] md:text-[17px] font-bold  mr-3">Menor: </p>
+                            <p className="text-[13px] md:text-[17px] text-[#056505] font-bold">
+                              $ {item.precioMenor}
+                            </p>
+                          </div>
+                        </>
+                      )}
               </div>
             </Link>
           </div>

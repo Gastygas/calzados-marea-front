@@ -41,20 +41,44 @@ const SinglePrimeraSeccion = ({
                   ? `zapatillas ${zapatillaEncontrada.marca} unisex`
                   : `zapatillas ${zapatillaEncontrada.marca} para ${zapatillaEncontrada.genero}`}
               </p>
-              {zapatillaEncontrada.oferta ? (
-                <div className="flex items-center">
-                  <p className="text-[14px] md:text-[17px] text-[#525252] font-bold line-through mr-3">
-                    $ {zapatillaEncontrada.oldPrice || "10.000"}
-                  </p>
-                  <p className="text-[16px] md:text-[20px] text-[#056505] font-bold">
-                    $ {zapatillaEncontrada.precio}
-                  </p>
-                </div>
-              ) : (
-                <p className="text-[14px] md:text-[20px] text-[#056505] font-bold">
-                  $ {zapatillaEncontrada.precio}
-                </p>
-              )}
+               {zapatillaEncontrada.oferta ? (
+                        <div>
+                          <div className="flex">
+                            <p className="text-[13px] md:text-[20px] font-bold  mr-3">Mayor: </p>
+                            <p className="text-[13px] md:text-[20px] text-[#525252] font-bold line-through mr-3">
+                              $ {zapatillaEncontrada.oldPrecioMayor}
+                            </p>
+                            <p className="text-[13px] md:text-[20px] text-[#056505] font-bold">
+                              $ {zapatillaEncontrada.precioMayor}
+                            </p>
+                          </div>
+                          <div className="flex">
+                            <p className="text-[13px] md:text-[20px] font-bold  mr-3">Menor: </p>
+                            <p className="text-[13px] md:text-[20px] text-[#525252] font-bold line-through mr-3">
+                              $ {zapatillaEncontrada.oldPrecioMenor}
+                            </p>
+                            <p className="text-[13px] md:text-[20px] text-[#056505] font-bold">
+                              $ {zapatillaEncontrada.precioMenor}
+                            </p>
+                          </div>
+                        </div>
+
+                      ) : (
+                        <>
+                          <div className="flex">
+                            <p className="text-[13px] md:text-[20px] font-bold  mr-3">Mayor: </p>
+                            <p className="text-[13px] md:text-[20px] text-[#056505] font-bold">
+                              $ {zapatillaEncontrada.precioMayor}
+                            </p>
+                          </div>
+                          <div className="flex">
+                            <p className="text-[13px] md:text-[20px] font-bold  mr-3">Menor: </p>
+                            <p className="text-[13px] md:text-[20px] text-[#056505] font-bold">
+                              $ {zapatillaEncontrada.precioMenor}
+                            </p>
+                          </div>
+                        </>
+                      )}
               {/* <p className={styles.genero}>
                 Hasta 6x{" "}
                 <span style={{ fontWeight: "bold", color: "black" }}>
@@ -98,19 +122,43 @@ const SinglePrimeraSeccion = ({
                   : `zapatillas ${zapatillaEncontrada.marca} para ${zapatillaEncontrada.genero}`}
               </p>
               {zapatillaEncontrada.oferta ? (
-                <div className="flex items-center">
-                  <p className="text-[16px] md:text-[17px] text-[#525252] font-bold line-through mr-3">
-                    $ {zapatillaEncontrada.oldPrice || "10.000"}
-                  </p>
-                  <p className="text-[20px] md:text-[17px] text-[#056505] font-bold">
-                    $ {zapatillaEncontrada.precio}
-                  </p>
-                </div>
-              ) : (
-                <p className="text-[14px] md:text-[17px] text-[#056505] font-bold">
-                  $ {zapatillaEncontrada.precio}
-                </p>
-              )}
+                        <div>
+                          <div className="flex">
+                            <p className="text-[13px] md:text-[17px] font-bold  mr-3">Mayor: </p>
+                            <p className="text-[13px] md:text-[17px] text-[#525252] font-bold line-through mr-3">
+                              $ {zapatillaEncontrada.oldPrecioMayor}
+                            </p>
+                            <p className="text-[13px] md:text-[17px] text-[#056505] font-bold">
+                              $ {zapatillaEncontrada.precioMayor}
+                            </p>
+                          </div>
+                          <div className="flex">
+                            <p className="text-[13px] md:text-[17px] font-bold  mr-3">Menor: </p>
+                            <p className="text-[13px] md:text-[17px] text-[#525252] font-bold line-through mr-3">
+                              $ {zapatillaEncontrada.oldPrecioMenor}
+                            </p>
+                            <p className="text-[13px] md:text-[17px] text-[#056505] font-bold">
+                              $ {zapatillaEncontrada.precioMenor}
+                            </p>
+                          </div>
+                        </div>
+
+                      ) : (
+                        <>
+                          <div className="flex">
+                            <p className="text-[13px] md:text-[17px] font-bold  mr-3">Mayor: </p>
+                            <p className="text-[13px] md:text-[17px] text-[#056505] font-bold">
+                              $ {zapatillaEncontrada.precioMayor}
+                            </p>
+                          </div>
+                          <div className="flex">
+                            <p className="text-[13px] md:text-[17px] font-bold  mr-3">Menor: </p>
+                            <p className="text-[13px] md:text-[17px] text-[#056505] font-bold">
+                              $ {zapatillaEncontrada.precioMenor}
+                            </p>
+                          </div>
+                        </>
+                      )}
               {/* <p className={styles.genero}>
                 Hasta 6x{" "}
                 <span style={{ fontWeight: "bold", color: "black" }}>

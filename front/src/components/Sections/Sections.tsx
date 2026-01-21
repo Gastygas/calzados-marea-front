@@ -60,18 +60,42 @@ const Sections = ({ type }: { type: string }) => {
                           : `zapatillas ${item.marca} para ${item.genero}`}
                       </p>
                       {type === "oferta" ? (
-                        <div className="flex">
-                          <p className="text-[13px] md:text-[17px] text-[#525252] font-bold line-through mr-3">
-                            $ {item.oldPrice}
-                          </p>
-                          <p className="text-[13px] md:text-[17px] text-[#056505] font-bold">
-                            $ {item.precio}
-                          </p>
+                        <div>
+                          <div className="flex">
+                            <p className="text-[13px] md:text-[17px] font-bold  mr-3">Mayor: </p>
+                            <p className="text-[13px] md:text-[17px] text-[#525252] font-bold line-through mr-3">
+                              $ {item.oldPrecioMayor}
+                            </p>
+                            <p className="text-[13px] md:text-[17px] text-[#056505] font-bold">
+                              $ {item.precioMayor}
+                            </p>
+                          </div>
+                          <div className="flex">
+                            <p className="text-[13px] md:text-[17px] font-bold  mr-3">Menor: </p>
+                            <p className="text-[13px] md:text-[17px] text-[#525252] font-bold line-through mr-3">
+                              $ {item.oldPrecioMenor}
+                            </p>
+                            <p className="text-[13px] md:text-[17px] text-[#056505] font-bold">
+                              $ {item.precioMenor}
+                            </p>
+                          </div>
                         </div>
+
                       ) : (
-                        <p className="text-[13px] md:text-[17px] text-[#056505] font-bold">
-                          $ {item.precio}
-                        </p>
+                        <>
+                          <div className="flex">
+                            <p className="text-[13px] md:text-[17px] font-bold  mr-3">Mayor: </p>
+                            <p className="text-[13px] md:text-[17px] text-[#056505] font-bold">
+                              $ {item.precioMayor}
+                            </p>
+                          </div>
+                          <div className="flex">
+                            <p className="text-[13px] md:text-[17px] font-bold  mr-3">Menor: </p>
+                            <p className="text-[13px] md:text-[17px] text-[#056505] font-bold">
+                              $ {item.precioMenor}
+                            </p>
+                          </div>
+                        </>
                       )}
                     </div>
                   </Link>

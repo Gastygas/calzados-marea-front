@@ -25,19 +25,21 @@ const ActualizarStock = ({
 
   const [editData, setEditData] = useState<IZapatilla>({
     nombre: "",
-    precio: "",
     marca: "",
-    talle: [],
     color: "",
+    genero: "",
+    stock: "",
     material: "",
+    talle: [],
+    fotos: [],
     destacado: false,
     nuevo: false,
     oferta: false,
-    fotos: [],
-    genero: "",
-    stock: "",
+    precioMayor: "",
+    precioMenor: "",
+    oldPrecioMayor: "",
+    oldPrecioMenor: "",
     description: "",
-    oldPrice: "",
   });
 
   const ALL_TALLES = Array.from({ length: 45 - 18 + 1 }, (_, i) =>
@@ -124,90 +126,114 @@ const ActualizarStock = ({
     <div className="min-h-screen bg-gray-100 py-10">
       <div className="mx-auto w-full max-w-6xl px-6">
 
-      {/* Header */}
-      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">
-        <div className="flex items-center gap-3">
-          <button
-            onClick={toggleActualizarStock}
-            className="p-2 rounded-lg border hover:bg-gray-200 transition"
-          >
-            <RiArrowGoBackFill size={22} />
-          </button>
+        {/* Header */}
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">
+          <div className="flex items-center gap-3">
+            <button
+              onClick={toggleActualizarStock}
+              className="p-2 rounded-lg border hover:bg-gray-200 transition"
+            >
+              <RiArrowGoBackFill size={22} />
+            </button>
 
-          <h2 className="text-3xl font-extrabold tracking-tight">
-            Actualizar stock
-          </h2>
+            <h2 className="text-3xl font-extrabold tracking-tight">
+              Actualizar stock
+            </h2>
+          </div>
+
+          <input
+            type="text"
+            placeholder="Buscar zapatilla..."
+            value={search}
+            onChange={(e) => {
+              setSearch(e.target.value);
+              setPage(1);
+            }}
+            className="w-full md:w-80 border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-black"
+          />
         </div>
 
-        <input
-          type="text"
-          placeholder="Buscar zapatilla..."
-          value={search}
-          onChange={(e) => {
-            setSearch(e.target.value);
-            setPage(1);
-          }}
-          className="w-full md:w-80 border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-black"
-        />
-      </div>
-
-      {/* Listado */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {paginatedZapatillas.map((zap) => (
-          <div
-            key={zap.id}
-            className="bg-white rounded-xl border p-5 hover:shadow-lg transition flex gap-4"
-          >
-            <Link
-              href={`/calzado/${zap.nombre}`}
-              target="_blank"
-              className="flex gap-4 flex-1"
+        {/* Listado */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {paginatedZapatillas.map((zap) => (
+            <div
+              key={zap.id}
+              className="bg-white rounded-xl border p-5 hover:shadow-lg transition flex gap-4"
             >
-              <Image
-                src={zap.fotos[0]}
-                alt={zap.nombre}
-                width={96}
-                height={96}
-                className="rounded-lg object-cover"
-              />
-
-              <div className="flex flex-col justify-between">
-                <div>
-                  <h4 className="font-bold text-lg">{zap.nombre}</h4>
-
-                  {zap.oferta ? (
-                    <div className="flex gap-2 text-sm mt-1">
-                      <span className="line-through text-gray-400">
-                        ${zap.oldPrice}
-                      </span>
-                      <span className="text-green-600 font-bold">
-                        ${zap.precio}
-                      </span>
-                    </div>
-                  ) : (
-                    <p className="text-green-600 font-bold mt-1">
-                      ${zap.precio}
-                    </p>
-                  )}
-                </div>
-
-                <span className="text-sm text-gray-600">
-                  Stock: <strong>{zap.stock}</strong>
-                </span>
-              </div>
-            </Link>
-
-            <div className="flex items-end">
-              <button
-                onClick={() => abrirFormularioEdicion(zap)}
-                className="bg-black text-white px-5 py-2 rounded-lg hover:bg-gray-800 transition"
+              <Link
+                href={`/calzado/${zap.nombre}`}
+                target="_blank"
+                className="flex gap-4 flex-1"
               >
-                Editar
-              </button>
+                <Image
+                  src={zap.fotos[0]}
+                  alt={zap.nombre}
+                  width={96}
+                  height={96}
+                  className="rounded-lg object-cover"
+                />
+
+                <div className="flex flex-col justify-between">
+                  <div>
+                    <h4 className="font-bold text-lg">{zap.nombre}</h4>
+
+                    {zap.oferta ? (
+                      <div>
+                        <div className="flex">
+                          <p className="text-[13px] md:text-[17px] font-bold  mr-3">Mayor: </p>
+                          <p className="text-[13px] md:text-[17px] text-[#525252] font-bold line-through mr-3">
+                            $ {zap.oldPrecioMayor}
+                          </p>
+                          <p className="text-[13px] md:text-[17px] text-[#056505] font-bold">
+                            $ {zap.precioMayor}
+                          </p>
+                        </div>
+                        <div className="flex">
+                          <p className="text-[13px] md:text-[17px] font-bold  mr-3">Menor: </p>
+                          <p className="text-[13px] md:text-[17px] text-[#525252] font-bold line-through mr-3">
+                            $ {zap.oldPrecioMenor}
+                          </p>
+                          <p className="text-[13px] md:text-[17px] text-[#056505] font-bold">
+                            $ {zap.precioMenor}
+                          </p>
+                        </div>
+                      </div>
+
+                    ) : (
+                      <>
+                        <div className="flex">
+                          <p className="text-[13px] md:text-[17px] font-bold  mr-3">Mayor: </p>
+                          <p className="text-[13px] md:text-[17px] text-[#056505] font-bold">
+                            $ {zap.precioMayor}
+                          </p>
+                        </div>
+                        <div className="flex">
+                          <p className="text-[13px] md:text-[17px] font-bold  mr-3">Menor: </p>
+                          <p className="text-[13px] md:text-[17px] text-[#056505] font-bold">
+                            $ {zap.precioMenor}
+                          </p>
+                        </div>
+                      </>
+                    )}
+                  </div>
+
+                  <span className="text-sm text-gray-600">
+                    Stock: <strong>{zap.stock}</strong>
+                  </span>
+                </div>
+              </Link>
+
+              <div className="flex items-end">
+                <button
+                  onClick={() => abrirFormularioEdicion(zap)}
+                  className="bg-black text-white px-5 py-2 rounded-lg hover:bg-gray-800 transition"
+                >
+                  Editar
+                </button>
+              </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
 
         <div className="flex justify-center items-center gap-3 mt-10">
           <button
@@ -271,43 +297,95 @@ const ActualizarStock = ({
                 </div>
               ))}
 
-              {/* Precio */}
-              <div>
-                <label className="block font-medium">Precio</label>
-                <input
-                  type="text"
-                  value={editData.precio}
-                  onChange={(e) =>
-                    setEditData({ ...editData, precio: e.target.value })
-                  }
-                  className="w-full border rounded px-3 py-2"
-                />
+              <div className="grid grid-cols-3 gap-4">
+                {[
+                  { label: "Oferta", key: "oferta" },
+                  { label: "Destacado", key: "destacado" },
+                  { label: "Nuevo", key: "nuevo" },
+                ].map(({ label, key }) => (
+                  <label key={key} className="flex items-center gap-2 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={editData[key as keyof IZapatilla] as boolean}
+                      onChange={(e) =>
+                        setEditData({
+                          ...editData,
+                          [key]: e.target.checked,
+                        })
+                      }
+                    />
+                    <span className="font-medium">{label}</span>
+                  </label>
+                ))}
               </div>
 
-              {/* Talles */}
-              <div>
-                <label className="block font-medium mb-2">Talles</label>
-                <div className="grid grid-cols-6 gap-2">
-                  {ALL_TALLES.map((num) => (
-                    <button
-                      type="button"
-                      key={num}
-                      onClick={() => {
-                        const existe = editData.talle.includes(num);
-                        const nuevos = existe
-                          ? editData.talle.filter((t) => t !== num)
-                          : [...editData.talle, num];
-                        setEditData({ ...editData, talle: nuevos });
-                      }}
-                      className={`border rounded py-1 text-sm font-bold ${editData.talle.includes(num)
-                        ? "bg-black text-white"
-                        : "bg-white"
-                        }`}
-                    >
-                      {num}
-                    </button>
-                  ))}
+              <div className="space-y-3">
+                <h4 className="font-bold text-lg">Precios</h4>
+
+                
+                {/* PRECIOS VIEJOS SOLO SI ES OFERTA */}
+                {editData.oferta && (
+                  <>
+                    <div>
+                      <label className="block font-medium text-gray-600">
+                        Precio mayor viejo
+                      </label>
+                      <input
+                        type="text"
+                        value={editData.oldPrecioMayor}
+                        onChange={(e) =>
+                          setEditData({ ...editData, oldPrecioMayor: e.target.value })
+                        }
+                        className="w-full border rounded px-3 py-2"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block font-medium text-gray-600">
+                        Precio menor viejo
+                      </label>
+                      <input
+                        type="text"
+                        value={editData.oldPrecioMenor}
+                        onChange={(e) =>
+                          setEditData({ ...editData, oldPrecioMenor: e.target.value })
+                        }
+                        className="w-full border rounded px-3 py-2"
+                      />
+                    </div>
+                  </>
+                )}
+
+                {/* PRECIO MAYOR */}
+                <div>
+                  <label className={`block font-medium ${editData.oferta ? "text-green-700 font-bold" : ""}`}>
+                    {editData.oferta ? "Precio mayor oferta" : "Precio mayor"}
+                  </label>
+                  <input
+                    type="text"
+                    value={editData.precioMayor}
+                    onChange={(e) =>
+                      setEditData({ ...editData, precioMayor: e.target.value })
+                    }
+                    className="w-full border rounded px-3 py-2"
+                  />
                 </div>
+
+                {/* PRECIO MENOR */}
+                <div>
+                  <label className={`block font-medium ${editData.oferta ? "text-green-700 font-bold" : ""}`}>
+                    {editData.oferta ? "Precio menor oferta" : "Precio menor"}
+                  </label>
+                  <input
+                    type="text"
+                    value={editData.precioMenor}
+                    onChange={(e) =>
+                      setEditData({ ...editData, precioMenor: e.target.value })
+                    }
+                    className="w-full border rounded px-3 py-2"
+                  />
+                </div>
+
               </div>
 
               {/* Fotos */}

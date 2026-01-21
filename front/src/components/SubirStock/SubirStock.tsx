@@ -24,7 +24,10 @@ const TIPOS = [
 const SubirStock = ({ toggleSubirStock }: { toggleSubirStock: () => void }) => {
   const initialData: IZapatilla = {
     nombre: "",
-    precio: "",
+    precioMayor: "",
+    precioMenor: "",
+    oldPrecioMayor: "",
+    oldPrecioMenor: "",
     marca: "",
     talle: [],
     color: "",
@@ -36,7 +39,6 @@ const SubirStock = ({ toggleSubirStock }: { toggleSubirStock: () => void }) => {
     stock: "",
     oferta: false,
     description: "",
-    oldPrice: "",
     tipo: "",
   };
 
@@ -95,7 +97,8 @@ const SubirStock = ({ toggleSubirStock }: { toggleSubirStock: () => void }) => {
     !editData.marca ||
     !editData.material ||
     !editData.nombre ||
-    !editData.precio ||
+    !editData.precioMayor ||
+    !editData.precioMenor ||
     !editData.stock ||
     !editData.talle.length;
 
@@ -136,34 +139,84 @@ const SubirStock = ({ toggleSubirStock }: { toggleSubirStock: () => void }) => {
             </section>
 
             {/* PRECIOS */}
-            <section>
-              <h4 className="font-semibold text-lg mb-4">Precio</h4>
-              <div className="grid md:grid-cols-2 gap-6">
-                <Input
-                  label={editData.oferta ? "Precio original" : "Precio"}
-                  value={editData.oferta ? editData.oldPrice : editData.precio}
-                  onChange={(v:any) =>
-                    editData.oferta
-                      ? setEditData({ ...editData, oldPrice: v })
-                      : setEditData({ ...editData, precio: v })
-                  }
-                />
-                {editData.oferta && (
-                  <Input
-                    label="Precio oferta"
-                    value={editData.precio}
-                    onChange={(v:any) => setEditData({ ...editData, precio: v })}
-                  />
-                )}
-              </div>
+<section>
+  <h4 className="font-semibold text-lg mb-4">Precios</h4>
 
-              <div className="flex gap-6 mt-4">
-                <Checkbox label="Oferta" checked={editData.oferta} onChange={(v: boolean) => setEditData({ ...editData, oferta: v })} />
-                <Checkbox label="Nuevo" checked={editData.nuevo} onChange={(v: boolean) => setEditData({ ...editData, nuevo: v })} />
-                <Checkbox label="Destacado" checked={editData.destacado} onChange={(v: boolean) => setEditData({ ...editData, destacado: v })} />
-              </div>
-            </section>
+   {/* PRECIOS VIEJOS SOLO SI ES OFERTA */}
+  {editData.oferta && (
+    <div className="grid md:grid-cols-2 gap-6 mb-4">
+      <Input
+        label="Precio mayor viejo"
+        value={editData.oldPrecioMayor}
+        onChange={(v: string) =>
+          setEditData({ ...editData, oldPrecioMayor: v })
+        }
+      />
 
+      <Input
+        label="Precio menor viejo"
+        value={editData.oldPrecioMenor}
+        onChange={(v: string) =>
+          setEditData({ ...editData, oldPrecioMenor: v })
+        }
+      />
+    </div>
+  )}
+  <div className="grid md:grid-cols-2 gap-6">
+    {/* PRECIO MAYOR */}
+    <Input
+      label={editData.oferta ? "Precio mayor oferta" : "Precio mayor"}
+      value={editData.precioMayor}
+      onChange={(v: string) =>
+        setEditData({ ...editData, precioMayor: v })
+      }
+    />
+
+    {/* PRECIO MENOR */}
+    <Input
+      label={editData.oferta ? "Precio menor oferta" : "Precio menor"}
+      value={editData.precioMenor}
+      onChange={(v: string) =>
+        setEditData({ ...editData, precioMenor: v })
+      }
+    />
+  </div>
+
+
+  {/* CHECKBOX */}
+  <div className="flex gap-6 mt-6">
+    <Checkbox
+      label="Oferta"
+      checked={editData.oferta}
+      onChange={(v: boolean) =>
+        setEditData({
+          ...editData,
+          oferta: v,
+          ...(v === false && {
+            oldPrecioMayor: "",
+            oldPrecioMenor: "",
+          }),
+        })
+      }
+    />
+
+    <Checkbox
+      label="Nuevo"
+      checked={editData.nuevo}
+      onChange={(v: boolean) =>
+        setEditData({ ...editData, nuevo: v })
+      }
+    />
+
+    <Checkbox
+      label="Destacado"
+      checked={editData.destacado}
+      onChange={(v: boolean) =>
+        setEditData({ ...editData, destacado: v })
+      }
+    />
+  </div>
+</section>
             {/* TALLES */}
             <section>
               <h4 className="font-semibold text-lg mb-4">Talles</h4>
@@ -178,11 +231,10 @@ const SubirStock = ({ toggleSubirStock }: { toggleSubirStock: () => void }) => {
                         : [...editData.talle, num];
                       setEditData({ ...editData, talle: nuevos });
                     }}
-                    className={`py-2 rounded-md border text-sm font-semibold transition ${
-                      editData.talle.includes(num)
+                    className={`py-2 rounded-md border text-sm font-semibold transition ${editData.talle.includes(num)
                         ? "bg-black text-white"
                         : "bg-white hover:bg-black hover:text-white"
-                    }`}
+                      }`}
                   >
                     {num}
                   </button>

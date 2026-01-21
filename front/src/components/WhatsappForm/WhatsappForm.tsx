@@ -47,7 +47,7 @@ const WhatsappForm = ({
     const zapatillasTexto = zapatillas
       .map((zap) => {
         const tallesTexto = zap.talle.join(", ");
-        return `👟 Zapatilla:\n -${zap.nombre}\nTalles: ${tallesTexto}\nPrecio: $${zap.precio}`;
+        return `👟 Zapatilla:\n -${zap.nombre}\nTalles: ${tallesTexto}\nPrecio mayor: $${zap.precioMayor}\nPrecio menor: $${zap.precioMenor}`;
       })
       .join("\n\n");
 
@@ -86,9 +86,8 @@ ${zapatillasTexto}`;
   return (
     <div className={`${isOpenEnviarWhatsapp ? styles.overlay : ""}`}>
       <div
-        className={`${styles.containerForm} ${
-          isOpenEnviarWhatsapp ? styles.open : ""
-        }`}
+        className={`${styles.containerForm} ${isOpenEnviarWhatsapp ? styles.open : ""
+          }`}
       >
         <HeaderForm toggleEnviarWhatsappForm={toggleEnviarWhatsappForm} />
         <div className="overflow-y-scroll max-h-[70vh]">
@@ -179,7 +178,8 @@ ${zapatillasTexto}`;
                       alt="zapatilla foto"
                       className="h-28 w-28"
                     />
-                    <p className="font-bold text-[#056505]">$ {zap.precio}</p>
+                    <p className="font-bold text-[#056505]"><span className="text-slate-800"> Mayor: </span>${zap.precioMayor}</p>
+                    <p className="font-bold text-[#056505]"><span className="text-slate-800"> Menor: </span>${zap.precioMenor}</p>
                     <p className="font-semibold">
                       Talles:
                       {zap.talle.map((t, k) => {
@@ -191,10 +191,10 @@ ${zapatillasTexto}`;
               </div>
             </div>
             {error.name ||
-            error.surname ||
-            error.telephone ||
-            error.provincia ||
-            error.ciudad ? (
+              error.surname ||
+              error.telephone ||
+              error.provincia ||
+              error.ciudad ? (
               <button className={styles.buttonError} disabled={true}>
                 Enviar a Whatsapp
               </button>

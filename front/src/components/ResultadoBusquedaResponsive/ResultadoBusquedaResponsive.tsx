@@ -88,11 +88,11 @@ const ResultadoBusquedaResponsive = ({
   };
   if (ordenSeleccionado === "mayor") {
     zapatillasFiltradas.sort(
-      (a, b) => parsePrecio(b.precio) - parsePrecio(a.precio)
+      (a, b) => parsePrecio(b.precioMenor) - parsePrecio(a.precioMenor)
     );
   } else if (ordenSeleccionado === "menor") {
     zapatillasFiltradas.sort(
-      (a, b) => parsePrecio(a.precio) - parsePrecio(b.precio)
+      (a, b) => parsePrecio(a.precioMenor) - parsePrecio(b.precioMenor)
     );
   }
 

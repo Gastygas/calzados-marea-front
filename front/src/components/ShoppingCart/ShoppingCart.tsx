@@ -58,7 +58,8 @@ const ShoppingCart = ({
                     </div>
                     <div className={styles.infoZapaDiv}>
                       <h4>{zap.nombre}</h4>
-                      <p>${zap.precio}</p>
+                      <p><span className="text-slate-800"> Mayor: </span> ${zap.precioMayor}</p>
+                      <p><span className="text-slate-800"> Menor: </span> ${zap.precioMenor}</p>
                       <h4>Talles:{" "}{zap.talle.map((t, k) => {
                         return k == 0 ? t : ", " + t
                       })}</h4>
