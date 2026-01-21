@@ -43,7 +43,8 @@ export const EditarZapatillaAction = async (data: IZapatilla) => {
     .from("zapatillas")
     .update({
       nombre: data.nombre,
-      precio: data.precio,
+      precioMenor: data.precioMenor,
+      precioMayor: data.precioMayor,
       marca: data.marca,
       talle: data.talle,
       color: data.color,
@@ -54,7 +55,8 @@ export const EditarZapatillaAction = async (data: IZapatilla) => {
       genero: data.genero,
       stock: data.stock,
       description:data.description,
-      oldPrice:data.oldPrice,
+      oldPrecioMayor:data.oldPrecioMayor,
+      oldPrecioMenor:data.oldPrecioMenor,
       oferta:data.oferta
     })
     .eq("id", data.id)
