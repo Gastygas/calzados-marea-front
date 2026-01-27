@@ -61,7 +61,7 @@ const Sections = ({ type }: { type: string }) => {
                       </p>
                       {type === "oferta" ? (
                         <div>
-                          <div className="flex">
+                          <div className="flex flex-col md:flex-row md:gap-5">
                             <p className="text-[13px] md:text-[17px] font-bold  mr-3">Mayor: </p>
                             <p className="text-[13px] md:text-[17px] text-[#525252] font-bold line-through mr-3">
                               $ {item.oldPrecioMayor}
@@ -70,7 +70,7 @@ const Sections = ({ type }: { type: string }) => {
                               $ {item.precioMayor}
                             </p>
                           </div>
-                          <div className="flex">
+                          <div className="flex flex-col md:flex-row md:gap-5">
                             <p className="text-[13px] md:text-[17px] font-bold  mr-3">Menor: </p>
                             <p className="text-[13px] md:text-[17px] text-[#525252] font-bold line-through mr-3">
                               $ {item.oldPrecioMenor}
