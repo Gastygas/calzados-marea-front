@@ -16,9 +16,15 @@ const SingleZapatilla = ({ nombreZapatilla }: { nombreZapatilla: string }) => {
     const getZapatilla = async () => {
       setIsLoading(true); 
 
-      const zapatilla: IZapatilla | null = await FindOneByNameAction(
+      let zapatilla: IZapatilla | null = await FindOneByNameAction(
         nombreZapatilla
       );
+      
+      if(!zapatilla) {
+        zapatilla = await FindOneByNameAction(
+          nombreZapatilla.toLocaleLowerCase()
+        );
+      }
 
       if (zapatilla) {
         setZapatillaEncontrada(zapatilla);

@@ -9,7 +9,7 @@ const page = () => {
   const nombreZapatilla = decodeURIComponent(params.nombre as string);
   return (
     <>
-      <SingleZapatilla nombreZapatilla={nombreZapatilla.toLocaleLowerCase()} />
+      <SingleZapatilla nombreZapatilla={nombreZapatilla} />
       <Section3 />
       <Section1 />
     </>
