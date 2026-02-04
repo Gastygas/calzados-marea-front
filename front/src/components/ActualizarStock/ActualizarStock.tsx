@@ -322,7 +322,7 @@ const ActualizarStock = ({
               <div className="space-y-3">
                 <h4 className="font-bold text-lg">Precios</h4>
 
-                
+
                 {/* PRECIOS VIEJOS SOLO SI ES OFERTA */}
                 {editData.oferta && (
                   <>
@@ -387,6 +387,47 @@ const ActualizarStock = ({
                 </div>
 
               </div>
+
+              {/* TALLES */}
+              <div className="space-y-3">
+                <h4 className="font-bold text-lg">Talles disponibles</h4>
+
+                <div className="grid grid-cols-6 sm:grid-cols-8 md:grid-cols-10 gap-2">
+                  {ALL_TALLES.map((num) => {
+                    const seleccionado = editData.talle.includes(num);
+
+                    return (
+                      <button
+                        type="button"
+                        key={num}
+                        onClick={() => {
+                          const nuevosTalles = seleccionado
+                            ? editData.talle.filter((t) => t !== num)
+                            : [...editData.talle, num];
+
+                          setEditData({
+                            ...editData,
+                            talle: nuevosTalles,
+                          });
+                        }}
+                        className={`
+            border rounded-md py-1 text-sm font-semibold transition
+            ${seleccionado
+                            ? "bg-black text-white border-black"
+                            : "bg-white hover:bg-gray-100"}
+          `}
+                      >
+                        {num}
+                      </button>
+                    );
+                  })}
+                </div>
+
+                <p className="text-xs text-gray-500">
+                  Seleccioná los talles que tiene disponible esta zapatilla
+                </p>
+              </div>
+
 
               {/* Fotos */}
               <div>
