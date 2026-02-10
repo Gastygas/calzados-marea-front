@@ -116,6 +116,9 @@ const Filtros = ({
             <label>
               <input type="checkbox" onChange={() => handleFiltroChange("tipo", "ojotas")} /> Ojotas
             </label>
+            <label>
+              <input type="checkbox" onChange={() => handleFiltroChange("tipo", "otros")} /> Otros
+            </label>
           </div>
         )}
 
@@ -130,19 +133,19 @@ const Filtros = ({
               <input type="checkbox" onChange={() => handleFiltroChange("color", "rojo")} /> Rojo
             </label>
             <label>
-              <input type="checkbox" onChange={() => handleFiltroChange("color", "azul")}/> Azul
+              <input type="checkbox" onChange={() => handleFiltroChange("color", "azul")} /> Azul
             </label>
             <label>
-              <input type="checkbox" onChange={() => handleFiltroChange("color", "negro")}/> Negro
+              <input type="checkbox" onChange={() => handleFiltroChange("color", "negro")} /> Negro
             </label>
             <label>
-              <input type="checkbox" onChange={() => handleFiltroChange("color", "verde")}/> Verde
+              <input type="checkbox" onChange={() => handleFiltroChange("color", "verde")} /> Verde
             </label>
             <label>
-              <input type="checkbox" onChange={() => handleFiltroChange("color", "blanco")}/> Blanco
+              <input type="checkbox" onChange={() => handleFiltroChange("color", "blanco")} /> Blanco
             </label>
             <label>
-              <input type="checkbox" onChange={() => handleFiltroChange("color", "naranja")}/> Naranja
+              <input type="checkbox" onChange={() => handleFiltroChange("color", "naranja")} /> Naranja
             </label>
           </div>
         )}
@@ -157,7 +160,7 @@ const Filtros = ({
         </div>
         {openFilters.genero && (
           <div className={styles.filtroOpciones}>
-             <label>
+            <label>
               <input type="checkbox" onChange={() => handleFiltroChange("genero", "hombre")} /> Hombre
             </label>
             <label>
@@ -175,7 +178,7 @@ const Filtros = ({
         </div>
         {openFilters.talle && (
           <div className={styles.filtroOpcionesTalle}>
-           <label>
+            <label>
               <input type="checkbox" onChange={() => handleFiltroChange("talle", "34")} /> 34
             </label>
             <label>
@@ -221,7 +224,7 @@ const Filtros = ({
         </div>
         {openFilters.tipo && (
           <div className={styles.filtroOpciones}>
-           <label>
+            <label>
               <input type="checkbox" onChange={() => handleFiltroChange("tipo", "zapatilla")} /> Zapatillas
             </label>
             <label>
@@ -236,6 +239,9 @@ const Filtros = ({
             <label>
               <input type="checkbox" onChange={() => handleFiltroChange("tipo", "ojotas")} /> Ojotas
             </label>
+            <label>
+              <input type="checkbox" onChange={() => handleFiltroChange("tipo", "otros")} /> Otros
+            </label>
           </div>
         )}
 
@@ -246,23 +252,23 @@ const Filtros = ({
         </div>
         {openFilters.color && (
           <div className={styles.filtroOpciones}>
-             <label>
+            <label>
               <input type="checkbox" onChange={() => handleFiltroChange("color", "rojo")} /> Rojo
             </label>
             <label>
-              <input type="checkbox" onChange={() => handleFiltroChange("color", "azul")}/> Azul
+              <input type="checkbox" onChange={() => handleFiltroChange("color", "azul")} /> Azul
             </label>
             <label>
-              <input type="checkbox" onChange={() => handleFiltroChange("color", "negro")}/> Negro
+              <input type="checkbox" onChange={() => handleFiltroChange("color", "negro")} /> Negro
             </label>
             <label>
-              <input type="checkbox" onChange={() => handleFiltroChange("color", "verde")}/> Verde
+              <input type="checkbox" onChange={() => handleFiltroChange("color", "verde")} /> Verde
             </label>
             <label>
-              <input type="checkbox" onChange={() => handleFiltroChange("color", "blanco")}/> Blanco
+              <input type="checkbox" onChange={() => handleFiltroChange("color", "blanco")} /> Blanco
             </label>
             <label>
-              <input type="checkbox" onChange={() => handleFiltroChange("color", "naranja")}/> Naranja
+              <input type="checkbox" onChange={() => handleFiltroChange("color", "naranja")} /> Naranja
             </label>
           </div>
         )}

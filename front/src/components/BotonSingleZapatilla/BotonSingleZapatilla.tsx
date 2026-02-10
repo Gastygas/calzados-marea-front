@@ -7,28 +7,41 @@ import { AuthContext } from "@/utils/authContext";
 const BotonSingleZapatilla = ({
   selectedTalle,
   zapatilla,
+  noRequiereTalle
 }: {
   selectedTalle: string[];
   zapatilla: IZapatilla;
+  noRequiereTalle: boolean
 }) => {
   const shoppingContext = useContext(AuthContext);
 
-   const isAlreadyInCart = () => {
+  const isAlreadyInCart = () => {
     if (!shoppingContext?.shoppingCart) return false;
 
-    return shoppingContext.shoppingCart.some(
-      (item) =>
+    return shoppingContext.shoppingCart.some((item) => {
+      if (zapatilla.tipo === "otros") {
+        return item.id === zapatilla.id;
+      }
+
+      return (
         item.id === zapatilla.id &&
         JSON.stringify(item.talle) === JSON.stringify(selectedTalle)
-    );
+      );
+    });
   };
 
- const handleAddToCart = () => {
-    if (
-      shoppingContext &&
-      !isAlreadyInCart() &&
-      selectedTalle.length > 0
-    ) {
+  const handleAddToCart = () => {
+    if (!shoppingContext || isAlreadyInCart()) return;
+
+    if (zapatilla.tipo === "otros") {
+      shoppingContext.addToCart({
+        ...zapatilla,
+        talle: [],
+      });
+      return;
+    }
+
+    if (selectedTalle.length > 0) {
       shoppingContext.addToCart({
         ...zapatilla,
         talle: [...selectedTalle],
@@ -36,16 +49,20 @@ const BotonSingleZapatilla = ({
     }
   };
 
-    const disabled = selectedTalle.length === 0 || isAlreadyInCart();
+  const disabled =
+    (!noRequiereTalle && selectedTalle.length === 0) ||
+    isAlreadyInCart();
 
   return (
     <div className={styles.containerButon}>
       <div className={styles.divButton}>
-          <button onClick={handleAddToCart} disabled={disabled}>
+        <button onClick={handleAddToCart} disabled={disabled}>
           {disabled
             ? isAlreadyInCart()
               ? "Ya está en el carrito"
-              : "Selecciona el talle"
+              : !noRequiereTalle
+                ? "Selecciona el talle"
+                : "No disponible"
             : "Agregar al carrito"}
         </button>
       </div>

@@ -1,3 +1,4 @@
+import { TALLES_KIDS, TALLES_NUMERICOS, TALLES_ROPA } from "@/helpers/talles";
 import styles from "./SeleccionarTalle.module.css";
 
 interface Props {
@@ -5,6 +6,7 @@ interface Props {
   toggleSelectedTalle: (talle: string) => void;
   selectedTalle: string[];
   genero: string;
+  tipo: string | undefined;
 }
 
 const SeleccionarTalle = ({
@@ -12,13 +14,22 @@ const SeleccionarTalle = ({
   toggleSelectedTalle,
   selectedTalle,
   genero,
+  tipo,
 }: Props) => {
-  const talles = Array.from({ length: 45 - 34 + 1 }, (_, i) =>
-    (34 + i).toString()
-  );
-  const tallesKid = Array.from({ length: 33 - 18 + 1 }, (_, i) =>
-    (18 + i).toString()
-  );
+
+  if (tipo === "otros") return null;
+
+
+  let tallesBase: string[] = [];
+
+  if (tipo === "ropa") {
+    tallesBase = TALLES_ROPA;
+  } else {
+    tallesBase =
+      genero === "niño" || genero === "niña"
+        ? TALLES_KIDS
+        : TALLES_NUMERICOS;
+  }
 
   return (
     <div className={styles.selecTalleDiv}>
@@ -26,7 +37,7 @@ const SeleccionarTalle = ({
         <h4>Seleccionar talle</h4>
       </div>
       <div className={styles.containerTalle}>
-        {(genero === "niño" || genero === "niña" ? tallesKid : talles).map(
+        {tallesBase.map(
           (talle) => {
             return tallesValidos.includes(talle) ? (
               <div

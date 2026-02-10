@@ -9,6 +9,16 @@ import {
 } from "@/actions/admin.actions";
 import { MdCancel } from "react-icons/md";
 import Link from "next/link";
+import { TALLES_NUMERICOS, TALLES_ROPA } from "@/helpers/talles";
+
+const TIPOS = [
+  { value: "zapatillas", label: "Zapatillas" },
+  { value: "botas", label: "Botas" },
+  { value: "sandalias", label: "Sandalias" },
+  { value: "botines", label: "Botines" },
+  { value: "ojotas", label: "Ojotas" },
+  { value: "otros", label: "Otros" },
+];
 
 const ActualizarStock = ({
   toggleActualizarStock,
@@ -40,11 +50,15 @@ const ActualizarStock = ({
     oldPrecioMayor: "",
     oldPrecioMenor: "",
     description: "",
+    tipo: "",
   });
 
-  const ALL_TALLES = Array.from({ length: 45 - 18 + 1 }, (_, i) =>
-    (18 + i).toString()
-  );
+  useEffect(() => {
+    setEditData((prev) => ({
+      ...prev,
+      talle: [],
+    }));
+  }, [editData.tipo]);
 
   useEffect(() => {
     const getZapatillas = async () => {
@@ -296,7 +310,41 @@ const ActualizarStock = ({
                   />
                 </div>
               ))}
+              {/* TIPOS */}
+              <div className="space-y-3">
+                <h4 className="font-bold text-lg">Tipo</h4>
 
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                  {TIPOS.map((tipo) => {
+                    const seleccionado = editData.tipo === tipo.value;
+
+                    return (
+                      <button
+                        type="button"
+                        key={tipo.value}
+                        onClick={() =>
+                          setEditData({
+                            ...editData,
+                            tipo: tipo.value,
+                          })
+                        }
+                        className={`
+            border rounded-lg py-2 font-semibold transition
+            ${seleccionado
+                            ? "bg-black text-white border-black"
+                            : "bg-white hover:bg-gray-100"}
+          `}
+                      >
+                        {tipo.label}
+                      </button>
+                    );
+                  })}
+                </div>
+
+                <p className="text-xs text-gray-500">
+                  Seleccioná el tipo principal del producto
+                </p>
+              </div>
               <div className="grid grid-cols-3 gap-4">
                 {[
                   { label: "Oferta", key: "oferta" },
@@ -393,7 +441,10 @@ const ActualizarStock = ({
                 <h4 className="font-bold text-lg">Talles disponibles</h4>
 
                 <div className="grid grid-cols-6 sm:grid-cols-8 md:grid-cols-10 gap-2">
-                  {ALL_TALLES.map((num) => {
+                  {(editData.tipo === "ropa"
+                    ? TALLES_ROPA
+                    : TALLES_NUMERICOS
+                  ).map((num) => {
                     const seleccionado = editData.talle.includes(num);
 
                     return (

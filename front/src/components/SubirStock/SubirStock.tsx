@@ -2,8 +2,9 @@ import { RiArrowGoBackFill } from "react-icons/ri";
 import Image from "next/image";
 import { MdCancel } from "react-icons/md";
 import { IZapatilla } from "@/helpers/interfaces";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SubirZapatillaAction } from "@/actions/admin.actions";
+import { TALLES_KIDS, TALLES_NUMERICOS, TALLES_ROPA } from "@/helpers/talles";
 
 const GENEROS = [
   { value: "hombre", label: "Hombre" },
@@ -19,6 +20,8 @@ const TIPOS = [
   { value: "sandalias", label: "Sandalias" },
   { value: "botines", label: "Botines" },
   { value: "ojotas", label: "Ojotas" },
+  { value: "otros", label: "Otros" },
+  { value: "ropa", label: "Ropa" },
 ];
 
 const SubirStock = ({ toggleSubirStock }: { toggleSubirStock: () => void }) => {
@@ -44,9 +47,12 @@ const SubirStock = ({ toggleSubirStock }: { toggleSubirStock: () => void }) => {
 
   const [editData, setEditData] = useState<IZapatilla>(initialData);
 
-  const ALL_TALLES = Array.from({ length: 45 - 18 + 1 }, (_, i) =>
-    (18 + i).toString()
-  );
+  useEffect(() => {
+    setEditData((prev) => ({
+      ...prev,
+      talle: [],
+    }));
+  }, [editData.tipo]);
 
   const handleSubmitEditData = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -99,8 +105,7 @@ const SubirStock = ({ toggleSubirStock }: { toggleSubirStock: () => void }) => {
     !editData.nombre ||
     !editData.precioMayor ||
     !editData.precioMenor ||
-    !editData.stock ||
-    !editData.talle.length;
+    !editData.stock;
 
   return (
     <div className="min-h-screen bg-gray-100 p-6">
@@ -139,108 +144,113 @@ const SubirStock = ({ toggleSubirStock }: { toggleSubirStock: () => void }) => {
             </section>
 
             {/* PRECIOS */}
-<section>
-  <h4 className="font-semibold text-lg mb-4">Precios</h4>
-
-   {/* PRECIOS VIEJOS SOLO SI ES OFERTA */}
-  {editData.oferta && (
-    <div className="grid md:grid-cols-2 gap-6 mb-4">
-      <Input
-        label="Precio mayor viejo"
-        value={editData.oldPrecioMayor}
-        onChange={(v: string) =>
-          setEditData({ ...editData, oldPrecioMayor: v })
-        }
-      />
-
-      <Input
-        label="Precio menor viejo"
-        value={editData.oldPrecioMenor}
-        onChange={(v: string) =>
-          setEditData({ ...editData, oldPrecioMenor: v })
-        }
-      />
-    </div>
-  )}
-  <div className="grid md:grid-cols-2 gap-6">
-    {/* PRECIO MAYOR */}
-    <Input
-      label={editData.oferta ? "Precio mayor oferta" : "Precio mayor"}
-      value={editData.precioMayor}
-      onChange={(v: string) =>
-        setEditData({ ...editData, precioMayor: v })
-      }
-    />
-
-    {/* PRECIO MENOR */}
-    <Input
-      label={editData.oferta ? "Precio menor oferta" : "Precio menor"}
-      value={editData.precioMenor}
-      onChange={(v: string) =>
-        setEditData({ ...editData, precioMenor: v })
-      }
-    />
-  </div>
-
-
-  {/* CHECKBOX */}
-  <div className="flex gap-6 mt-6">
-    <Checkbox
-      label="Oferta"
-      checked={editData.oferta}
-      onChange={(v: boolean) =>
-        setEditData({
-          ...editData,
-          oferta: v,
-          ...(v === false && {
-            oldPrecioMayor: "",
-            oldPrecioMenor: "",
-          }),
-        })
-      }
-    />
-
-    <Checkbox
-      label="Nuevo"
-      checked={editData.nuevo}
-      onChange={(v: boolean) =>
-        setEditData({ ...editData, nuevo: v })
-      }
-    />
-
-    <Checkbox
-      label="Destacado"
-      checked={editData.destacado}
-      onChange={(v: boolean) =>
-        setEditData({ ...editData, destacado: v })
-      }
-    />
-  </div>
-</section>
-            {/* TALLES */}
             <section>
-              <h4 className="font-semibold text-lg mb-4">Talles</h4>
-              <div className="grid grid-cols-6 md:grid-cols-10 gap-3">
-                {ALL_TALLES.map((num) => (
-                  <button
-                    key={num}
-                    type="button"
-                    onClick={() => {
-                      const nuevos = editData.talle.includes(num)
-                        ? editData.talle.filter((t) => t !== num)
-                        : [...editData.talle, num];
-                      setEditData({ ...editData, talle: nuevos });
-                    }}
-                    className={`py-2 rounded-md border text-sm font-semibold transition ${editData.talle.includes(num)
-                        ? "bg-black text-white"
-                        : "bg-white hover:bg-black hover:text-white"
-                      }`}
-                  >
-                    {num}
-                  </button>
-                ))}
+              <h4 className="font-semibold text-lg mb-4">Precios</h4>
+
+              {/* PRECIOS VIEJOS SOLO SI ES OFERTA */}
+              {editData.oferta && (
+                <div className="grid md:grid-cols-2 gap-6 mb-4">
+                  <Input
+                    label="Precio mayor viejo"
+                    value={editData.oldPrecioMayor}
+                    onChange={(v: string) =>
+                      setEditData({ ...editData, oldPrecioMayor: v })
+                    }
+                  />
+
+                  <Input
+                    label="Precio menor viejo"
+                    value={editData.oldPrecioMenor}
+                    onChange={(v: string) =>
+                      setEditData({ ...editData, oldPrecioMenor: v })
+                    }
+                  />
+                </div>
+              )}
+              <div className="grid md:grid-cols-2 gap-6">
+                {/* PRECIO MAYOR */}
+                <Input
+                  label={editData.oferta ? "Precio mayor oferta" : "Precio mayor"}
+                  value={editData.precioMayor}
+                  onChange={(v: string) =>
+                    setEditData({ ...editData, precioMayor: v })
+                  }
+                />
+
+                {/* PRECIO MENOR */}
+                <Input
+                  label={editData.oferta ? "Precio menor oferta" : "Precio menor"}
+                  value={editData.precioMenor}
+                  onChange={(v: string) =>
+                    setEditData({ ...editData, precioMenor: v })
+                  }
+                />
+              </div>
+
+
+              {/* CHECKBOX */}
+              <div className="flex gap-6 mt-6">
+                <Checkbox
+                  label="Oferta"
+                  checked={editData.oferta}
+                  onChange={(v: boolean) =>
+                    setEditData({
+                      ...editData,
+                      oferta: v,
+                      ...(v === false && {
+                        oldPrecioMayor: "",
+                        oldPrecioMenor: "",
+                      }),
+                    })
+                  }
+                />
+
+                <Checkbox
+                  label="Nuevo"
+                  checked={editData.nuevo}
+                  onChange={(v: boolean) =>
+                    setEditData({ ...editData, nuevo: v })
+                  }
+                />
+
+                <Checkbox
+                  label="Destacado"
+                  checked={editData.destacado}
+                  onChange={(v: boolean) =>
+                    setEditData({ ...editData, destacado: v })
+                  }
+                />
               </div>
             </section>
+            {/* TALLES */}
+            {editData.tipo != 'otros' &&
+              <section>
+                <h4 className="font-semibold text-lg mb-4">Talles</h4>
+                <div className="grid grid-cols-6 md:grid-cols-10 gap-3">
+                  {(editData.tipo === "ropa"
+                    ? TALLES_ROPA
+                    : editData.genero == 'hombre' || editData.genero == 'mujer' || editData.genero == 'unisex' ? TALLES_NUMERICOS : TALLES_KIDS
+                  ).map((num) => (
+                    <button
+                      key={num}
+                      type="button"
+                      onClick={() => {
+                        const nuevos = editData.talle.includes(num)
+                          ? editData.talle.filter((t) => t !== num)
+                          : [...editData.talle, num];
+
+                        setEditData({ ...editData, talle: nuevos });
+                      }}
+                      className={`py-2 rounded-md border text-sm font-semibold transition ${editData.talle.includes(num)
+                        ? "bg-black text-white"
+                        : "bg-white hover:bg-black hover:text-white"
+                        }`}
+                    >
+                      {num}
+                    </button>
+                  ))}
+                </div>
+              </section>}
 
             {/* DESCRIPCION */}
             <section>

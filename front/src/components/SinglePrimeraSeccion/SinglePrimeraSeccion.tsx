@@ -40,11 +40,11 @@ const SinglePrimeraSeccion = ({
                 {zapatillaEncontrada.nombre}
               </p>
 
-              <p className="text-[#525252] text-[19.5px] capitalize">
+              {zapatillaEncontrada.tipo != 'otros' && zapatillaEncontrada.tipo != 'ropa' && <p className="text-[#525252] text-[19.5px] capitalize">
                 {zapatillaEncontrada.genero === "unisex"
                   ? `zapatillas ${zapatillaEncontrada.marca} unisex`
                   : `zapatillas ${zapatillaEncontrada.marca} para ${zapatillaEncontrada.genero}`}
-              </p>
+              </p>}
 
               {zapatillaEncontrada.oferta ? (
                 <div>
@@ -106,12 +106,14 @@ const SinglePrimeraSeccion = ({
           <div className="sticky md:top-36">
             <div className="bg-white rounded-md shadow-md p-4">
               <SeleccionarTalle
+                tipo={zapatillaEncontrada.tipo}
                 genero={zapatillaEncontrada.genero}
                 toggleSelectedTalle={toggleSelectedTalle}
                 selectedTalle={selectedTalle}
                 tallesValidos={zapatillaEncontrada.talle}
               />
               <BotonSingleZapatilla
+                noRequiereTalle={zapatillaEncontrada.tipo == 'otros'}
                 selectedTalle={selectedTalle}
                 zapatilla={zapatillaEncontrada}
               />
@@ -217,6 +219,7 @@ const SinglePrimeraSeccion = ({
           )}
 
           <SeleccionarTalle
+            tipo={zapatillaEncontrada.tipo}
             genero={zapatillaEncontrada.genero}
             toggleSelectedTalle={toggleSelectedTalle}
             selectedTalle={selectedTalle}
@@ -226,28 +229,29 @@ const SinglePrimeraSeccion = ({
           <BotonSingleZapatilla
             selectedTalle={selectedTalle}
             zapatilla={zapatillaEncontrada}
+            noRequiereTalle={zapatillaEncontrada.tipo == 'otros'}
           />
         </div>
       </div>
       <div className="-mt-32 mb-10 md:mt-0 md:mb-0">
         {/* ================= DESCRIPCIÓN ================= */}
-          <div className="p-7 md:-mt-[80vh]">
-            <div className="min-h-[200px]">
-              <h4 className="font-normal text-3xl">Descripción</h4>
+        <div className="p-7 md:-mt-[80vh]">
+          <div className="min-h-[200px]">
+            <h4 className="font-normal text-3xl">Descripción</h4>
 
-              <div className="max-w-[550px]">
-                {zapatillaEncontrada.description ? (
-                  <p className="mt-5 text-xl w-full break-words whitespace-pre-wrap">
-                    {zapatillaEncontrada.description}
-                  </p>
-                ) : (
-                  <p className="mt-5 text-xl w-full break-words whitespace-pre-wrap">
-                    No tenemos descripción para esta zapatilla todavia.
-                  </p>
-                )}
-              </div>
+            <div className="max-w-[550px]">
+              {zapatillaEncontrada.description ? (
+                <p className="mt-5 text-xl w-full break-words whitespace-pre-wrap">
+                  {zapatillaEncontrada.description}
+                </p>
+              ) : (
+                <p className="mt-5 text-xl w-full break-words whitespace-pre-wrap">
+                  No tenemos descripción para esta zapatilla todavia.
+                </p>
+              )}
             </div>
           </div>
+        </div>
         <div>
           <div className="ml-7 w-80 rounded-xl overflow-hidden shadow-md bg-white text-gray-800">
             <div className="grid grid-cols-2 divide-x divide-gray-200 w-fit">
